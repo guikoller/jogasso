@@ -1,13 +1,19 @@
 
 #include <iostream>
-
+#include <stdio.h>
 #include <SFML/Graphics.hpp>
+
+#include "Player.h"
+
+int windowHeight = 768;
+int windowWidht = 1280;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "Jogo do Simão");
+    sf::RenderWindow window(sf::VideoMode(windowWidht, windowHeight), "Jogo");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
+    Player jogado;
 
     while (window.isOpen())
     {
