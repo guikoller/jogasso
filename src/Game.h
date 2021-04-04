@@ -20,6 +20,7 @@ public:
     
     //Functions
     void update();
+    void renderPlayer();
     void render();
     void updatePlayer();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)

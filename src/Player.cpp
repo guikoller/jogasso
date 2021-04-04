@@ -1,10 +1,12 @@
 #include "Player.h"
 
 void Player::initTexture(){
-    this->texture.loadFromFile("Textures/player.png");
+    if(!this->texture.loadFromFile("Textures/quadrado.png")){
+        std::cout<<"ERRO::PLAYER:: NÃO CONSEGUIU CARREGAR PLAYER SHEET"<<"\n";
+    }
 }
 void Player::initSprite(){
-
+    this->sprite.setTexture(this->texture);
 }
 
 Player::Player(){

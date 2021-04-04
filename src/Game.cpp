@@ -43,6 +43,11 @@ void Game::render(){
 }
 
 
+void Game::renderPlayer(){
+    this->player->render(this->window);
+}
+
+
 void Game::updatePlayer(){
     this->player->update();
 }
