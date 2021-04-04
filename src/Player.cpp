@@ -1,7 +1,7 @@
 #include "Player.h"
 
 void Player::initTexture(){
-
+    this->texture.loadFromFile("Textures");
 }
 void Player::initSprite(){
 
