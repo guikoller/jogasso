@@ -1,33 +1,15 @@
+#include "Game.h"
 
-#include <iostream>
-#include <stdio.h>
-#include <SFML/Graphics.hpp>
-
-#include "Player.h"
-
-int windowHeight = 768;
-int windowWidht = 1280;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(windowWidht, windowHeight), "Jogo");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-    Player jogado;
+    Game game;
 
-    while (window.isOpen())
+    while (game.getWindow().isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        game.update();
+        game.render();
     }
-
+    
     return 0;
 }
