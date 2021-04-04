@@ -2,14 +2,21 @@
 
 
 void Game::initWindow(){
-    this->window.create(sf::VideoMode(width,height),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
+    this->window.create(sf::VideoMode(1280,720),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
 }
 
-Game::Game(/* args */){
+void Game::initPlayer(){
+    this->player  = new Player();
+}
+
+
+Game::Game(){
     this->initWindow();
+    this->initPlayer();
 }
 
 Game::~Game(){
+    delete this->player;
 }
 
 
@@ -22,12 +29,23 @@ void Game::update(){
             this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
     }
     
+    this->updatePlayer();
+
 }
 
 void Game::render(){
+    this->window.clear();
+    //renderizão do jogo vai aqui
 
+
+    //
+    this->window.display();
 }
 
+
+void Game::updatePlayer(){
+    this->player->update();
+}
 
 const sf::RenderWindow& Game::getWindow() const{
     return this->window; 

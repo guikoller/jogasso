@@ -10,8 +10,9 @@ private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
     
-    int width = 800;
-    int height = 600;
+    Player *player;
+
+    void initPlayer();
     void initWindow();
 public:
     Game(/* args */);
@@ -20,6 +21,7 @@ public:
     //Functions
     void update();
     void render();
+    void updatePlayer();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
 };
 

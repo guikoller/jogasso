@@ -1,8 +1,23 @@
-#include <stdio.h>
 #include "Player.h"
 
-Player::Player(/* args */){
-    printf("JOGADOR CRIADO\n");
+void Player::initTexture(){
+
+}
+void Player::initSprite(){
+
+}
+
+Player::Player(){
+    this->initTexture();
+    this->initSprite();
 }
 
 Player::~Player(){}
+
+void Player::update(){
+
+}
+
+void Player::render(sf::RenderTarget&target){
+    target.draw(this->sprite);
+}
