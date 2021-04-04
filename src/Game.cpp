@@ -14,7 +14,14 @@ Game::~Game(){
 
 
 void Game::update(){
-    printf("LOL\n");
+    //pega todos o eventos da janela
+    while (this->window.pollEvent(this->event)){
+        if (this->event.type == sf::Event::Closed)//se a janela for fechada
+            this->window.close();
+        else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Escape)
+            this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
+    }
+    
 }
 
 void Game::render(){

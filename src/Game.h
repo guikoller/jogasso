@@ -8,12 +8,15 @@
 class Game{
 private:
     sf::RenderWindow window;
+    sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
+    
     int width = 800;
     int height = 600;
     void initWindow();
 public:
     Game(/* args */);
     ~Game();
+    
     //Functions
     void update();
     void render();
