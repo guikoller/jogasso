@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
-class Player{
+class Jogador{
 private:
     sf::Sprite sprite;
     sf::Texture texture;
@@ -20,12 +20,14 @@ private:
     //status do jogador
 
 
-
+    //Texuras 
+    void upadateMovimento();
     void initTexture();
     void initSprite();
+
 public:
-    Player();
-    ~Player();
+    Jogador();
+    ~Jogador();
     void update();
     void render(sf::RenderTarget&target);
 };

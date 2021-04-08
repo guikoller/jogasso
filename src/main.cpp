@@ -1,16 +1,16 @@
-#include "Game.h"
+#include "Jogo.h"
 
 
 int main()
 {
-    srand(static_cast<unsigned>(time(0)));
+    // srand(static_cast<unsigned>(time(0)));
     
-    Game game;
+    Jogo jogo;
 
-    while (game.getWindow().isOpen())
+    while (jogo.getWindow().isOpen())
     {
-        game.update();
-        game.render();
+        jogo.update();
+        jogo.render();
     }
     
     return 0;
