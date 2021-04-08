@@ -7,9 +7,8 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     
-    //animacao
-
-
+    //Animacao
+    sf::IntRect frameAtual;
 
 
     //movimento
