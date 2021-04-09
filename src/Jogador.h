@@ -6,6 +6,8 @@ class Jogador{
 private:
     sf::Sprite sprite;
     sf::Texture texture;
+    bool movendo; //para checar se esta movendo ou não
+    sf::Clock timerAnimacao;
     
     //Animacao
     sf::IntRect frameAtual;
@@ -19,10 +21,13 @@ private:
     //status do jogador
 
 
-    //Texuras 
+    //Texuras
+    void iniciaVariaveis(); 
     void upadateMovimento();
-    void initTexture();
-    void initSprite();
+    void uptadeAnimacao();
+    void iniciaTextura();
+    void iniciaSprite();
+    void iniciaAnimacao();
 
 public:
     Jogador();
