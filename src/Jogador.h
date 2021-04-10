@@ -2,14 +2,16 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
+enum ESTADOS_ANIMACOES{PARADO = 0, MOVE_DIREITA, MOVE_ESQUERDA, PULANDO, CAINDO, ATACANDO};
+
 class Jogador{
 private:
     sf::Sprite sprite;
     sf::Texture texture;
-    bool movendo; //para checar se esta movendo ou não
     sf::Clock timerAnimacao;
     
     //Animacao
+    short estadoAnimacao;
     sf::IntRect frameAtual;
 
 

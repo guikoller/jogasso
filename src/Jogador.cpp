@@ -2,12 +2,12 @@
 
 
 void Jogador::iniciaVariaveis(){
-    this->movendo = false;
+    this->estadoAnimacao = ESTADOS_ANIMACOES::PARADO;
 }
 
 
 void Jogador::iniciaTextura(){
-    if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheetv1.png")){
+    if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheet.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
@@ -38,38 +38,50 @@ Jogador::~Jogador(){
 }
 
 void Jogador::upadateMovimento(){
-    this->movendo = false;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)){
         this->sprite.move(-2.f,0.f);//Esquuerda
-            this->movendo = true;
+        this->estadoAnimacao = MOVE_ESQUERDA;
     }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)){
         this->sprite.move(2.f,0.f);//Direita
-        this->movendo = true;
-    }
-    
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
+        this->estadoAnimacao = MOVE_DIREITA;
+    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
         this->sprite.move(0.f,-2.f);//Cima
-        this->movendo = true;
-    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
-        this->sprite.move(0.f,2.f);//Baixo
-        this->movendo = true;
-    }
+        this->estadoAnimacao = PULANDO;
+    }// }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
+    //     this->sprite.move(0.f,2.f);//Baixo
+    // }
     
 }
 
 void Jogador::uptadeAnimacao(){
-    if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f){
-        if (this->movendo==false){//parado
-            this->frameAtual.left += 96.f;
-
+    if (this->estadoAnimacao == ESTADOS_ANIMACOES::PARADO)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
+        {  
+            this->frameAtual.top = 384.f;
+            this->frameAtual.left += 96.f;            
             if(this->frameAtual.left >= 288.f)
-                this->frameAtual.left = 0;
-            
+                this->frameAtual.left = 0;    
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
         }
-        this->timerAnimacao.restart();
-        this->sprite.setTextureRect(this->frameAtual);
+    }else if (this->estadoAnimacao == ESTADOS_ANIMACOES::MOVE_DIREITA)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.1f)
+        {
+            this->frameAtual.top = 0;
+            this->frameAtual.left += 96.f;
+            if(this->frameAtual.left >= 480.f)
+                this->frameAtual.left = 0;    
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+        
     }
     
+    this->estadoAnimacao = ESTADOS_ANIMACOES::PARADO;
+      
     
 }
 
