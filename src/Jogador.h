@@ -21,6 +21,8 @@ private:
     float velMin;
     float aceleracao;
     float desaceleracao;
+    float gravidade;
+    float VelMaxY;
 
 
 

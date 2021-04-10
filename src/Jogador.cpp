@@ -30,6 +30,8 @@ void Jogador::initFisica(){
     this->velMin = 0.5f;
     this->aceleracao = 0.7f;
     this->desaceleracao= 0.95f;
+    this->gravidade = 4.f;
+    this->VelMaxY = 10.f;
 }
 
 
@@ -48,7 +50,7 @@ Jogador::~Jogador(){
 void Jogador::move(const float x, const float y){
     // aceleração
     this->velocidade.x += x * this->aceleracao;
-    // this->velocidade.y += y * this->aceleracao; GRAVIDADE AINDA N IMPLEMENTADA
+    
 
     //limite de velocidade
     if (std::abs(this->velocidade.x) >  this->velMax)
@@ -58,6 +60,12 @@ void Jogador::move(const float x, const float y){
 
 
 void Jogador::updateFisica(){
+    //GRAVIDADE
+    this->velocidade.y += 1.0 * this->gravidade;
+    if (std::abs(this->velocidade.y) >  this->VelMaxY)
+        this->velocidade.y = this->VelMaxY * ((this->velocidade.y < 0.f) ? -1.f : 1.f);
+    
+    
     // desaceleração
     this->velocidade *= this->desaceleracao;
 
