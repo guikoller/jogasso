@@ -54,5 +54,16 @@ void Jogo::update(){
     }
     
     this->updateJogador();
+    this->updateColisao();
 
+}
+
+void Jogo::updateColisao(){
+    //
+    if(this->jogador->getGlobalBounds().top + this->jogador->getGlobalBounds().height > this->window.getSize().y){
+        this->jogador->resetVelY();
+        this->jogador->setPosicao(this->jogador->getGlobalBounds().left,
+            this->window.getSize().y - this->jogador->getGlobalBounds().height
+        );
+    }
 }

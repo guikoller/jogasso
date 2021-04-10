@@ -20,6 +20,7 @@ public:
     
     //Functions
     void update();
+    void updateColisao();
     void renderJogador();
     void render();
     void updateJogador();

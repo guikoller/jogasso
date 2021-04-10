@@ -47,6 +47,18 @@ Jogador::~Jogador(){
 
 }
 
+const sf::FloatRect Jogador::getGlobalBounds()const{
+    return this->sprite.getGlobalBounds();
+}
+
+void Jogador::setPosicao(const float x, const float y){
+    this->sprite.setPosition(x, y);
+}
+
+void Jogador::resetVelY(){
+    this->velocidade.y = 0.f;
+}
+
 void Jogador::move(const float x, const float y){
     // aceleração
     this->velocidade.x += x * this->aceleracao;
