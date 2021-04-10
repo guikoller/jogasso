@@ -15,8 +15,12 @@ private:
     sf::IntRect frameAtual;
 
 
-    //movimento
-
+    //Fisica
+    sf::Vector2f velocidade;
+    float velMax;
+    float velMin;
+    float aceleracao;
+    float desaceleracao;
 
 
 
@@ -24,16 +28,20 @@ private:
 
 
     //Texuras
-    void iniciaVariaveis(); 
-    void upadateMovimento();
-    void uptadeAnimacao();
+    void iniciaVariaveis();
     void iniciaTextura();
     void iniciaSprite();
     void iniciaAnimacao();
+    void initFisica();
 
 public:
     Jogador();
     ~Jogador();
+
+    void move(const float x, const float y);
+    void updateFisica();
+    void upadateMovimento();
+    void uptadeAnimacao();
     void update();
     void render(sf::RenderTarget&target);
 };

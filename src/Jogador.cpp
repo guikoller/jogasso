@@ -25,31 +25,68 @@ void Jogador::iniciaAnimacao(){
     this->timerAnimacao.restart();
 }
 
+void Jogador::initFisica(){
+    this->velMax = 5.f;
+    this->velMin = 0.5f;
+    this->aceleracao = 0.7f;
+    this->desaceleracao= 0.95f;
+}
+
 
 Jogador::Jogador(){
     this->iniciaVariaveis();
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
+    this->initFisica();
 }
 
 Jogador::~Jogador(){
 
 }
 
+void Jogador::move(const float x, const float y){
+    // aceleração
+    this->velocidade.x += x * this->aceleracao;
+    // this->velocidade.y += y * this->aceleracao; GRAVIDADE AINDA N IMPLEMENTADA
+
+    //limite de velocidade
+    if (std::abs(this->velocidade.x) >  this->velMax)
+        this->velocidade.x = this->velMax * ((this->velocidade.x < 0.f) ? -1.f : 1.f);    
+
+}
+
+
+void Jogador::updateFisica(){
+    // desaceleração
+    this->velocidade *= this->desaceleracao;
+
+    //limite de desaceleração
+    if (std::abs(velocidade.x) < this->velMin)
+        this->velocidade.x = 0.f;
+    if (std::abs(velocidade.y) < this->velMin)
+        this->velocidade.y = 0.f;
+    
+
+    this->sprite.move(this->velocidade);
+}
+
 void Jogador::upadateMovimento(){
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)){
-        this->sprite.move(-2.f,0.f);//Esquuerda
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+    {
+        this->move(-1.f,0.f);//Esquuerda
         this->estadoAnimacao = MOVE_ESQUERDA;
-    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)){
-        this->sprite.move(2.f,0.f);//Direita
+    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+    {
+        this->move(1.f,0.f);//Direita
         this->estadoAnimacao = MOVE_DIREITA;
-    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
-        this->sprite.move(0.f,-2.f);//Cima
+    }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+    {
+        this->move(0.f,-1.f);//Cima
         this->estadoAnimacao = PULANDO;
     }// }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
-    //     this->sprite.move(0.f,2.f);//Baixo
+    //     this->move(0.f,2.f);//Baixo
     // }
     
 }
@@ -68,7 +105,7 @@ void Jogador::uptadeAnimacao(){
         }
     }else if (this->estadoAnimacao == ESTADOS_ANIMACOES::MOVE_DIREITA)
     {
-        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.1f)
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
             this->frameAtual.top = 0;
             this->frameAtual.left += 96.f;
@@ -87,6 +124,7 @@ void Jogador::uptadeAnimacao(){
 
 
 void Jogador::update(){
+    this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }
