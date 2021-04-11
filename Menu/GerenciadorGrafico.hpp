@@ -13,10 +13,10 @@ public:
         Janela->setFramerateLimit(30);
     }
     ~GerenciadorGrafico(){delete(Janela);}
-    void desenhar(sf::CircleShape *c)   {Janela->draw(*c)}
-    void desenhar(sf::RectangleShape *r){Janela->draw(*r)}
-    void desenhar(sf::Shape *s)         {Janela->draw(*s)}
-    void desenhar(sf::Text *t)          {Janela->draw(*t)}
+    void desenhar(sf::CircleShape *c)   {Janela->draw(*c);}
+    void desenhar(sf::RectangleShape *r){Janela->draw(*r);}
+    void desenhar(sf::Shape *s)         {Janela->draw(*s);}
+    void desenhar(sf::Text *t)          {Janela->draw(*t);}
     void clear(void){  
         if(janelaAberta()){
             if(Janela->pollEvent(event))
