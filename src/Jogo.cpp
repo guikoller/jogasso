@@ -59,7 +59,7 @@ void Jogo::update(){
 }
 
 void Jogo::updateColisao(){
-    //
+    //colisão com o fundo da tela
     if(this->jogador->getGlobalBounds().top + this->jogador->getGlobalBounds().height > this->window.getSize().y){
         this->jogador->resetVelY();
         this->jogador->setPosicao(this->jogador->getGlobalBounds().left,
