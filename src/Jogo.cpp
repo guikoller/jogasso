@@ -67,3 +67,11 @@ void Jogo::updateColisao(){
         );
     }
 }
+
+void Jogo::rodar(){
+    while (this->getWindow().isOpen())
+    {
+        this->update();
+        this->render();
+    }
+}

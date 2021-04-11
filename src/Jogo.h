@@ -25,6 +25,7 @@ public:
     void render();
     void updateJogador();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
+    void rodar();
 };
 
 

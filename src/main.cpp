@@ -8,11 +8,7 @@ int main()
     
     Jogo jogo;
 
-    while (jogo.getWindow().isOpen())
-    {
-        jogo.update();
-        jogo.render();
-    }
+   jogo.rodar();
     
     return 0;
 }
