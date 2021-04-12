@@ -3,16 +3,16 @@
 #include <SFML/Graphics.hpp>
 
 
-#include "Jogador.h"
+#include "Entidade.h"
 
 class Jogo{
 private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
     
-    Jogador *jogador;
+    Entidade *jogador;
 
-    void initJogador();
+    void initEntidade();
     void initWindow();
 public:
     Jogo(/* args */);
@@ -21,9 +21,9 @@ public:
     //Functions
     void update();
     void updateColisao();
-    void renderJogador();
+    void renderEntidade();
     void render();
-    void updateJogador();
+    void updateEntidade();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
     void rodar();
 };

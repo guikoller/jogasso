@@ -6,14 +6,14 @@ void Jogo::initWindow(){
     this->window.setFramerateLimit(144);
 }
 
-void Jogo::initJogador(){
-    this->jogador  = new Jogador();
+void Jogo::initEntidade(){
+    this->jogador  = new Entidade();
 }
 
 
 Jogo::Jogo(){
     this->initWindow();
-    this->initJogador();
+    this->initEntidade();
 }
 
 Jogo::~Jogo(){
@@ -24,19 +24,19 @@ void Jogo::render(){
     this->window.clear();
     //renderizão do jogo vai aqui
 
-    this->renderJogador();
+    this->renderEntidade();
 
     //
     this->window.display();
 }
 
 
-void Jogo::renderJogador(){
+void Jogo::renderEntidade(){
     this->jogador->render(this->window);
 }
 
 
-void Jogo::updateJogador(){
+void Jogo::updateEntidade(){
     this->jogador->update();
 }
 
@@ -53,7 +53,7 @@ void Jogo::update(){
             this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
     }
     
-    this->updateJogador();
+    this->updateEntidade();
     this->updateColisao();
 
 }

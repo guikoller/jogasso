@@ -1,11 +1,10 @@
-#pragma once
 #include <iostream>
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
 enum ESTADOS_ANIMACOES{PARADO = 0, MOVE_DIREITA, MOVE_ESQUERDA, PULANDO, CAINDO, ATACANDO};
 
-class Jogador{
+class Entidade{
 private:
     sf::Sprite sprite;
     sf::Texture texture;
@@ -27,7 +26,7 @@ private:
 
 
 
-    //status do jogador
+    //status do Entidade
 
 
     //Texuras
@@ -38,8 +37,8 @@ private:
     void initFisica();
 
 public:
-    Jogador();
-    ~Jogador();
+    Entidade();
+    ~Entidade();
 
     //Acessores
     const sf::FloatRect getGlobalBounds() const;
