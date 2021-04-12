@@ -1,18 +1,18 @@
-#include "Jogador.h"
+#include "Entidade.h"
 
 
-void Jogador::iniciaVariaveis(){
+void Entidade::iniciaVariaveis(){
     this->estadoAnimacao = ESTADOS_ANIMACOES::PARADO;
 }
 
 
-void Jogador::iniciaTextura(){
+void Entidade::iniciaTextura(){
     if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheet.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
 
-void Jogador::iniciaSprite(){
+void Entidade::iniciaSprite(){
     this->sprite.setTexture(this->texture);
      
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
@@ -21,11 +21,11 @@ void Jogador::iniciaSprite(){
 
 }
 
-void Jogador::iniciaAnimacao(){
+void Entidade::iniciaAnimacao(){
     this->timerAnimacao.restart();
 }
 
-void Jogador::initFisica(){
+void Entidade::initFisica(){
     this->velMax = 5.f;
     this->velMin = 0.5f;
     this->aceleracao = 0.7f;
@@ -35,7 +35,7 @@ void Jogador::initFisica(){
 }
 
 
-Jogador::Jogador(){
+Entidade::Entidade(){
     this->iniciaVariaveis();
     this->iniciaTextura();
     this->iniciaSprite();
@@ -43,23 +43,23 @@ Jogador::Jogador(){
     this->initFisica();
 }
 
-Jogador::~Jogador(){
+Entidade::~Entidade(){
 
 }
 
-const sf::FloatRect Jogador::getGlobalBounds()const{
+const sf::FloatRect Entidade::getGlobalBounds()const{
     return this->sprite.getGlobalBounds();
 }
 
-void Jogador::setPosicao(const float x, const float y){
+void Entidade::setPosicao(const float x, const float y){
     this->sprite.setPosition(x, y);
 }
 
-void Jogador::resetVelY(){
+void Entidade::resetVelY(){
     this->velocidade.y = 0.f;
 }
 
-void Jogador::move(const float x, const float y){
+void Entidade::move(const float x, const float y){
     // aceleração
     this->velocidade.x += x * this->aceleracao;
     
@@ -71,7 +71,7 @@ void Jogador::move(const float x, const float y){
 }
 
 
-void Jogador::updateFisica(){
+void Entidade::updateFisica(){
     //GRAVIDADE
     this->velocidade.y += 1.0 * this->gravidade;
     if (std::abs(this->velocidade.y) >  this->VelMaxY)
@@ -91,7 +91,7 @@ void Jogador::updateFisica(){
     this->sprite.move(this->velocidade);
 }
 
-void Jogador::upadateMovimento(){
+void Entidade::upadateMovimento(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
@@ -111,7 +111,7 @@ void Jogador::upadateMovimento(){
     
 }
 
-void Jogador::uptadeAnimacao(){
+void Entidade::uptadeAnimacao(){
     if (this->estadoAnimacao == ESTADOS_ANIMACOES::PARADO)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
@@ -143,12 +143,12 @@ void Jogador::uptadeAnimacao(){
 }
 
 
-void Jogador::update(){
+void Entidade::update(){
     this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }
 
-void Jogador::render(sf::RenderTarget&target){
+void Entidade::render(sf::RenderTarget&target){
     target.draw(this->sprite);
 }
