@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 
-#include "Entidades/Entidade.h"
+#include "Entidade.h"
 
 class Jogo{
 private:

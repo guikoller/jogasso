@@ -2,7 +2,7 @@
 #define ENTITY_H
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "../Animacao.h"
+#include "Animacao.h"
 
 using namespace sf;
 class Entity

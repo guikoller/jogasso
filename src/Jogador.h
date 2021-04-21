@@ -1,5 +1,5 @@
-#include "../Entidades/Entity.hpp"
-#include "../Animacao/Animacao.h"
+#include "src/Entidades/Entity.hpp"
+#include "src/Animacao/Animacao.h"
 
 class Player: public Entity{
 public:

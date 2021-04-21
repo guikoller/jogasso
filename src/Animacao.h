@@ -1,4 +1,5 @@
 #include "Jogo.h"
+
 using namespace sf;
 
 class Animation{
