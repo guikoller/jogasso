@@ -1,4 +1,4 @@
-#include "Jogo.h"
+#include "Jogo/Jogo.h"
 
 
 int main()
@@ -7,7 +7,7 @@ int main()
     
     Jogo jogo;
 
-   jogo.rodar();
+    jogo.rodar();
     
     return 0;
 }
