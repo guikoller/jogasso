@@ -1,118 +1,151 @@
 #include "Jogador.h"
 
-Player::Player(AnimationManager &a, int x, int y) :Entity(a, x, y)
-{
-	option("Player", 0, "stay");
-	STATE = stay;
-	cash = 0;
+
+void Jogador::iniciaVariaveis(){
 }
 
-void Player::Keyboard()
-{
-	if (key["L"] || key["A"])
-	{
-		dir = 1;
-		dx = -0.1;
-		if (key["Shift"]) dx = -0.15;
-		if (STATE == stay) STATE = walk;
-	}
 
-	if (key["R"] || key["D"])
-	{
-		dir = 0;
-		dx = 0.1;
-		if (key["Shift"]) dx = 0.15;
-		if (STATE == stay) STATE = walk;
+void Jogador::iniciaTextura(){
+    if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheet.png")){
+		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
-	if (key["Space"])
-	{
-		if (STATE == stay || STATE == walk) { dy = -0.3; STATE = jump; anim.play("jump"); }
-	}
-
-	if (!(key["R"] || key["L"] || key["A"] || key["D"]))
-	{
-		dx = 0;
-		if (STATE == walk) STATE = stay;
-	}
-
-	key["R"] = key["L"] = key["Space"] = key["Shift"] = key["A"] = key["D"] = false;
 }
 
-void Player::Animation(float time)
-{
-	if (STATE == stay) anim.set("stay");
-	if (STATE == walk) anim.set("walk");
-	if (STATE == jump) anim.set("jump");
-
-	if (dir) anim.flip(1);
-
-	if (isDead == true) {
-		dx = 0;
-		dy = 0;
-		timer += time;
-		if (timer>1000) { life = false; timer = 0; }
-		anim.set("hit");
-	}
-
-	anim.tick(time);
-}
-
-void Player::update(float time)
-{
-	Keyboard();
-
-	Animation(time);
-
-	dy += 0.00065*time;
-
-	x += dx * time;
-	Collision(0);
-
-	y += dy * time;
-	Collision(1);
+void Jogador::iniciaSprite(){
+    this->sprite.setTexture(this->texture);
+     
+    this->frameAtual = sf::IntRect(0, 0, 96, 96);
+    this->sprite.setTextureRect(this->frameAtual);
+    this->sprite.setScale(3.f,3.f);
 
 }
 
-/*void Player::Collision(int num)
-{
+void Jogador::iniciaAnimacao(){
+    this->timerAnimacao.restart();
+}
 
-	for (int i = 0; i<obj.size(); i++)
-		if (getRect().intersects(obj[i].rect))
-		{
-			if (obj[i].name == "solid")
-			{
-				if (dy>0 && num == 1) { y = obj[i].rect.top - h;  dy = 0;   STATE = stay; }
-				if (dy<0 && num == 1) { y = obj[i].rect.top + obj[i].rect.height;  dy = 0; }
-				if (dx>0 && num == 0) { x = obj[i].rect.left - w; }
-				if (dx<0 && num == 0) { x = obj[i].rect.left + obj[i].rect.width; }
-			}
+void Jogador::initFisica(){
+    this->gravidade = 4.f;
+    this->VelMaxY = 10.f;
+}
 
-			if (obj[i].name == "SlopeLeft")
-			{
-				FloatRect r = obj[i].rect;
-				int y0 = (x + w / 2 - r.left) * r.height / r.width + r.top - h;
-				if (y>y0)
-					if (x + w / 2>r.left)
-					{
-						y = y0; dy = 0; STATE = stay;
-					}
-			}
 
-			if (obj[i].name == "SlopeRight")
-			{
-				FloatRect r = obj[i].rect;
-				int y0 = -(x + w / 2 - r.left) * r.height / r.width + r.top + r.height - h;
-				if (y > y0)
-					if (x + w / 2<r.left + r.width)
-					{
-						y = y0; dy = 0; STATE = stay;
-					}
-			}
-			if (obj[i].name == "CheckPoint")
-			{
-				sx = x;
-				sy = y;
-			}
+Jogador::Jogador(){
+    this->iniciaVariaveis();
+    this->iniciaTextura();
+    this->iniciaSprite();
+    this->iniciaAnimacao();
+    this->initFisica();
+}
 
-		}
-}*/
+Jogador::~Jogador(){
+
+}
+
+const sf::FloatRect Jogador::getGlobalBounds()const{
+    return this->sprite.getGlobalBounds();
+}
+
+void Jogador::setPosicao(const float x, const float y){
+    this->sprite.setPosition(x, y);
+}
+
+void Jogador::resetVelY(){
+    this->velocidade.y = 0.f;
+}
+
+void Jogador::move(const float x, const float y){
+    // aceleração
+    this->velocidade.x += x * this->aceleracao;
+    
+
+    //limite de velocidade
+    if (std::abs(this->velocidade.x) >  this->velMax)
+        this->velocidade.x = this->velMax * ((this->velocidade.x < 0.f) ? -1.f : 1.f);    
+
+}
+
+
+void Jogador::updateFisica(){
+    //GRAVIDADE
+    this->velocidade.y += 1.0 * this->gravidade;
+    if (std::abs(this->velocidade.y) >  this->VelMaxY)
+        this->velocidade.y = this->VelMaxY * ((this->velocidade.y < 0.f) ? -1.f : 1.f);
+    
+	this->sprite.move(this->velocidade.x, velocidade.y);
+}
+
+void Jogador::upadateMovimento(){
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+    {
+        this->move(-1.f,0.f);//Esquuerda
+        this->STATE = andando_esquerda;
+    }else 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+    {
+        this->move(1.f,0.f);//Direita
+        this->STATE= andando_direita;
+    }else 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+    {
+        this->move(0.f,-1.f);//Cima
+        this->STATE = pulando;
+    }// }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
+    //     this->move(0.f,2.f);//Baixo
+    // }
+    
+}
+
+void Jogador::uptadeAnimacao(){
+    if (this->STATE == parado)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
+        {  
+            this->frameAtual.top = 384.f;
+            this->frameAtual.left += 96.f;            
+            if(this->frameAtual.left >= 288.f)
+                this->frameAtual.left = 0;    
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+    }else if (this->STATE == andando_direita)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
+        {
+            this->frameAtual.top = 0;
+            this->frameAtual.left += 96.f;
+            if(this->frameAtual.left >= 480.f)
+                this->frameAtual.left = 0;    
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+    }
+    else if (this->estadoAnimacao == andando_esquerda)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
+        {
+            this->frameAtual.top = 0;
+            this->frameAtual.left += 96.f;
+            if(this->frameAtual.left >= 480.f)
+                this->frameAtual.left = 0;    
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+    }
+    
+    this->estadoAnimacao = parado;
+      
+    
+}
+
+
+void Jogador::update(){
+    this->updateFisica();
+    this->upadateMovimento();
+    this->uptadeAnimacao();
+}
+
+void Jogador::render(sf::RenderTarget&target){
+    target.draw(this->sprite);
+}

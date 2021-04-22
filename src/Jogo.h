@@ -3,14 +3,14 @@
 #include <SFML/Graphics.hpp>
 
 
-#include "Entidade.h"
+#include "Jogador.h"
 
 class Jogo{
 private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
     
-    Entidade *jogador;
+    Jogador *jogador;
 
     void initEntidade();
     void initWindow();

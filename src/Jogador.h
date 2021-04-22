@@ -1,16 +1,54 @@
-#include "Entidade.h"
-#include "Animacao.h"
+#include <iostream>
+#include <stdio.h>
+#include <SFML/Graphics.hpp>
 
-class Player: public Entity{
+class Jogador{
+private:
+    sf::Sprite sprite;
+    sf::Texture texture;
+    sf::Clock timerAnimacao;
+    
+    //Animacao
+    short estadoAnimacao;
+    sf::IntRect frameAtual;
+
+    enum {andando_direita,andando_esquerda,parado,pulando} STATE;
+
+    //Fisica
+    sf::Vector2f velocidade;
+    float velMax;
+    float velMin;
+    float aceleracao;
+    float desaceleracao;
+    float gravidade;
+    float VelMaxY;
+
+
+
+    //status do Jogador
+
+
+    //Texuras
+    void iniciaVariaveis();
+    void iniciaTextura();
+    void iniciaSprite();
+    void iniciaAnimacao();
+    void initFisica();
+
 public:
-	enum {stay,walk,jump} STATE;
-	int cash;
-	float sx, sy;
-	std::map<std::string,bool> key;//teclado
-	
-	Player(AnimationManager &a, int x, int y);
-	void Keyboard();
-	void Animation(float time);
-	void update(float time);
-	void Collision(int num);
+    Jogador();
+    ~Jogador();
+
+    //Acessores
+    const sf::FloatRect getGlobalBounds() const;
+
+    void setPosicao(const float x, const float y);
+    void resetVelY();
+
+    void move(const float x, const float y);
+    void updateFisica();
+    void upadateMovimento();
+    void uptadeAnimacao();
+    void update();
+    void render(sf::RenderTarget&target);
 };

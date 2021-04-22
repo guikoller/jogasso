@@ -7,7 +7,7 @@ void Jogo::initWindow(){
 }
 
 void Jogo::initEntidade(){
-    this->jogador  = new Entidade();
+    this->jogador  = new Jogador();
 }
 
 
