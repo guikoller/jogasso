@@ -4,6 +4,7 @@
 
 
 #include "Jogador.h"
+#include "Monstro.h"
 
 class Jogo{
 private:
@@ -11,6 +12,7 @@ private:
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
     
     Jogador *jogador;
+    Monstro *monstro;
 
     void initEntidade();
     void initWindow();

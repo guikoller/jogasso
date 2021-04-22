@@ -8,6 +8,7 @@ void Jogo::initWindow(){
 
 void Jogo::initEntidade(){
     this->jogador  = new Jogador();
+    this->monstro = new Monstro();
 }
 
 
@@ -18,6 +19,7 @@ Jogo::Jogo(){
 
 Jogo::~Jogo(){
     delete this->jogador;
+    delete this->monstro;
 }
 
 void Jogo::render(){
@@ -33,11 +35,13 @@ void Jogo::render(){
 
 void Jogo::renderEntidade(){
     this->jogador->render(this->window);
+    this->monstro->render(this->window);
 }
 
 
 void Jogo::updateEntidade(){
     this->jogador->update();
+    this->monstro->update();
 }
 
 const sf::RenderWindow& Jogo::getWindow() const{//retorna estado da janela aberta ou fechada
@@ -64,6 +68,14 @@ void Jogo::updateColisao(){
         this->jogador->resetVelY();
         this->jogador->setPosicao(this->jogador->getGlobalBounds().left,
             this->window.getSize().y - this->jogador->getGlobalBounds().height
+        );
+    }
+
+
+    if(this->monstro->getGlobalBounds().top + this->monstro->getGlobalBounds().height > this->window.getSize().y){
+        this->monstro->resetVelY();
+        this->monstro->setPosicao(this->monstro->getGlobalBounds().left,
+            this->window.getSize().y - this->monstro->getGlobalBounds().height
         );
     }
 }
