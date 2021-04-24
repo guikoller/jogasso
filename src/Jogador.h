@@ -16,8 +16,6 @@ private:
 
     //Fisica
     sf::Vector2f velocidade;
-    float velMax;
-    float velMin;
     float gravidade;
     float VelMaxY;
 

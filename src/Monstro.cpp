@@ -14,7 +14,7 @@ void Monstro::iniciaTextura(){
 void Monstro::iniciaSprite(){
     this->sprite.setTexture(this->texture);
      
-    this->frameAtual = sf::IntRect(0, 0, 96, 96);
+    this->frameAtual = sf::IntRect(0, 0, 64, 64);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
 
@@ -36,6 +36,7 @@ Monstro::Monstro(){
     this->iniciaSprite();
     this->iniciaAnimacao();
     this->initFisica();
+    STATE = parado;
 }
 
 Monstro::~Monstro(){
@@ -55,23 +56,16 @@ void Monstro::resetVelY(){
 }
 
 void Monstro::move(const float x, const float y){
-    // aceleração
-    this->velocidade.x += x * this->aceleracao;
-    
-
-    //limite de velocidade
-    if (std::abs(this->velocidade.x) >  this->velMax)
-        this->velocidade.x = this->velMax * ((this->velocidade.x < 0.f) ? -1.f : 1.f);    
-
+    this->sprite.move(x,y);
 }
 
 
 void Monstro::updateFisica(){
     //GRAVIDADE
     this->velocidade.y += 1.0 * this->gravidade;
-    if (std::abs(this->velocidade.y) >  this->VelMaxY)
+    if (std::abs(this->velocidade.y) >  this->VelMaxY){
         this->velocidade.y = this->VelMaxY * ((this->velocidade.y < 0.f) ? -1.f : 1.f);
-    
+    }
 	this->sprite.move(this->velocidade.x, velocidade.y);
 }
 
@@ -87,8 +81,8 @@ void Monstro::uptadeAnimacao(){
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
         {  
             this->frameAtual.top = 0.f;
-            this->frameAtual.left += 96.f;            
-            if(this->frameAtual.left >= 288.f)
+            this->frameAtual.left += 64.f;            
+            if(this->frameAtual.left >= 192.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
@@ -117,10 +111,7 @@ void Monstro::uptadeAnimacao(){
             this->sprite.setTextureRect(this->frameAtual);
         }
     }*/
-    
-    this->estadoAnimacao = parado;
-      
-    
+    STATE = parado;    
 }
 
 

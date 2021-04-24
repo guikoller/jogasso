@@ -63,9 +63,9 @@ void Jogador::move(const float x, const float y){
 void Jogador::updateFisica(){
     //GRAVIDADE
     this->velocidade.y += 1.0 * this->gravidade;
-    if (std::abs(this->velocidade.y) >  this->VelMaxY)
-        this->velocidade.y = this->VelMaxY * ((this->velocidade.y < 0.f) ? -1.f : 1.f);
-    
+    if(std::abs(this->velocidade.y) >  this->VelMaxY){
+        this->velocidade.y = this->VelMaxY *((this->velocidade.y < 0.f) ? -1.f : 1.f);
+    }
 	this->sprite.move(this->velocidade.x, velocidade.y);
 }
 

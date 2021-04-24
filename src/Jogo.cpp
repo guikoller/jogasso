@@ -47,21 +47,6 @@ void Jogo::updateEntidade(){
 const sf::RenderWindow& Jogo::getWindow() const{//retorna estado da janela aberta ou fechada
     return this->window; 
 }
-
-void Jogo::update(){
-    //pega todos o eventos da janela
-    while (this->window.pollEvent(this->event)){
-        if (this->event.type == sf::Event::Closed)//se a janela for fechada
-            this->window.close();
-        else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Escape)
-            this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
-    }
-    
-    this->updateEntidade();
-    this->updateColisao();
-
-}
-
 void Jogo::updateColisao(){
     //colisão com o fundo da tela
     if(this->jogador->getGlobalBounds().top + this->jogador->getGlobalBounds().height > this->window.getSize().y){
@@ -78,6 +63,19 @@ void Jogo::updateColisao(){
             this->window.getSize().y - this->monstro->getGlobalBounds().height
         );
     }
+}
+
+void Jogo::update(){
+    //pega todos o eventos da janela
+    while (this->window.pollEvent(this->event)){
+        if (this->event.type == sf::Event::Closed)//se a janela for fechada
+            this->window.close();
+        else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Escape)
+            this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
+    }
+    
+    this->updateEntidade();
+    this->updateColisao();
 }
 
 void Jogo::rodar(){
