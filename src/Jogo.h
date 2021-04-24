@@ -12,6 +12,9 @@ private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
     
+    sf::Clock dtClock;
+    float dt;
+
     Jogador *jogador;
     Monstro *monstro;
 
@@ -23,6 +26,8 @@ public:
     
     //Functions
     void update();
+    void updateDT();
+    void updateSFMLevents();
     void updateColisao();
     void renderEntidade();
     void render();

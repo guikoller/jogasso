@@ -7,8 +7,6 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock timerAnimacao;
-
-    sf::RectangleShape corpo;
     
     
     //Animacao

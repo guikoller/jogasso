@@ -70,19 +70,19 @@ void Jogador::updateFisica(){
     if(std::abs(this->velocidade.y) >  this->VelMaxY){
         this->velocidade.y = this->VelMaxY *((this->velocidade.y < 0.f) ? -1.f : 1.f);
     }
-	this->sprite.move(this->velocidade.x, velocidade.y);
+	this->move(this->velocidade.x, velocidade.y);
 }
 
 void Jogador::upadateMovimento(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
-        this->move(-5.f,0.f);//Esquuerda
+        this->move(-7.f,0.f);//Esquuerda
         STATE = andando_esquerda;
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
-        this->move(5.f,0.f);//Direita
+        this->move(7.f,0.f);//Direita
         this->STATE= andando_direita;
 
     }else 
