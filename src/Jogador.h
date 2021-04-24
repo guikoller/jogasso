@@ -12,7 +12,7 @@ private:
     sf::IntRect frameAtual;
     bool espelhado;
 
-    enum {andando_direita,andando_esquerda,parado,pulando,atacando} STATE;
+    enum {andando_direita,andando_esquerda,parado,pulando,caindo,atacando} STATE;
 
     //Fisica
     sf::Vector2f velocidade;

@@ -49,4 +49,4 @@ class Botao{
             Janela->draw(retangulo);
             Janela->draw(texto);
         }
-}
+};

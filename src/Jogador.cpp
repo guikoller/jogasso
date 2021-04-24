@@ -86,7 +86,7 @@ void Jogador::upadateMovimento(){
         this->STATE= andando_direita;
 
     }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && velocidade.y == 0)
     {
         this->move(0.f,-20.f);//Cima
         this->STATE = pulando;
