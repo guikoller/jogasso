@@ -1,14 +1,13 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
-
+#include "GerenciadorGrafico.h"
 
 
 class Menu{
 protected:
     sf::Sprite planoFundoSprite;
     sf::Texture selecionarPlano;
-    sf::Font selecionarFonte;
 
     //-------------------------------------------Botoes
     class Botao{
@@ -98,10 +97,7 @@ protected:
     };
     
 public:
-    Menu():planoFundoSprite(),texto(),selecionarPlano(),selecionarFonte(){
-        selecionarFonte.loadFromFile("font.ttf");
-        texto.setCharacterSize(28);
-        texto.setFont(selecionarFonte);
+    Menu():planoFundoSprite(),selecionarPlano(){
         selecionarPlano.loadFromFile("bg.jpg");
         planoFundoSprite.setTexture(selecionarPlano);
         planoFundoSprite.setOrigin(sf::Vector2f(0,0));

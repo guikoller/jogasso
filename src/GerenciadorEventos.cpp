@@ -11,12 +11,12 @@ GerenciadorEventos::~GerenciadorEventos(){
 void GerenciadorEventos::iniciar(void){
 
 }
-void GerenciadorEventos::carregarJogo(int id){
+void GerenciadorEventos::carregarJogo(){
 
 }
 void GerenciadorEventos::startPlay(){
     
-}
+}/*
 //Colisao personagem inimigo
 void GerenciadorEventos::checacolisaoI(){
     
@@ -29,6 +29,7 @@ void GerenciadorEventos::checacolisaoF(){
 void GerenciadorEventos::checacolisaoIF(){
     
 }
+*/
 void GerenciadorEventos::iniciarJogo(void){
     
 }
