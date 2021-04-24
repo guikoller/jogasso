@@ -10,6 +10,7 @@ class Botao{
     public:
         Botao(){}
         ~Botao(){}
+        
         Botao(sf::Vector2f tamBotao,const char *textoBotao,sf::Color corText,sf::Color corReta):
             retangulo(),texto(),localFont(),corTexto(),corRetangulo()
             {
