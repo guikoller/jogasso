@@ -12,11 +12,11 @@ class GerenciadorEventos{
         void carregarJogo(int id);
         void startPlay();
         //Colisao personagem inimigo
-        void checacolisao();
+        void checacolisaoI();
         //Colisao personagem fase
-        void checacolisao();
+        void checacolisaoF();
         //Colisao inimigo fase
-        void checacolisao();
+        void checacolisaoIF();
         void iniciarJogo(void);
         void sair(void);
 };

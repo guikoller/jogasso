@@ -6,5 +6,3 @@ public:
     TileMap(/* args */);
     ~TileMap();
 };
-
-

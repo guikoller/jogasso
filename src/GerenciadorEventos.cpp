@@ -18,15 +18,15 @@ void GerenciadorEventos::startPlay(){
     
 }
 //Colisao personagem inimigo
-void GerenciadorEventos::checacolisao(){
+void GerenciadorEventos::checacolisaoI(){
     
 }
 //Colisao personagem fase
-void GerenciadorEventos::checacolisao(){
+void GerenciadorEventos::checacolisaoF(){
     
 }
 //Colisao inimigo fase
-void GerenciadorEventos::checacolisao(){
+void GerenciadorEventos::checacolisaoIF(){
     
 }
 void GerenciadorEventos::iniciarJogo(void){

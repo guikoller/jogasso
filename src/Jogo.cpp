@@ -2,7 +2,7 @@
 
 
 void Jogo::initWindow(){
-    this->window.create(sf::VideoMode(1280,720),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
+    this->window.create(sf::VideoMode(1700,900),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
     this->window.setFramerateLimit(144);
 }
 

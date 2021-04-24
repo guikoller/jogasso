@@ -5,6 +5,7 @@
 
 #include "Jogador.h"
 #include "Monstro.h"
+#include "TileMap.h"
 
 class Jogo{
 private:
