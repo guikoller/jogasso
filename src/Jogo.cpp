@@ -47,11 +47,13 @@ void Jogo::updateEntidade(){
 const sf::RenderWindow& Jogo::getWindow() const{//retorna estado da janela aberta ou fechada
     return this->window; 
 }
+
 void Jogo::updateColisao(){
     //colisão com o fundo da tela
-    if(this->jogador->getGlobalBounds().top + this->jogador->getGlobalBounds().height > this->window.getSize().y){
+    if(this->jogador->getPosicao().y + this->jogador->getGlobalBounds().height > this->window.getSize().y){
         this->jogador->resetVelY();
-        this->jogador->setPosicao(this->jogador->getGlobalBounds().left,
+        this->jogador->setPosicao(
+            this->jogador->getPosicao().x,
             this->window.getSize().y - this->jogador->getGlobalBounds().height
         );
     }

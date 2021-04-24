@@ -7,6 +7,7 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock timerAnimacao;
+    bool espelhado;
     
     //Animacao
     short estadoAnimacao;
@@ -28,6 +29,7 @@ private:
     void iniciaVariaveis();
     void iniciaTextura();
     void iniciaSprite();
+    void flip(bool f);
     void iniciaAnimacao();
     void initFisica();
 
@@ -37,6 +39,7 @@ public:
 
     //Acessores
     const sf::FloatRect getGlobalBounds() const;
+    const sf::Vector2f getPosicao() const;
 
     void setPosicao(const float x, const float y);
     void resetVelY();

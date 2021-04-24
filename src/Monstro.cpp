@@ -6,7 +6,7 @@ void Monstro::iniciaVariaveis(){
 
 
 void Monstro::iniciaTextura(){
-    if (!this->texture.loadFromFile("Textures/Inimigos/Monstro/Idle (64x64).png")){
+    if (!this->texture.loadFromFile("Textures/Inimigos/Monstro.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
@@ -87,13 +87,13 @@ void Monstro::uptadeAnimacao(){
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
-    }/*else if (this->STATE == andando_direita)
+    }else if (this->STATE == andando_direita)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
             this->frameAtual.top = 0;
-            this->frameAtual.left += 96.f;
-            if(this->frameAtual.left >= 480.f)
+            this->frameAtual.left += 64.f;
+            if(this->frameAtual.left >= 320.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
@@ -104,13 +104,13 @@ void Monstro::uptadeAnimacao(){
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
             this->frameAtual.top = 0;
-            this->frameAtual.left += 96.f;
-            if(this->frameAtual.left >= 480.f)
+            this->frameAtual.left += 64.f;
+            if(this->frameAtual.left >= 320.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
-    }*/
+    }
     STATE = parado;    
 }
 

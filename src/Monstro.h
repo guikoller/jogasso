@@ -12,7 +12,7 @@ private:
     short estadoAnimacao;
     sf::IntRect frameAtual;
 
-    enum {andando_direita,andando_esquerda,parado,pulando} STATE;
+    enum {andando_direita,andando_esquerda,parado,atacando} STATE;
 
     //Fisica
     sf::Vector2f velocidade;
