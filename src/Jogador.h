@@ -43,6 +43,7 @@ public:
 
     void setPosicao(const float x, const float y);
     void resetVelY();
+    void resetVelX();
 
     void move(const float x, const float y);
     void updateFisica();

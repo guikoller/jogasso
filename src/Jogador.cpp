@@ -58,6 +58,9 @@ void Jogador::setPosicao(const float x, const float y){
 void Jogador::resetVelY(){
     this->velocidade.y = 0.f;
 }
+void Jogador::resetVelX(){
+    this->velocidade.x = 0.f;
+}
 
 void Jogador::move(const float x, const float y){   
     this->sprite.move(x,y);

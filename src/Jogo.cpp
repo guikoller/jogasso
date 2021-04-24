@@ -65,6 +65,10 @@ void Jogo::updateColisao(){
     if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->monstro->getSprite()))
     {
         printf("Colidiu\n");
+        this->jogador->resetVelX();
+
+    }else{
+        printf("não Colidiu\n");
     }
         
 }
