@@ -190,7 +190,9 @@ void Jogador::uptadeAnimacao(){
     this->STATE = parado;
 
 }
-
+sf::Sprite Jogador::getSprite(){
+    return this->sprite;
+}
 
 void Jogador::update(){
     this->updateFisica();

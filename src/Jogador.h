@@ -39,6 +39,7 @@ public:
     //Acessores
     const sf::FloatRect getGlobalBounds() const;
     const sf::Vector2f getPosicao() const;
+    sf::Sprite getSprite();
 
     void setPosicao(const float x, const float y);
     void resetVelY();

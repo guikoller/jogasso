@@ -1,4 +1,5 @@
 #include "Jogo.h"
+#include "Collision.h"
 
 
 void Jogo::initWindow(){
@@ -60,7 +61,12 @@ void Jogo::updateColisao(){
         this->monstro->setPosicao(this->monstro->getGlobalBounds().left,
             this->window.getSize().y - this->monstro->getGlobalBounds().height
         );
-    }    
+    }
+    if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->monstro->getSprite()))
+    {
+        printf("Colidiu\n");
+    }
+        
 }
 void Jogo::updateSFMLevents(){
     //pega todos o eventos da janela
