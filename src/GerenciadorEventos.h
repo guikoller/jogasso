@@ -9,13 +9,15 @@ class GerenciadorEventos{
         GerenciadorEventos();
         ~GerenciadorEventos();
         void iniciar(void);
-        void carregarJogo(int id);
+        void carregarJogo();
         void startPlay();
+        /*
         //Colisao personagem inimigo
         void checacolisaoI();
         //Colisao personagem fase
         void checacolisaoF();
         //Colisao inimigo fase
+        */
         void checacolisaoIF();
         void iniciarJogo(void);
         void sair(void);

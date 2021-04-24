@@ -1,5 +1,4 @@
 #include "MenuPrincipal.h"
-#include "GerenciadorGrafico.h"
 
 MenuPrincipal::~MenuPrincipal(){
 }
