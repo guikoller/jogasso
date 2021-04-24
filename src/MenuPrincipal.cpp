@@ -6,9 +6,9 @@ MenuPrincipal::~MenuPrincipal(){
 }
 
 void MenuPrincipal::desenhar(GerenciadorGrafico *p){
-    p->clear();
-    p->desenhaImagem(&planoFundoSprite);
-    p->display();
+    // p->clear();
+    // p->desenhaImagem(&planoFundoSprite);
+    // p->display();
     
 }
 
