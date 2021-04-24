@@ -39,7 +39,7 @@ protected:
                 corTexto = sf::Color::Black;
                 efeito = sf::Color::White;
 
-                localFont.loadFromFile("font.ttf");
+                localFont.loadFromFile("../Font/font.ttf");
                 retangulo.setSize({200,35});
                 retangulo.setFillColor(corRetangulo);
 
