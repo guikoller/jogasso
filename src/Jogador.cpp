@@ -86,7 +86,7 @@ void Jogador::upadateMovimento(){
         this->STATE= andando_direita;
 
     }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && velocidade.y == 0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
         this->move(0.f,-20.f);//Cima
         this->STATE = pulando;
@@ -162,6 +162,28 @@ void Jogador::uptadeAnimacao(){
             this->sprite.setOrigin(0.f,0.f); 
         }
         
+        
+    }
+
+    else if (this->STATE == pulando)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
+        {
+            this->frameAtual.top = 576.f;
+            this->frameAtual.left = 0.f;    
+            
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+        
+        if (this->espelhado)
+        {
+            this->sprite.setScale(-3.f,3.f);
+            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
+        }else{
+           this->sprite.setScale(3.f,3.f);
+            this->sprite.setOrigin(0.f,0.f); 
+        } 
         
     }
     
