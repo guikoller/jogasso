@@ -11,13 +11,21 @@ void Jogador::iniciaTextura(){
 	}
 }
 
+
+void Jogador::flip(bool f){
+    if(f == true)
+        sprite.setTextureRect(sf::IntRect(96, 0, -96, 96));
+
+    if(f == false)
+        sprite.setTextureRect(sf::IntRect(0, 0, 96, 96));
+}
+
 void Jogador::iniciaSprite(){
     this->sprite.setTexture(this->texture);
      
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
-
 }
 
 void Jogador::iniciaAnimacao(){
@@ -45,6 +53,10 @@ Jogador::~Jogador(){
 
 const sf::FloatRect Jogador::getGlobalBounds()const{
     return this->sprite.getGlobalBounds();
+}
+
+const sf::Vector2f Jogador::getPosicao() const{
+    return this->sprite.getPosition();
 }
 
 void Jogador::setPosicao(const float x, const float y){
@@ -80,15 +92,13 @@ void Jogador::upadateMovimento(){
     {
         this->move(5.f,0.f);//Direita
         this->STATE= andando_direita;
+
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
         this->move(0.f,-20.f);//Cima
         this->STATE = pulando;
-    }// }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
-    //     this->move(0.f,2.f);//Baixo
-    // }
-    
+    }
 }
 
 void Jogador::uptadeAnimacao(){
@@ -112,10 +122,12 @@ void Jogador::uptadeAnimacao(){
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
-            this->sprite.setTextureRect(this->frameAtual);
+            this->sprite.setTextureRect(this->frameAtual);  
         }
+        this->sprite.setScale(3.f,3.f);
+        this->sprite.setOrigin(0.f,0.f);
     }
-    else if (this->estadoAnimacao == andando_esquerda)
+    else if (this->STATE == andando_esquerda)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
@@ -123,14 +135,16 @@ void Jogador::uptadeAnimacao(){
             this->frameAtual.left += 96.f;
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
+            
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
+        this->sprite.setScale(-3.f,3.f);
+        this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
     }
     
     this->STATE = parado;
-      
-    
+
 }
 
 
@@ -142,4 +156,11 @@ void Jogador::update(){
 
 void Jogador::render(sf::RenderTarget&target){
     target.draw(this->sprite);
+
+    sf::CircleShape circ;
+    circ.setFillColor(sf::Color::Red);
+    circ.setRadius(2.f);
+    circ.setPosition(this->sprite.getPosition());
+
+    target.draw(circ);
 }
