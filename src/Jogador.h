@@ -18,8 +18,6 @@ private:
     sf::Vector2f velocidade;
     float velMax;
     float velMin;
-    float aceleracao;
-    float desaceleracao;
     float gravidade;
     float VelMaxY;
 

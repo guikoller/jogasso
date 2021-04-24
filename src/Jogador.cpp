@@ -36,6 +36,7 @@ Jogador::Jogador(){
     this->iniciaSprite();
     this->iniciaAnimacao();
     this->initFisica();
+    STATE = parado;
 }
 
 Jogador::~Jogador(){
@@ -54,15 +55,8 @@ void Jogador::resetVelY(){
     this->velocidade.y = 0.f;
 }
 
-void Jogador::move(const float x, const float y){
-    // aceleração
-    this->velocidade.x += x * this->aceleracao;
-    
-
-    //limite de velocidade
-    if (std::abs(this->velocidade.x) >  this->velMax)
-        this->velocidade.x = this->velMax * ((this->velocidade.x < 0.f) ? -1.f : 1.f);    
-
+void Jogador::move(const float x, const float y){   
+    this->sprite.move(x,y);
 }
 
 
@@ -79,17 +73,17 @@ void Jogador::upadateMovimento(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
-        this->move(-1.f,0.f);//Esquuerda
-        this->STATE = andando_esquerda;
+        this->move(-5.f,0.f);//Esquuerda
+        STATE = andando_esquerda;
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
-        this->move(1.f,0.f);//Direita
+        this->move(5.f,0.f);//Direita
         this->STATE= andando_direita;
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
-        this->move(0.f,-1.f);//Cima
+        this->move(0.f,-20.f);//Cima
         this->STATE = pulando;
     }// }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
     //     this->move(0.f,2.f);//Baixo
@@ -134,7 +128,7 @@ void Jogador::uptadeAnimacao(){
         }
     }
     
-    this->estadoAnimacao = parado;
+    this->STATE = parado;
       
     
 }
