@@ -114,7 +114,9 @@ void Monstro::uptadeAnimacao(){
     STATE = parado;    
 }
 
-
+sf::Sprite Monstro::getSprite(){
+    return this->sprite;
+}
 void Monstro::update(){
     this->updateFisica();
     this->upadateMovimento();
