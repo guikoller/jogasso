@@ -7,13 +7,12 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     sf::Clock timerAnimacao;
-    bool espelhado;
     
     //Animacao
-    short estadoAnimacao;
     sf::IntRect frameAtual;
+    bool espelhado;
 
-    enum {andando_direita,andando_esquerda,parado,pulando} STATE;
+    enum {andando_direita,andando_esquerda,parado,pulando,atacando} STATE;
 
     //Fisica
     sf::Vector2f velocidade;
@@ -29,7 +28,6 @@ private:
     void iniciaVariaveis();
     void iniciaTextura();
     void iniciaSprite();
-    void flip(bool f);
     void iniciaAnimacao();
     void initFisica();
 

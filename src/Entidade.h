@@ -4,7 +4,6 @@
 
 class Entidade{
 public:
-    
     //Fisica
     sf::Vector2f velocidade;
     float gravidade;

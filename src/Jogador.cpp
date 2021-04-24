@@ -2,6 +2,8 @@
 
 
 void Jogador::iniciaVariaveis(){
+    this->espelhado = false;
+    STATE = parado;
 }
 
 
@@ -9,15 +11,6 @@ void Jogador::iniciaTextura(){
     if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheet.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
-}
-
-
-void Jogador::flip(bool f){
-    if(f == true)
-        sprite.setTextureRect(sf::IntRect(96, 0, -96, 96));
-
-    if(f == false)
-        sprite.setTextureRect(sf::IntRect(0, 0, 96, 96));
 }
 
 void Jogador::iniciaSprite(){
@@ -44,7 +37,6 @@ Jogador::Jogador(){
     this->iniciaSprite();
     this->iniciaAnimacao();
     this->initFisica();
-    STATE = parado;
 }
 
 Jogador::~Jogador(){
@@ -99,6 +91,10 @@ void Jogador::upadateMovimento(){
         this->move(0.f,-20.f);//Cima
         this->STATE = pulando;
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+    {
+        this->STATE = atacando;
+    }
 }
 
 void Jogador::uptadeAnimacao(){
@@ -126,6 +122,7 @@ void Jogador::uptadeAnimacao(){
         }
         this->sprite.setScale(3.f,3.f);
         this->sprite.setOrigin(0.f,0.f);
+        this->espelhado = false;
     }
     else if (this->STATE == andando_esquerda)
     {
@@ -139,8 +136,33 @@ void Jogador::uptadeAnimacao(){
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
+        this->espelhado = true;
         this->sprite.setScale(-3.f,3.f);
         this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
+    }
+    else if (this->STATE == atacando)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
+        {
+            this->frameAtual.top = 192.f;
+            this->frameAtual.left += 96.f;
+            if(this->frameAtual.left >= 96.f)
+                this->frameAtual.left = 0;    
+            
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+        
+        if (this->espelhado)
+        {
+            this->sprite.setScale(-3.f,3.f);
+            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
+        }else{
+           this->sprite.setScale(3.f,3.f);
+            this->sprite.setOrigin(0.f,0.f); 
+        }
+        
+        
     }
     
     this->STATE = parado;
