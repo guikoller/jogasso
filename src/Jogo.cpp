@@ -11,6 +11,7 @@ void Jogo::initWindow(){
 void Jogo::initEntidade(){
     this->jogador  = new Jogador();
     this->monstro = new Monstro();
+    this->mapa = new TileMap();
 }
 
 
@@ -22,6 +23,7 @@ Jogo::Jogo(){
 Jogo::~Jogo(){
     delete this->jogador;
     delete this->monstro;
+    delete this->mapa;
 }
 
 /////////////////////////////////////////////////////
@@ -64,11 +66,11 @@ void Jogo::updateColisao(){
     }
     if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->monstro->getSprite()))
     {
-        printf("Colidiu\n");
+        // printf("Colidiu\n");
         this->jogador->resetVelX();
 
     }else{
-        printf("não Colidiu\n");
+        // printf("não Colidiu\n");
     }
         
 }
@@ -99,6 +101,7 @@ void Jogo::render(){
     this->window.display();
 }
 void Jogo::renderEntidade(){
+    this->mapa->render(this->window);
     this->jogador->render(this->window);
     this->monstro->render(this->window);
 }

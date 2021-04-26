@@ -1,33 +1,45 @@
 #include "TileMap.h"
 
-TileMap::TileMap(/* args */)
-{
-    this->gridTamU = 50;
-    this->tamMax.x = 5000;
-    this->tamMax.y = 5000;
-    this->layers = 5;
-    /*
-    for (size_t x = 0; x < this->tamMax.x; x++)
-    {
-        this->mapa.push_back(std::vector< std::vector<Tile>>());
-        
-        for (size_t y = 0; y < tamMax.y; y++)
-        {
-            this->mapa[x].push_back(std::vector<Tile>());
-
-            for (size_t z = 0; z < this->layers; z++)
-            {
-                this->mapa[x][y].push_back(Tile());
-            }
-            
-
-        }
-        
-    }*/
-    
-    
+void TileMap::initVariaveis(){
+	this->altura = 15;
+	this->largura = 25;
 }
 
-TileMap::~TileMap()
-{
+void TileMap::initTextura(){
+    if (!this->textura.loadFromFile("Textures/Tiles/Tileset.png")){
+		printf("erro ao carregar tileset\n");
+	}
+}
+
+
+TileMap::TileMap(/* args */){    
+    initVariaveis();
+	initTextura();
+	initTiles();
+}
+
+TileMap::~TileMap(){}
+
+void TileMap::initTiles(){
+	this->mapa.clear();
+	sf::IntRect intR = sf::IntRect(0,0, 32, 32);
+	std::vector<Tile *> firstRow;
+	firstRow.push_back(new Tile(this->textura, intR, 20, 20,false));
+
+	mapa.push_back(firstRow);
+}
+
+void TileMap::render(sf::RenderTarget&target){
+	for (int i = 0; i < this->altura; i++)
+	{
+		for (int j = 0; j < this->largura; j++)
+		{
+			if(!this->mapa.empty()){
+				target.draw(this->mapa[i][j]->sprite);
+				printf("tile desenhado");
+			}
+		}
+		
+	}
+	
 }

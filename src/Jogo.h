@@ -15,6 +15,8 @@ private:
     sf::Clock dtClock;
     float dt;
 
+    TileMap *mapa;
+
     Jogador *jogador;
     Monstro *monstro;
 
