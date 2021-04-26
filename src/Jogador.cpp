@@ -205,11 +205,4 @@ void Jogador::update(){
 
 void Jogador::render(sf::RenderTarget&target){
     target.draw(this->sprite);
-
-    sf::CircleShape circ;
-    circ.setFillColor(sf::Color::Red);
-    circ.setRadius(2.f);
-    circ.setPosition(this->sprite.getPosition());
-
-    target.draw(circ);
 }
