@@ -3,7 +3,7 @@
 
 
 void Jogo::initWindow(){
-    this->window.create(sf::VideoMode(1700,900),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
+    this->window.create(sf::VideoMode(1600,960),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
 }
