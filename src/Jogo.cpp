@@ -3,13 +3,14 @@
 
 
 void Jogo::initWindow(){
-    this->window.create(sf::VideoMode(1600,960),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
+    this->window.create(sf::VideoMode(1600,1010),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
 }
 
 void Jogo::initEntidade(){
     this->jogador  = new Jogador();
+    this->jogador->setPosicao(128,128);
     this->monstro = new Monstro();
     this->mapa = new TileMap();
 }
@@ -49,13 +50,13 @@ void Jogo::updateEntidade(){
 
 void Jogo::updateColisao(){
     //colisão com o fundo da tela
-    if(this->jogador->getPosicao().y + this->jogador->getGlobalBounds().height > this->window.getSize().y){
-        this->jogador->resetVelY();
-        this->jogador->setPosicao(
-            this->jogador->getPosicao().x,
-            this->window.getSize().y - this->jogador->getGlobalBounds().height
-        );
-    }
+    // if(this->jogador->getPosicao().y + this->jogador->getGlobalBounds().height > this->window.getSize().y){
+    //     this->jogador->resetVelY();
+    //     this->jogador->setPosicao(
+    //         this->jogador->getPosicao().x,
+    //         this->window.getSize().y - this->jogador->getGlobalBounds().height
+    //     );
+    // }
 
 
     if(this->monstro->getGlobalBounds().top + this->monstro->getGlobalBounds().height > this->window.getSize().y){
@@ -72,6 +73,27 @@ void Jogo::updateColisao(){
     }else{
         printf("não Colidiu\n");
     }
+
+    for (int i = 0; i < this->mapa->getLargura(); i++)
+    {
+        for (int j = 0; j < this->mapa->getAltura(); j++)
+        {
+             if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->mapa->getSprite(i,j))){
+                if (this->mapa->getSolido(i, j))
+                {
+                    this->jogador->resetVelY();
+                    this->jogador->setPosicao(
+                        this->jogador->getPosicao().x,
+                        this->mapa->getSprite(i,j).getPosition().y - this->jogador->getSprite().getTextureRect().height - 32
+                    );
+                    printf("Colidiu com o chão\n");
+                }
+            }
+        }
+        
+    }
+    
+    
         
 }
 void Jogo::updateSFMLevents(){

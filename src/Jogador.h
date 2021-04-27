@@ -5,6 +5,7 @@
 class Jogador{
 private:
     sf::Sprite sprite;
+    sf::Sprite hitBox;
     sf::Texture texture;
     sf::Clock timerAnimacao;
     

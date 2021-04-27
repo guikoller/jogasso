@@ -1,7 +1,7 @@
 #include "TileMap.h"
 
 void TileMap::initVariaveis(){
-	this->altura = 15;
+	this->altura = 16;
 	this->largura = 25;
 }
 
@@ -17,8 +17,30 @@ TileMap::TileMap(/* args */){
 	initTextura();
 	initTiles();
 }
+int TileMap::getAltura(){
+	return this->altura;
+}
+int TileMap::getLargura(){
+	return this->largura;
+}
+sf::Sprite TileMap::getSprite(int x, int y){
+	return this->mapa[x][y]->sprite;
+}
+bool TileMap::getSolido(int x, int y){
+	return this->mapa[x][y]->solido;
+}
 
-TileMap::~TileMap(){}
+
+
+TileMap::~TileMap(){
+	for (int i = 0; i < this->largura; i++)
+	{
+		for (int j = 0; j < this->altura; j++)
+		{
+			delete mapa[i][j];
+		}		
+	}	
+}
 
 void TileMap::initTiles(){
 	this->mapa.clear();
@@ -31,6 +53,8 @@ void TileMap::initTiles(){
 	sf::IntRect canto_s_d = sf::IntRect(224, 0, 32, 32);
 	sf::IntRect canto_i_e = sf::IntRect(192, 32, 32, 32);
 	sf::IntRect canto_i_d = sf::IntRect(224, 32, 32, 32);
+	sf::IntRect chao2 = sf::IntRect(32, 128, 32, 32);
+	
 	std::vector<Tile *> Linha;
 
 	
@@ -39,10 +63,13 @@ void TileMap::initTiles(){
 	// 	Linha1.push_back(new Tile(this->textura, tijolo, 0, i * 64,false));
 	// }
 
+
+
 	for (int i = 0; i < this->largura; i++)
 	{
 		for (int j = 0; j < this->altura; j++)
 		{
+			
 			if (i == 0 && j == 0)//canto superior esquerdo
 			{
 				Linha.push_back(new Tile(this->textura, canto_s_e, i * 64, j * 64,false, true));
@@ -75,18 +102,26 @@ void TileMap::initTiles(){
 			{
 				Linha.push_back(new Tile(this->textura, parede_dir, i * 64, j * 64,false, true));
 			}
-			else
+			else if ((i > 0 && i < 20 && j == 10)|| (i > 5 && i < 25 && j == 5))//chão 2
+			{
+				Linha.push_back(new Tile(this->textura, chao2, i * 64, j * 64,false, true));
+			}
+			else //tijolo parede
 			{
 				Linha.push_back(new Tile(this->textura, tijolo, i * 64, j * 64,false, false));
 			}			
+			
+					
 		}
 		this->mapa.push_back(Linha);
 		Linha.clear();
 	}
-	
-	
 
-	// mapa.push_back(Linha1);
+	// Linha.push_back(new Tile(this->textura, canto_s_d, 100, 100,false, true));
+	// this->mapa.push_back(Linha);
+	// Linha.clear();
+
+
 }
 
 void TileMap::render(sf::RenderTarget&target){

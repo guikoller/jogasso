@@ -91,7 +91,7 @@ void Jogador::upadateMovimento(){
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
-        this->move(0.f,-20.f);//Cima
+        this->move(0.f,-25.f);//Cima
         this->STATE = pulando;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))

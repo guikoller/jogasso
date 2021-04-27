@@ -13,6 +13,13 @@ private:
 public:
     TileMap(/* args */);
     ~TileMap();
+
+    //Acessores
+    int getAltura();
+    int getLargura();
+    sf::Sprite getSprite(int x, int y);
+    bool getSolido(int x, int y);
+    
     void initTiles();
     void render(sf::RenderTarget&target);
 };
