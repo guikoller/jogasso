@@ -6,8 +6,9 @@ public:
     sf::Sprite sprite;
     sf::Vector2f pos;
     bool dano;
+    bool solido;
 
-    Tile(sf::Texture& texture, sf::IntRect texture_rect,float x, float y, bool dano);
+    Tile(sf::Texture& texture, sf::IntRect texture_rect,float x, float y, bool dano, bool s);
     Tile();
     ~Tile();
     void initTextura();
