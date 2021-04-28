@@ -17,7 +17,6 @@ void Monstro::iniciaSprite(){
     this->frameAtual = sf::IntRect(0, 0, 64, 64);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
-
 }
 
 void Monstro::iniciaAnimacao(){
