@@ -21,10 +21,8 @@ private:
     float gravidade;
     float VelMaxY;
 
-
-
     //status do Jogador
-
+    int vida;
 
     //Texuras
     void iniciaVariaveis();
