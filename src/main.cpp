@@ -7,7 +7,7 @@ int main()
     
     Jogo jogo;
 
-   jogo.rodar();
+    jogo.rodar();
     
     return 0;
 }

@@ -86,7 +86,7 @@ void Jogo::updateColisao(){
                         this->jogador->getPosicao().x,
                         this->mapa->getSprite(i,j).getPosition().y - this->jogador->getSprite().getTextureRect().height - 32
                     );
-                    printf("Colidiu com o chão\n");
+                    // printf("Colidiu com o chão\n");
                 }
             }
         }
