@@ -9,8 +9,8 @@ void Jogo::initWindow(){
 }
 
 void Jogo::initEntidade(){
-    this->jogador  = new Jogador();
-    this->jogador->setPosicao(128,128);
+    this->martelador  = new Martelador();
+    // this->martelador->setPosicao(128,128);
     this->monstro = new Monstro();
     this->mapa = new TileMap();
 }
@@ -22,7 +22,7 @@ Jogo::Jogo(){
 }
 
 Jogo::~Jogo(){
-    delete this->jogador;
+    delete this->martelador;
     delete this->monstro;
     delete this->mapa;
 }
@@ -30,31 +30,24 @@ Jogo::~Jogo(){
 /////////////////////////////////////////////////////
 //UPDATES////////////////////////////////////////////
 /////////////////////////////////////////////////////
-void Jogo::update(){
-    this->updateSFMLevents();
-    this->updateDT();
-    this->updateEntidade();
-    this->updateColisao();
-}
-
 void Jogo::updateDT(){
     this->dt = this->dtClock.restart().asSeconds();
 }
 
 
 void Jogo::updateEntidade(){
-    this->jogador->update();
+    this->martelador->update();
     this->monstro->update();
 }
 
 
 void Jogo::updateColisao(){
     //colisão com o fundo da tela
-    // if(this->jogador->getPosicao().y + this->jogador->getGlobalBounds().height > this->window.getSize().y){
-    //     this->jogador->resetVelY();
-    //     this->jogador->setPosicao(
-    //         this->jogador->getPosicao().x,
-    //         this->window.getSize().y - this->jogador->getGlobalBounds().height
+    // if(this->martelador->getPosicao().y + this->martelador->getGlobalBounds().height > this->window.getSize().y){
+    //     this->martelador->resetVelY();
+    //     this->martelador->setPosicao(
+    //         this->martelador->getPosicao().x,
+    //         this->window.getSize().y - this->martelador->getGlobalBounds().height
     //     );
     // }
 
@@ -65,10 +58,10 @@ void Jogo::updateColisao(){
             this->window.getSize().y - this->monstro->getGlobalBounds().height
         );
     }
-    if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->monstro->getSprite()))
+    if (Collision::PixelPerfectTest(this->martelador->getSprite(),this->monstro->getSprite()))
     {
         printf("Colidiu\n");
-        this->jogador->resetVelX();
+        this->martelador->resetVelX();
 
     }else{
         printf("não Colidiu\n");
@@ -78,13 +71,13 @@ void Jogo::updateColisao(){
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
         {
-             if (Collision::PixelPerfectTest(this->jogador->getSprite(),this->mapa->getSprite(i,j))){
+             if (Collision::PixelPerfectTest(this->martelador->getSprite(),this->mapa->getSprite(i,j))){
                 if (this->mapa->getSolido(i, j))
                 {
-                    this->jogador->resetVelY();
-                    this->jogador->setPosicao(
-                        this->jogador->getPosicao().x,
-                        this->mapa->getSprite(i,j).getPosition().y - this->jogador->getSprite().getTextureRect().height - 32
+                    this->martelador->resetVelY();
+                    this->martelador->setPosicao(
+                        this->martelador->getPosicao().x,
+                        this->mapa->getSprite(i,j).getPosition().y - this->martelador->getSprite().getTextureRect().height - 32
                     );
                     // printf("Colidiu com o chão\n");
                 }
@@ -106,7 +99,12 @@ void Jogo::updateSFMLevents(){
     }
 }
 
-
+void Jogo::update(){
+    this->updateSFMLevents();
+    this->updateDT();
+    this->updateEntidade();
+    this->updateColisao();
+}
 /////////////////////////////////////////////////////
 //RENDER/////////////////////////////////////////////
 /////////////////////////////////////////////////////
@@ -124,7 +122,7 @@ void Jogo::render(){
 }
 void Jogo::renderEntidade(){
     this->mapa->render(this->window);
-    this->jogador->render(this->window);
+    this->martelador->render(this->window);
     this->monstro->render(this->window);
 }
 /////////////////////////////////////////////////////

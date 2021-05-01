@@ -1,4 +1,9 @@
 #include "Personagem.h"
+Personagem::~Personagem(){}
+Personagem::Personagem(){}
+
+
+
 
 void Personagem::iniciaFisica(){
     this->gravidade = 4.f;

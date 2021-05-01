@@ -2,10 +2,13 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
-
-#include "Jogador.h"
+#include "Entidade.h"
+#include "Personagem.h"
+#include "Martelador.h"
+// #include "Jogador.h"
 #include "Monstro.h"
 #include "TileMap.h"
+
 
 class Jogo{
 private:
@@ -17,8 +20,9 @@ private:
 
     TileMap *mapa;
 
-    Jogador *jogador;
+    // Jogador *jogador;
     Monstro *monstro;
+    Martelador *martelador;
 
     void initEntidade();
     void initWindow();

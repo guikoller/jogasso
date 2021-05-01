@@ -1,6 +1,8 @@
-#include "Jogavel.h"
+#pragma once
+#include "Jogador.h"
 
-class Martelador: protected Jogavel{
+
+class Martelador: public Jogador{
 private:
     void iniciaVariaveis();
     void iniciaTextura();
@@ -8,7 +10,7 @@ private:
  public:
     Martelador();
     ~Martelador();
-    virtual void move(const float x, const float y);
-    virtual void upadateMovimento();
-    virtual void uptadeAnimacao();
+    void move(const float x, const float y);
+    void upadateMovimento();
+    void uptadeAnimacao();
 };
