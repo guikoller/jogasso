@@ -25,7 +25,7 @@ void Jogador::iniciaAnimacao(){
     this->timerAnimacao.restart();
 }
 
-void Jogador::initFisica(){
+void Jogador::iniciaFisica(){
     this->gravidade = 4.f;
     this->VelMaxY = 10.f;
 }
@@ -36,7 +36,7 @@ Jogador::Jogador(){
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
-    this->initFisica();
+    this->iniciaFisica();
 }
 
 Jogador::~Jogador(){

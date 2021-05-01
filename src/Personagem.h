@@ -1,12 +1,9 @@
-#include <iostream>
-#include <stdio.h>
-#include <SFML/Graphics.hpp>
+#include "Entidade.h"
 
-class Jogador{
-private:
-    sf::Sprite sprite;
+class Personagem : protected Entidade{
+protected:
     sf::Sprite hitBox;
-    sf::Texture texture;
+    sf::Texture textura;
     sf::Clock timerAnimacao;
     
     
@@ -25,15 +22,14 @@ private:
     int vida;
 
     //Texuras
-    void iniciaVariaveis();
-    void iniciaTextura();
-    void iniciaSprite();
+    virtual void iniciaVariaveis();
+    virtual void iniciaTextura();
     void iniciaAnimacao();
     void iniciaFisica();
 
 public:
-    Jogador();
-    ~Jogador();
+    Personagem();
+    virtual ~Personagem();
 
     //Acessores
     const sf::FloatRect getGlobalBounds() const;
@@ -44,10 +40,10 @@ public:
     void resetVelY();
     void resetVelX();
 
-    void move(const float x, const float y);
     void updateFisica();
-    void upadateMovimento();
-    void uptadeAnimacao();
+    virtual void move(const float x, const float y);
+    virtual void upadateMovimento();
+    virtual void uptadeAnimacao();
     void update();
-    void render(sf::RenderTarget&target);
+    void render(sf::RenderTarget&targets);
 };
