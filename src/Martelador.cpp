@@ -7,13 +7,13 @@ void Martelador::iniciaVariaveis(){
 
 
 void Martelador::iniciaTextura(){
-    if (!this->texture.loadFromFile("Textures/Jogador/1/spritesheet.png")){
+    if (!this->textura.loadFromFile("Textures/Jogador/1/spritesheet.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
 
 void Martelador::iniciaSprite(){
-    this->sprite.setTexture(this->texture);
+    this->sprite.setTexture(this->textura);
      
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
     this->sprite.setTextureRect(this->frameAtual);
