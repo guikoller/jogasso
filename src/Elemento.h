@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 
 template <class Tipo>
 class Elemento{
