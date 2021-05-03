@@ -4,7 +4,7 @@
 
 class Personagem : protected Entidade{
 public:
-    sf::Sprite hitBox;
+    sf::RectangleShape hitBox;
     sf::Texture textura;
     sf::Clock timerAnimacao;
     

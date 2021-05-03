@@ -18,6 +18,11 @@ void Martelador::iniciaSprite(){
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(2.f,2.f);
+    
+    this->hitBox.setSize(sf::Vector2f(45,45));
+    this->hitBox.setFillColor(sf::Color::Transparent);
+    this->hitBox.setOutlineColor(sf::Color::Red);
+    this->hitBox.setOutlineThickness(1);
 }
 
 
@@ -32,31 +37,42 @@ Martelador::~Martelador(){}
 
 
 void Martelador::move(const float x, const float y){   
-    this->sprite.move(x,y);
+    this->hitBox.move(x,y);
 }
 
 void Martelador::upadateMovimento(){
-
+    this->velocidade.x = 0.f;
+    this->velocidade.y = 0.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
     {
-        this->move(-7.f,0.f);//Esquuerda
+        this->velocidade.x += -7.f;
+        //Esquuerda
         STATE = andando_esquerda;
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
-        this->move(7.f,0.f);//Direita
+        this->velocidade.x += 7.f;
+        //Direita
         this->STATE= andando_direita;
 
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
     {
-        this->move(0.f,-25.f);//Cima
+        this->velocidade.y += -25.f;
+        //Cima
         this->STATE = pulando;
+    }else 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+    {
+        this->velocidade.y += 7.f;
+        //baixo só para teste
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {
         this->STATE = atacando;
     }
+    this->move(velocidade.x,velocidade.y);
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
 }
 
 void Martelador::uptadeAnimacao(){

@@ -10,9 +10,10 @@ void Jogo::initWindow(){
 
 void Jogo::initEntidade(){
     this->martelador  = new Martelador();
-    // this->martelador->setPosicao(128,128);
+    this->martelador->hitBox.setPosition(sf::Vector2f(200.f,200.f));
     this->monstro = new Monstro();
     this->mapa = new TileMap();
+    this->monstro->move(100,0);
 }
 
 
@@ -42,15 +43,6 @@ void Jogo::updateEntidade(){
 
 
 void Jogo::updateColisao(){
-    //colisão com o fundo da tela
-    // if(this->martelador->getPosicao().y + this->martelador->getGlobalBounds().height > this->window.getSize().y){
-    //     this->martelador->resetVelY();
-    //     this->martelador->setPosicao(
-    //         this->martelador->getPosicao().x,
-    //         this->window.getSize().y - this->martelador->getGlobalBounds().height
-    //     );
-    // }
-
 
     if(this->monstro->getGlobalBounds().top + this->monstro->getGlobalBounds().height > this->window.getSize().y){
         this->monstro->resetVelY();
@@ -58,29 +50,78 @@ void Jogo::updateColisao(){
             this->window.getSize().y - this->monstro->getGlobalBounds().height
         );
     }
-    if (Collision::PixelPerfectTest(this->martelador->getSprite(),this->monstro->getSprite()))
-    {
-        printf("Colidiu\n");
-        this->martelador->resetVelX();
+    
+    
 
-    }else{
-        printf("não Colidiu\n");
-    }
+    
+
+
+    sf::FloatRect nextPos;
 
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
         {
-             if (Collision::PixelPerfectTest(this->martelador->getSprite(),this->mapa->getSprite(i,j))){
-                if (this->mapa->getSolido(i, j))
+            sf::FloatRect playerBounds = martelador->getGlobalBounds();
+            sf::FloatRect tileBounds = this->mapa->getSprite(i,j).getGlobalBounds();
+            
+            nextPos = playerBounds;
+            nextPos.left += this->martelador->velocidade.x;
+            nextPos.top += this->martelador->velocidade.y;
+            
+            if (this->mapa->getSolido(i,j))
+            {
+                if (tileBounds.intersects(nextPos))
                 {
-                    this->martelador->resetVelY();
-                    this->martelador->setPosicao(
-                        this->martelador->getPosicao().x,
-                        this->mapa->getSprite(i,j).getPosition().y - this->martelador->getSprite().getTextureRect().height - 32
-                    );
+                    //baixo
+                    if (playerBounds.top < tileBounds.top
+                        && playerBounds.top + playerBounds.height < tileBounds.top + tileBounds.height
+                        && playerBounds.left < tileBounds.left + tileBounds.width
+                        && playerBounds.left + playerBounds.width > tileBounds.left
+                    )
+                    {
+                        this->martelador->velocidade.y = 0.f;
+                        this->martelador->velocidade.x = 0.f;
+                        this->martelador->hitBox.setPosition(martelador->hitBox.getPosition().x, tileBounds.top - playerBounds.height);
+                        printf("colisão chão\n"); 
+                    }
+                    // cima
+                    else if (playerBounds.top > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + tileBounds.height
+                        && playerBounds.left < tileBounds.left + tileBounds.width
+                        && playerBounds.left + playerBounds.width > tileBounds.left
+                    )
+                    {
+                        this->martelador->velocidade.y = 0.f;
+                        this->martelador->setPosicao(martelador->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 20);
+                        printf("colisão topo\n"); 
+                    } 
+                    //direita
+                    else if (playerBounds.left < tileBounds.left
+                        && playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width
+                        && playerBounds.top < tileBounds.top + tileBounds.height
+                        && playerBounds.top + playerBounds.height > tileBounds.top
+                    )
+                    {
+                        this->martelador->velocidade.x = 0.f;
+                        this->martelador->setPosicao(this->martelador->getPosicao().x + (this->martelador->getPosicao().x - this->mapa->getSprite(i,j).getPosition().x) -30, playerBounds.top); 
+                        printf("colisão direita\n"); 
+
+                    }
+                    //esquerda
+                    else if (playerBounds.left > tileBounds.left
+                        && playerBounds.left + playerBounds.width > tileBounds.left + tileBounds.width
+                        && playerBounds.top < tileBounds.top + tileBounds.height
+                        && playerBounds.top + playerBounds.height > tileBounds.top
+                    )
+                    {
+                        this->martelador->velocidade.x = 0.f;
+                        // this->martelador->setPosicao(this->martelador->getPosicao().x,this->martelador->getPosicao().y);
+                        printf("colisão esquerda\n"); 
+                    }    
                 }
-            }
+                
+            }            
         }
         
     }
@@ -101,8 +142,10 @@ void Jogo::updateSFMLevents(){
 void Jogo::update(){
     this->updateSFMLevents();
     this->updateDT();
-    this->updateEntidade();
     this->updateColisao();
+    this->updateEntidade();
+    std::cout<<this->martelador->velocidade.x;
+    std::cout<<"\n";
 }
 /////////////////////////////////////////////////////
 //RENDER/////////////////////////////////////////////

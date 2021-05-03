@@ -6,24 +6,24 @@ Personagem::Personagem(){}
 
 
 void Personagem::iniciaFisica(){
-    this->gravidade = 4.f;
-    this->VelMaxY = 10.f;
+    this->gravidade = 9.f;
+    this->VelMaxY = 15.f;
 }
 void Personagem::iniciaAnimacao(){
     this->timerAnimacao.restart();
 }
 const sf::FloatRect Personagem::getGlobalBounds() const{
-    return this->sprite.getGlobalBounds();
+    return this->hitBox.getGlobalBounds();
 }
 const sf::Vector2f Personagem::getPosicao() const{
-    return this->sprite.getPosition();
+    return this->hitBox.getPosition();
 }
 sf::Sprite Personagem::getSprite(){
     return this->sprite;
 }
 
 void Personagem::setPosicao(const float x, const float y){
-    this->sprite.setPosition(x, y);
+    this->hitBox.setPosition(x, y);
 }
 void Personagem::resetVelY(){
     this->velocidade.y = 0.f;
@@ -48,4 +48,5 @@ void Personagem::update(){
 
 void Personagem::render(sf::RenderTarget&target){
     target.draw(this->sprite);
+    target.draw(this->hitBox);
 }
