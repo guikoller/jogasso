@@ -48,6 +48,7 @@ class Lista{
                 delete(aux);
             }
             else{
+                //
                 //cout<<"Elemento nao consta na lista."<<endl;
             }
         }
