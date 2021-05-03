@@ -1,32 +1,20 @@
+#pragma once
 #include <iostream>
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
 class Entidade{
 public:
-    //Fisica
-    sf::Vector2f velocidade;
-    float gravidade;
-    float VelMaxY;
+    sf::Vector2f pos;
+    sf::Sprite sprite;
 
-
-
-    //status do Entidade
-
-
-    //Texuras
-    void iniciaVariaveis();
-    void initFisica();
+    virtual void iniciaSprite()= 0;
 
 
     Entidade();
-    virtual ~Entidade();
+    virtual ~Entidade() = 0;
 
-    void resetVelY();
-
-    virtual void move(const float x, const float y);
-    virtual void updateFisica();
-
-    virtual void update();
-    virtual void render(sf::RenderTarget&target);
+    virtual void update()= 0;
+    virtual void render(sf::RenderTarget&target)= 0;
 };
+
