@@ -69,6 +69,16 @@ void Jogo::updateColisao(){
             nextPos.left += this->martelador->velocidade.x;
             nextPos.top += this->martelador->velocidade.y;
             
+
+
+            // (x, y)-----------------------(x + width, y)
+            // |                                         |
+            // |                                         |
+            // |                                         |
+            // |                                         |
+            // |                                         |
+            // (x, y + height)-----(x + width, y + height)
+           
             if (this->mapa->getSolido(i,j))
             {
                 if (tileBounds.intersects(nextPos))
@@ -104,7 +114,7 @@ void Jogo::updateColisao(){
                     )
                     {
                         this->martelador->velocidade.x = 0.f;
-                        this->martelador->setPosicao(this->martelador->getPosicao().x + (this->martelador->getPosicao().x - this->mapa->getSprite(i,j).getPosition().x) -30, playerBounds.top); 
+                        this->martelador->setPosicao(this->martelador->getPosicao().x+ playerBounds.width, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
