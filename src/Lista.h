@@ -16,8 +16,41 @@ class Lista{
     public:
         Lista():primeiro(NULL),atual(NULL){}
         ~Lista(){}
-        void adicionar(Tipo* p , int chave);
-        void remover(int chave);
+        void adicionar(Tipo* p , int chave){
+            if(primeiro != NULL){
+                Elemento<Tipo>* novo = new Elemento<Tipo>();
+                novo->setTipo(p);
+                novo->setChave(chave);
+                atual->setNext(novo);
+                novo->setPrev(atual);
+                novo->setNext(NULL);
+                atual = novo;
+            }
+            else{
+                primeiro = new Elemento<Tipo>();
+                primeiro->setChave(chave);
+                primeiro->setTipo(p);
+                primeiro->setNext(NULL)
+                primeiro->setPrev(NULL);
+                atual = primeiro;
+            }
+        }
+        void remover(int chave){
+            Elemento<Tipo> *aux = primeiro; 
+            while(aux->getKey() != chave && aux != NULL ){
+                aux = aux->getNext();
+            }
+            if(aux != NULL){
+                Elemento<Tipo>* anterior = aux->getPrev();
+                anterior->setNext(aux->getNext());
+                Elemento<Tipo>* proximo = aux->getNext();
+                proximo->setPrev(anterior);
+                delete(aux);
+            }
+            else{
+                //cout<<"Elemento nao consta na lista."<<endl;
+            }
+        }
         Tipo* getTipo(int chave){
             Elemento<Tipo>* aux = primeiro;
             while(aux != NULL){
@@ -26,5 +59,11 @@ class Lista{
                 aux = aux->getNext();
             }
             return NULL;
+        }
+        void apagar(){
+            while(primeiro != NULL){
+                delete(atual);
+                atual = atual->getPrev();
+            }
         }
 };

@@ -11,7 +11,6 @@ class Elemento{
         Elemento():next(NULL),prev(NULL),p(NULL){}
         /*  Tudo será alocado e desalocado em outras funcoes.   */
         ~Elemento(){}
-        void remover(int chave);
         void setNext(Elemento<Tipo>* proximo){    
             if(proximo != NULL)
                 next = proximo;
@@ -22,6 +21,9 @@ class Elemento{
         }
         void setChave(int chave){
             key = chave;}
+        void setTipo(Tipo* novo){
+            p = novo;
+        }
         Elemento<Tipo>* getPrev(void){    return prev;}
         Elemento<Tipo>* getNext(void){    return next;}
         int getKey(void){                 return key;}
