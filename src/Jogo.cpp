@@ -79,7 +79,6 @@ void Jogo::updateColisao(){
                         this->martelador->getPosicao().x,
                         this->mapa->getSprite(i,j).getPosition().y - this->martelador->getSprite().getTextureRect().height - 32
                     );
-                    // printf("Colidiu com o chão\n");
                 }
             }
         }
