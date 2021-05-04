@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include "Espadachim.h"
-#include "TileMap.h"
+#include "MapaPrincipal.h"
 
 class levelPrincipal{
-    TileMap *mapa;
+    MapaPrincipal *mapa;
     Espadachim * espadachim;
     void initEntidade();
 public:

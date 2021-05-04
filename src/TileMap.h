@@ -12,7 +12,7 @@ protected:
     void initVariaveis();
 public:
     TileMap(/* args */);
-    ~TileMap();
+    virtual ~TileMap();
 
     //Acessores
     int getAltura();

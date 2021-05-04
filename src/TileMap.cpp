@@ -13,9 +13,6 @@ void TileMap::initTextura(){
 
 
 TileMap::TileMap(/* args */){    
-    initVariaveis();
-	initTextura();
-	initTiles();
 }
 int TileMap::getAltura(){
 	return this->altura;

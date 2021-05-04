@@ -2,7 +2,9 @@
 
 void levelPrincipal::initEntidade(){
     this->espadachim = new Espadachim();
-    this->mapa = new TileMap();
+    this->mapa = new MapaPrincipal();
+
+    this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
 }
 
 levelPrincipal::levelPrincipal(/* args */){
@@ -111,6 +113,7 @@ void levelPrincipal::update(){
 }
 
 void levelPrincipal::render(sf::RenderTarget&target){
-    this->espadachim->render(target);
+    // printf("renderizado\n");
     this->mapa->render(target);
+    this->espadachim->render(target);
 }

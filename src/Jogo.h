@@ -4,10 +4,10 @@
 
 #include "Entidade.h"
 #include "Personagem.h"
-#include "Martelador.h"
-// #include "Jogador.h"
+#include "Espadachim.h"
+
 #include "Monstro.h"
-#include "MapaPrincipal.h"
+#include "levelPrincipal.h"
 
 
 class Jogo{
@@ -18,11 +18,7 @@ private:
     sf::Clock dtClock;
     float dt;
 
-    MapaPrincipal *mapa;
-
-    // Jogador *jogador;
-    Monstro *monstro;
-    Martelador *martelador;
+    levelPrincipal *level;
 
     void initEntidade();
     void initWindow();
@@ -35,9 +31,7 @@ public:
     void updateDT();
     void updateSFMLevents();
     void updateColisao();
-    void renderEntidade();
     void render();
-    void updateEntidade();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
     void rodar();
 };

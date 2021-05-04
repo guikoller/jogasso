@@ -2,6 +2,9 @@
 
 
 MapaPrincipal::MapaPrincipal(/* args */){
+    initVariaveis();
+	initTextura();
+	initTiles();
 }
 
 MapaPrincipal::~MapaPrincipal(){
