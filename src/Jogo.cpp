@@ -12,7 +12,7 @@ void Jogo::initEntidade(){
     this->martelador  = new Martelador();
     this->martelador->hitBox.setPosition(sf::Vector2f(200.f,200.f));
     this->monstro = new Monstro();
-    this->mapa = new TileMap();
+    this->mapa = new MapaPrincipal();
     this->monstro->move(100,0);
 }
 

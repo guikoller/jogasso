@@ -1,18 +1,18 @@
-#include "Martelador.h"
+#include "Espadachim.h"
 
-void Martelador::iniciaVariaveis(){
+void Espadachim::iniciaVariaveis(){
     this->espelhado = false;
     STATE = parado;
 }
 
 
-void Martelador::iniciaTextura(){
+void Espadachim::iniciaTextura(){
     if (!this->textura.loadFromFile("Textures/Jogador/1/spritesheet.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
 
-void Martelador::iniciaSprite(){
+void Espadachim::iniciaSprite(){
     this->sprite.setTexture(this->textura);
      
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
@@ -26,21 +26,21 @@ void Martelador::iniciaSprite(){
 }
 
 
-Martelador::Martelador(){
+Espadachim::Espadachim(){
     this->iniciaVariaveis();
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
     this->iniciaFisica();
 }
-Martelador::~Martelador(){}
+Espadachim::~Espadachim(){}
 
 
-void Martelador::move(const float x, const float y){   
+void Espadachim::move(const float x, const float y){   
     this->hitBox.move(x,y);
 }
 
-void Martelador::upadateMovimento(){
+void Espadachim::upadateMovimento(){
     this->velocidade.x = 0.f;
     this->velocidade.y = 0.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
@@ -75,7 +75,7 @@ void Martelador::upadateMovimento(){
     this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
 }
 
-void Martelador::uptadeAnimacao(){
+void Espadachim::uptadeAnimacao(){
     if (this->STATE == parado)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)

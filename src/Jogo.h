@@ -7,7 +7,7 @@
 #include "Martelador.h"
 // #include "Jogador.h"
 #include "Monstro.h"
-#include "TileMap.h"
+#include "MapaPrincipal.h"
 
 
 class Jogo{
@@ -18,7 +18,7 @@ private:
     sf::Clock dtClock;
     float dt;
 
-    TileMap *mapa;
+    MapaPrincipal *mapa;
 
     // Jogador *jogador;
     Monstro *monstro;

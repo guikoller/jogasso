@@ -2,7 +2,7 @@
 #include "Tile.h"
 class TileMap
 {
-private:
+protected:
     std::vector< std::vector <Tile *>> mapa;
     sf::Texture textura;
     int largura;//25
@@ -20,6 +20,6 @@ public:
     sf::Sprite getSprite(int x, int y);
     bool getSolido(int x, int y);
     
-    void initTiles();
+    virtual void initTiles() = 0;
     void render(sf::RenderTarget&target);
 };
