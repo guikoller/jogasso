@@ -2,12 +2,12 @@
 
 class GerenciadorGrafico;
 class MenuPrincipal: public Menu{
-    private:
+private:
     Botao iniciar;
     Botao continuar;
     Botao rankin;
     Botao carregar;
-    public:
+public:
     MenuPrincipal():Menu(),
     iniciar(),continuar(),rankin(),carregar(){
         iniciar.botaoPadrao01("Iniciar");
