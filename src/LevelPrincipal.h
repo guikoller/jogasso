@@ -5,15 +5,16 @@
 #include "Espadachim.h"
 #include "MapaPrincipal.h"
 
-class levelPrincipal{
+class LevelPrincipal{
+private:
     MapaPrincipal *mapa;
     Espadachim * espadachim;
     void initEntidade();
 public:
-    levelPrincipal(/* args */);
-    ~levelPrincipal();
-    //Functions
+    LevelPrincipal(/* args */);
+    ~LevelPrincipal();
 
+    //Functions
     void updateColisao();
     void updateEntidade();
     void update();

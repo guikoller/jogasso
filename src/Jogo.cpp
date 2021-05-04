@@ -8,7 +8,7 @@ void Jogo::initWindow(){
     this->window.setVerticalSyncEnabled(true);
 }
 void Jogo::initEntidade(){
-    this->level = new levelPrincipal();
+    this->level = new LevelPrincipal();
 }
 
 

@@ -7,7 +7,7 @@
 #include "Espadachim.h"
 
 #include "Monstro.h"
-#include "levelPrincipal.h"
+#include "LevelPrincipal.h"
 
 
 class Jogo{
@@ -18,7 +18,7 @@ private:
     sf::Clock dtClock;
     float dt;
 
-    levelPrincipal *level;
+    LevelPrincipal *level;
 
     void initEntidade();
     void initWindow();
