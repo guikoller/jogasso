@@ -2,7 +2,7 @@
 #include "Collision.h"
 
 
-void Jogo::initWindow():janela(),eventos(){
+void Jogo::initWindow(){
 
     this->window.create(sf::VideoMode(1600,1010),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
     this->window.setFramerateLimit(144);
@@ -13,7 +13,7 @@ void Jogo::initEntidade(){
 }
 
 
-Jogo::Jogo(){
+Jogo::Jogo():janela(),eventos(){
     this->initWindow();
     this->initEntidade();
 }
