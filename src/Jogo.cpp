@@ -103,7 +103,7 @@ void Jogo::updateColisao(){
                     )
                     {
                         this->martelador->velocidade.y = 0.f;
-                        this->martelador->setPosicao(martelador->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 20);
+                        // this->martelador->setPosicao(martelador->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 20);
                         printf("colisão topo\n"); 
                     } 
                     //direita
@@ -114,7 +114,7 @@ void Jogo::updateColisao(){
                     )
                     {
                         this->martelador->velocidade.x = 0.f;
-                        this->martelador->setPosicao(this->martelador->getPosicao().x+ playerBounds.width, playerBounds.top); 
+                        // this->martelador->setPosicao(this->martelador->getPosicao().x+ playerBounds.width, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
