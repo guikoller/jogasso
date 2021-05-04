@@ -32,12 +32,28 @@ bool Colisor::checaColisao(Colisor &other, float push){
     float intersectX = abs(deltaX) - (otherHalfSize.x - thisHalfSize.x);
     float intersectY = abs(deltaY) - (otherHalfSize.y - thisHalfSize.y);
 
-    if (intersectX <  0.0f)
-    {
-        /* code */
+    if (intersectX <  0.0f && intersectY <  0.0f){
+        push  = std::min(std::max(push, 0.0f), 1.0f);//clamping
+        
+        if (intersectX > intersectY){
+            if (deltaX > 0.0f){
+                this->Move(intersectX * (1.0f - push),0.0f);
+                other.Move(-intersectX * push, 0.0f);
+            }else{
+                this->Move(-intersectX * (1.0f - push),0.0f);
+                other.Move(intersectX * push, 0.0f);
+            }
+        }else{
+            if (deltaY > 0.0f){
+                this->Move(0.0f, intersectY * (1.0f - push));
+                other.Move(0.0f, -intersectY * push);
+            }else{
+                this->Move(0.0f, -intersectY * (1.0f - push));
+                other.Move(0.0f, intersectY * push);
+            }
+        }
+        return true;
     }
     
-
-
     return false;
 }

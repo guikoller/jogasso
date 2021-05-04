@@ -9,21 +9,16 @@
 #include "LevelBase.h"
 #include "LevelPrincipal.h"
 
-#include "GerenciadorGrafico.h"
-#include "GerenciadorEventos.h"
+#include "MenuPrincipal.h"
 
 
 class Jogo{
 private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimizazão
-    //Partes de acordo a UML, vou fazer assim e voce muda as funcoes para as novas partes
-    
-    GerenciadorGrafico *janela;
-    GerenciadorEventos *eventos;
 
+    MenuPrincipal menu;
 
-    //
     sf::Clock dtClock;
     float dt;
 

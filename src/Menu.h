@@ -1,7 +1,4 @@
 #include "SFML/Graphics.hpp"
-#include "SFML/System.hpp"
-#include "SFML/Window.hpp"
-#include "GerenciadorGrafico.h"
 
 
 class Menu{
@@ -53,21 +50,9 @@ protected:
                 float posY = pos.y + ( retangulo.getSize().y / 2 );
                 texto.setPosition({posX,posY});
             }
-            void setCorTexto(sf::Color cor){
-                texto.setFillColor(cor);
-            }
-            void setCorBotao(sf::Color cor){
-                retangulo.setFillColor(cor);
-            }
-            void setTexto(const char *textoBotao){
-                texto.setString(textoBotao);
-            }
-            void setTamBotao(sf::Vector2f tamanho){
-                retangulo.setSize(tamanho);
-            }
-            bool mouseSobreBotao(GerenciadorGrafico *p){
-                float posX = p->getPosicaoMouse().x;
-                float posY = p->getPosicaoMouse().y;
+            bool mouseSobreBotao(sf::RenderWindow *Janela){
+                float posX = sf::Mouse::getPosition(*Janela).x;
+                float posY = sf::Mouse::getPosition(*Janela).y;
                 
                 float diaSupEsqX = retangulo.getPosition().x;
                 float diaSupEsqY = retangulo.getPosition().y;
@@ -82,17 +67,16 @@ protected:
                 retangulo.setFillColor(corRetangulo);
                 return false;
             }
-            void setCorEfeito(sf::Color cor){
-                efeito = cor;
-            }
-            bool pressionado(GerenciadorGrafico *p){
-                if( mouseSobreBotao(p) && p->botaoMousePressionado())
+            bool pressionado(sf::RenderWindow *Janela){
+                sf::Event event;
+                Janela->pollEvent(evento)
+                if( mouseSobreBotao(p) && event.type == sf::Event::MouseButtonPressed )
                     return true;
                 return false;
             }
-            void desenhar(GerenciadorGrafico *p){
-                p->desenhar(&retangulo);
-                p->desenhar(&texto);
+            void desenhar(sf::RenderWindow *Janela){
+                Janela->draw(&retangulo);
+                Janela->draw(&texto);
             }
     };
     

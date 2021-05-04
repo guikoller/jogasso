@@ -13,7 +13,7 @@ void Jogo::initEntidade(){
 }
 
 
-Jogo::Jogo():janela(),eventos(){
+Jogo::Jogo():menu(){
     this->initWindow();
     this->initEntidade();
 }
@@ -60,6 +60,7 @@ void Jogo::render(){
 /////////////////////////////////////////////////////
 
 void Jogo::executar(){
+    menu.desenhar(&window);
     while (this->getWindow().isOpen())
     {
         this->update();
