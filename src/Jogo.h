@@ -16,7 +16,7 @@
 class Jogo{
 private:
     sf::RenderWindow window;
-    sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimilazão
+    sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimizazão
     //Partes de acordo a UML, vou fazer assim e voce muda as funcoes para as novas partes
     
     GerenciadorGrafico *janela;
@@ -36,12 +36,12 @@ public:
     ~Jogo();
     
     //Functions
+    const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
     void update();
     void updateDT();
     void updateSFMLevents();
     void updateColisao();
     void render();
-    const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
     void executar();
 };
 

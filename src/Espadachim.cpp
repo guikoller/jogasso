@@ -1,6 +1,7 @@
 #include "Espadachim.h"
 
 void Espadachim::iniciaVariaveis(){
+    this->estaPulando = false;
     this->espelhado = false;
     STATE = parado;
 }
@@ -56,11 +57,12 @@ void Espadachim::upadateMovimento(){
         this->STATE= andando_direita;
 
     }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && estaPulando == true)
     {
         this->velocidade.y += -25.f;
         //Cima
         this->STATE = pulando;
+        this->estaPulando = true;
     }else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
     {

@@ -6,7 +6,8 @@
 class LevelPrincipal: public LevelBase{
 private:
     MapaPrincipal *mapa;
-    Espadachim * espadachim;
+    Espadachim *espadachim;
+
     void initEntidade();
 public:
     LevelPrincipal(/* args */);

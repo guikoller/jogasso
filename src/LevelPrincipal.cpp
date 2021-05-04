@@ -104,11 +104,13 @@ void LevelPrincipal::updateColisao(){
 }
 
 void LevelPrincipal::updateEntidade(){
-    this->espadachim->update();
+    this->espadachim->update();    
 }
 
 void LevelPrincipal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
     this->espadachim->render(target);
+
+    
 }

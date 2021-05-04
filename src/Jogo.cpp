@@ -39,7 +39,6 @@ void Jogo::update(){
     this->updateSFMLevents();
     this->updateDT();
     this->level->update();
-
 }
 
 //RENDER/////////////////////////////////////////////
@@ -47,6 +46,7 @@ void Jogo::update(){
 const sf::RenderWindow& Jogo::getWindow() const{//retorna estado da janela aberta ou fechada
     return this->window; 
 }
+
 void Jogo::render(){
     this->window.clear();
     //renderizão do jogo vai aqui

@@ -6,6 +6,6 @@ private:
 public:
     MapaPrincipal();
     ~MapaPrincipal();
-    void initTiles();
+    void desenhaMapa();
 };
 

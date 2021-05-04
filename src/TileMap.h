@@ -20,6 +20,6 @@ public:
     sf::Sprite getSprite(int x, int y);
     bool getSolido(int x, int y);
     
-    virtual void initTiles() = 0;
+    virtual void desenhaMapa() = 0;
     void render(sf::RenderTarget&target);
 };

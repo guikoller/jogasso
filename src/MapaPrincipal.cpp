@@ -4,14 +4,14 @@
 MapaPrincipal::MapaPrincipal(/* args */){
     initVariaveis();
 	initTextura();
-	initTiles();
+	desenhaMapa();
 }
 
 MapaPrincipal::~MapaPrincipal(){
 }
 
 
-void MapaPrincipal::initTiles(){
+void MapaPrincipal::desenhaMapa(){
 	this->mapa.clear();
 	sf::IntRect tijolo = sf::IntRect(32,256, 32, 32);
 	sf::IntRect parede_esq = sf::IntRect(64, 32, 32, 32);
