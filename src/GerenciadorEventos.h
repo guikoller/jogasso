@@ -1,10 +1,10 @@
 class Personagem;
 class Inimigo;
-class GerenciadorGrafico;
+class GerenciadorColisoes;
 
 class GerenciadorEventos{
     private:
-        GerenciadorGrafico *p;
+        GerenciadorColisoes *p;
     public:
         GerenciadorEventos();
         ~GerenciadorEventos();
@@ -18,6 +18,7 @@ class GerenciadorEventos{
         void checacolisaoF();
         //Colisao inimigo fase
         */
+        //sf::Keyboard botaoTecladoPressionado(void){return sf::Keyboard::isKeyPressed;}
         void iniciarJogo(void);
         void sair(void);
 };

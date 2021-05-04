@@ -2,7 +2,8 @@
 #include "Collision.h"
 
 
-void Jogo::initWindow(){
+void Jogo::initWindow():janela(),eventos(){
+
     this->window.create(sf::VideoMode(1600,1010),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
