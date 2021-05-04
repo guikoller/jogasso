@@ -18,7 +18,6 @@ class GerenciadorEventos{
         void checacolisaoF();
         //Colisao inimigo fase
         */
-        void checacolisaoIF();
         void iniciarJogo(void);
         void sair(void);
 };
