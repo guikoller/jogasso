@@ -10,7 +10,7 @@
 #include "LevelPrincipal.h"
 
 #include "GerenciadorGrafico.h"
-#include "GerenciadoEventos.h"
+#include "GerenciadorEventos.h"
 
 
 class Jogo{
@@ -20,7 +20,7 @@ private:
     //Partes de acordo a UML, vou fazer assim e voce muda as funcoes para as novas partes
     
     GerenciadorGrafico *janela;
-    GerenciadoEventos *eventos;
+    GerenciadorEventos *eventos;
 
 
     //
