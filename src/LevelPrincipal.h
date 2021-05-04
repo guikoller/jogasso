@@ -1,11 +1,9 @@
 #pragma once
-#include <iostream>
-#include <stdio.h>
-#include <SFML/Graphics.hpp>
+#include "LevelBase.h"
 #include "Espadachim.h"
 #include "MapaPrincipal.h"
 
-class LevelPrincipal{
+class LevelPrincipal: public LevelBase{
 private:
     MapaPrincipal *mapa;
     Espadachim * espadachim;
@@ -17,6 +15,5 @@ public:
     //Functions
     void updateColisao();
     void updateEntidade();
-    void update();
     void render(sf::RenderTarget&target);
 };

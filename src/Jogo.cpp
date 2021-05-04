@@ -58,7 +58,7 @@ void Jogo::render(){
 
 /////////////////////////////////////////////////////
 
-void Jogo::rodar(){
+void Jogo::executar(){
     while (this->getWindow().isOpen())
     {
         this->update();

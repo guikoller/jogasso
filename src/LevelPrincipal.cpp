@@ -7,7 +7,7 @@ void LevelPrincipal::initEntidade(){
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
 }
 
-LevelPrincipal::LevelPrincipal(/* args */){
+LevelPrincipal::LevelPrincipal(){
     initEntidade();
 }
 
@@ -105,11 +105,6 @@ void LevelPrincipal::updateColisao(){
 
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();
-}
-
-void LevelPrincipal::update(){
-    updateEntidade();
-    updateColisao();
 }
 
 void LevelPrincipal::render(sf::RenderTarget&target){

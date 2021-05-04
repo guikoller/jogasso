@@ -6,7 +6,7 @@
 #include "Personagem.h"
 #include "Espadachim.h"
 
-#include "Monstro.h"
+#include "LevelBase.h"
 #include "LevelPrincipal.h"
 
 
@@ -33,7 +33,7 @@ public:
     void updateColisao();
     void render();
     const sf::RenderWindow& getWindow() const;//retorna estado da janela (aberta ou fechada)
-    void rodar();
+    void executar();
 };
 
 

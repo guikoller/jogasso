@@ -1,13 +1,10 @@
 #include "Jogo.h"
 
 
-int main()
-{
-    // srand(static_cast<unsigned>(time(0)));
+int main(){
     
     Jogo jogo;
-
-    jogo.rodar();
+    jogo.executar();
     
     return 0;
 }
