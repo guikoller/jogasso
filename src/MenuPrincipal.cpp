@@ -35,7 +35,6 @@ void MenuPrincipal::desenhar(sf::RenderWindow *Janela){
         carregar.desenhar(Janela);
         rankin.desenhar(Janela);
         sair.desenhar(Janela);
-        
         Janela->display();
         if(iniciar.pressionado(Janela)){
             iniciarJogo(Janela);
@@ -65,6 +64,12 @@ void MenuPrincipal::iniciarJogo(sf::RenderWindow *Janela){
 }
 void MenuPrincipal::continuarJogo(sf::RenderWindow *Janela){
     printf("continuou");
+}
+void MenuPrincipal::carregarJogo(sf::RenderWindow *Janela){
+    printf("carregou");
+}
+void MenuPrincipal::ranking(sf::RenderWindow *Janela){
+    printf("vendo ranking");
 }
 void MenuPrincipal::carregarJogo(sf::RenderWindow *Janela){
     printf("carregou");

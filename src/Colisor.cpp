@@ -19,12 +19,12 @@ sf::Vector2f Colisor::getHalfSize(){
 }
 
 
-bool Colisor::checaColisao(Colisor &other, float push){
-    sf::Vector2f otherPosition = other.getPosition();
-    sf::Vector2f otherHalfSize = other.getHalfSize();
+bool Colisor::checaColisao(Colisor *other, float push){
+    sf::Vector2f otherPosition = other->getPosition();
+    sf::Vector2f otherHalfSize = other->getHalfSize();
 
-    sf::Vector2f thisPosition = other.getPosition();
-    sf::Vector2f thisHalfSize = other.getHalfSize();
+    sf::Vector2f thisPosition = other->getPosition();
+    sf::Vector2f thisHalfSize = other->getHalfSize();
 
     float deltaX = otherPosition.x - thisPosition.x;
     float deltaY = otherPosition.y - thisPosition.y;
@@ -38,18 +38,18 @@ bool Colisor::checaColisao(Colisor &other, float push){
         if (intersectX > intersectY){
             if (deltaX > 0.0f){
                 this->Move(intersectX * (1.0f - push),0.0f);
-                other.Move(-intersectX * push, 0.0f);
+                other->Move(-intersectX * push, 0.0f);
             }else{
                 this->Move(-intersectX * (1.0f - push),0.0f);
-                other.Move(intersectX * push, 0.0f);
+                other->Move(intersectX * push, 0.0f);
             }
         }else{
             if (deltaY > 0.0f){
                 this->Move(0.0f, intersectY * (1.0f - push));
-                other.Move(0.0f, -intersectY * push);
+                other->Move(0.0f, -intersectY * push);
             }else{
                 this->Move(0.0f, -intersectY * (1.0f - push));
-                other.Move(0.0f, intersectY * push);
+                other->Move(0.0f, intersectY * push);
             }
         }
         return true;

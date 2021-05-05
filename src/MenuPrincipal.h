@@ -11,6 +11,7 @@ private:
 
     Botao primeiraFase;
     Botao segundaFase;
+    
     Botao sair;
 public:
     MenuPrincipal();

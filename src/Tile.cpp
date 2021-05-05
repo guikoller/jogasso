@@ -8,6 +8,9 @@ Tile::Tile(sf::Texture& texture, sf::IntRect texture_rect,float x, float y, bool
     this->sprite.setPosition(pos);
     this->dano = dan;
     this->solido = s;
+    this->hitBox.setSize(sf::Vector2f(64,64));
+    this->hitBox.setFillColor(sf::Color::Transparent);
+    this->hitBox.setPosition(pos);
 }
 Tile::~Tile(){
 
@@ -15,6 +18,10 @@ Tile::~Tile(){
 
 const sf::FloatRect Tile::getGlobalBounds()const{
     return this->sprite.getGlobalBounds();
+}
+
+Colisor Tile::getColisao(){
+    return Colisor(this->hitBox);
 }
 
 void Tile::update(){

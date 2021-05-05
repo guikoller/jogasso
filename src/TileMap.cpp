@@ -27,7 +27,9 @@ bool TileMap::getSolido(int x, int y){
 	return this->mapa[x][y]->solido;
 }
 
-
+Colisor TileMap::getColisao(int x, int y){
+	return this->mapa[x][y]->getColisao();
+}
 
 TileMap::~TileMap(){
 	for (int i = 0; i < this->largura; i++)
