@@ -2,6 +2,7 @@
 #include "LevelBase.h"
 #include "Espadachim.h"
 #include "MapaPrincipal.h"
+#include "Collision.h"
 
 class LevelPrincipal: public LevelBase{
 private:

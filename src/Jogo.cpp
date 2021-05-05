@@ -60,7 +60,7 @@ void Jogo::render(){
 /////////////////////////////////////////////////////
 
 void Jogo::executar(){
-    menu.desenhar(&window);
+    //menu.desenhar(&window);
     while (this->getWindow().isOpen())
     {
         this->update();

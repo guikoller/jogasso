@@ -19,7 +19,9 @@ sf::Vector2f Colisor::getHalfSize(){
 }
 
 
-bool Colisor::checaColisao(Colisor *other, float push){
+bool Colisor::checaColisao(Colisor *o, float push){
+    Colisor *other = o;
+
     sf::Vector2f otherPosition = other->getPosition();
     sf::Vector2f otherHalfSize = other->getHalfSize();
 

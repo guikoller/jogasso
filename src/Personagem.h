@@ -1,11 +1,10 @@
 #pragma once
 #include "Entidade.h"
-#include "Colisor.h"
 
 
 class Personagem : protected Entidade{
 public:
-    sf::RectangleShape hitBox;
+    sf::Sprite hitBox;
     sf::Texture textura;
     sf::Clock timerAnimacao;
     

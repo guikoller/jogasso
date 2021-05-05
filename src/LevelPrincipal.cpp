@@ -1,7 +1,7 @@
 #include "LevelPrincipal.h"
 
 void LevelPrincipal::initEntidade(){
-    Espadachim espadachim();
+    this->espadachim = new Espadachim();
     this->mapa = new MapaPrincipal();
 
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
@@ -21,15 +21,14 @@ void LevelPrincipal::updateColisao(){
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
         {
-            if (this->mapa->getSolido(i,j)){
-               mapa->getColisao(i,j).checaColisao(this->espadachim->getColisao(),0.0f); 
-                    
-                
-            }            
-        }  
+            if(Collision::PixelPerfectTest(this->espadachim->hitBox, this->mapa->getSprite(i,j)) && this->mapa->getSolido(i,j)){
+                this->espadachim->resetVelY();
+                this->espadachim->resetVelX();
+                printf("COLIDIU\n");
+            }   
+        }
     }
 }
-
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();    
 }
@@ -39,5 +38,4 @@ void LevelPrincipal::render(sf::RenderTarget&target){
     this->mapa->render(target);
     this->espadachim->render(target);
 
-    
 }
