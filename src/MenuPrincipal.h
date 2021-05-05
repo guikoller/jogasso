@@ -11,26 +11,9 @@ private:
 
     Botao primeiraFase;
     Botao segundaFase;
+    Botao sair;
 public:
-    MenuPrincipal():Menu(),
-    iniciar(),continuar(),rankin(),carregar(){
-        iniciar.botaoPadrao01("Iniciar");
-        continuar.botaoPadrao01("Continuar");
-        rankin.botaoPadrao01("Ranking");
-        carregar.botaoPadrao01("Carregar");
-        primeiraFase.botaoPadrao01("Primeira Fase");
-        segundaFase.botaoPadrao01("Segunda Fase");
-        selecionarFase.botaoPadrao01("Selecionar Fase");
-
-        iniciar.setPosicao({0,300});
-        continuar.setPosicao({0,350});
-        rankin.setPosicao({0,400});
-        carregar.setPosicao({0,450});
-        selecionarFase.setPosicao({0,500});
-        primeiraFase.setPosicao({0,300});
-        segundaFase.setPosicao({0,350});
-
-    }
+    MenuPrincipal();
     ~MenuPrincipal();
     void desenhar(sf::RenderWindow *Janela); 
     void iniciarJogo(sf::RenderWindow *Janela);

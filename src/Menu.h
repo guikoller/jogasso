@@ -35,7 +35,7 @@ protected:
                 corTexto = sf::Color::Black;
                 efeito = sf::Color::White;
 
-                localFont.loadFromFile("../Font/font.ttf");
+                localFont.loadFromFile("Font/font.ttf");
                 retangulo.setSize({200,35});
                 retangulo.setFillColor(corRetangulo);
 
@@ -68,7 +68,7 @@ protected:
             }
             bool pressionado(sf::RenderWindow *Janela){
                 sf::Event event;
-                Janela->pollEvent(evento);
+                Janela->pollEvent(event);
                 if( mouseSobreBotao(Janela) && event.type == sf::Event::MouseButtonPressed )
                     return true;
                 return false;
