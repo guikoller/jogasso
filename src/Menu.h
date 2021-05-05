@@ -68,7 +68,7 @@ protected:
             }
             bool pressionado(sf::RenderWindow *Janela){
                 sf::Event event;
-                Janela->pollEvent(evento);
+                //Janela->pollEvent(evento);
                 if( mouseSobreBotao(Janela) && event.type == sf::Event::MouseButtonPressed )
                     return true;
                 return false;

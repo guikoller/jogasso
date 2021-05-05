@@ -36,7 +36,7 @@ void MenuPrincipal::desenhar(sf::RenderWindow *Janela){
         rankin.desenhar(Janela);
         sair.desenhar(Janela);
         
-        p->display();
+        //p->display();
         if(iniciar.pressionado(Janela)){
             iniciarJogo(Janela);
             select = true;
@@ -61,15 +61,15 @@ void MenuPrincipal::iniciarJogo(sf::RenderWindow *Janela){
 }
 void MenuPrincipal::continuarJogo(sf::RenderWindow *Janela){
     printf("continuou");
-    desenhar(p);
+    //desenhar(p);
 }
 void MenuPrincipal::carregarJogo(sf::RenderWindow *Janela){
     printf("carregou");
-    desenhar(p);
+    //desenhar(p);
 }
 void MenuPrincipal::ranking(sf::RenderWindow *Janela){
     printf("vendo ranking");
-    desenhar(p);
+    //desenhar(p);
 }
 void MenuPrincipal::selecFase(sf::RenderWindow *Janela){
     bool select = false;
@@ -79,7 +79,7 @@ void MenuPrincipal::selecFase(sf::RenderWindow *Janela){
         primeiraFase.desenhar(Janela);
         segundaFase.desenhar(Janela);
         
-        p->display();
+        //p->display();
         if(primeiraFase.pressionado(Janela)){
             //Funcao que carrega primeira fase
             select = true;
