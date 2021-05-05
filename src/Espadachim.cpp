@@ -20,12 +20,13 @@ void Espadachim::iniciaSprite(){
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(2.f,2.f);
     
-    this->hitBox.setSize(sf::Vector2f(45,45));
-    this->hitBox.setFillColor(sf::Color::Transparent);
-    this->hitBox.setOutlineColor(sf::Color::Red);
-    this->hitBox.setOutlineThickness(1);
+    sf::Texture hitBox;
+    if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
+		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
+	}
+    
+    this->hitBox.setTexture(hitBox);
 }
-
 
 Espadachim::Espadachim(){
     this->iniciaVariaveis();
@@ -57,17 +58,13 @@ void Espadachim::upadateMovimento(){
         this->STATE= andando_direita;
 
     }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && !estaPulando)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) /*&& !estaPulando*/)
     {
         this->estaPulando = true;
         this->velocidade.y += -25.f;
         //Cima
         this->STATE = pulando;
-    }else if (sf::Event::KeyReleased)
-    {
-        this->estaPulando = false;
-    }
-    
+    }    
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {
         this->STATE = atacando;

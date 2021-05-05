@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "Colisor.h"
 
 class Tile{
 public:
@@ -16,7 +15,6 @@ public:
     ~Tile();
     void initTextura();
     const sf::FloatRect getGlobalBounds()const;
-    Colisor getColisao();
     void update();
     void render(sf::RenderTarget&target);
 };

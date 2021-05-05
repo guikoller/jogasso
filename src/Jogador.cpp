@@ -10,7 +10,3 @@ bool Jogador::getPulando(){
 void Jogador::setPulando(const bool pulo){
     this->estaPulando = pulo;
 }
-
-Colisor* Jogador::getColisao()const{
-    return Colisor(this->hitBox);
-}

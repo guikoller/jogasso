@@ -20,10 +20,6 @@ const sf::FloatRect Tile::getGlobalBounds()const{
     return this->sprite.getGlobalBounds();
 }
 
-Colisor Tile::getColisao(){
-    return Colisor(this->hitBox);
-}
-
 void Tile::update(){
 
 }

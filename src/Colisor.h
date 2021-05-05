@@ -9,7 +9,7 @@ public:
     ~Colisor();
 
     void Move(float dx, float dy);
-    bool checaColisao(Colisor *other, float push);
+    bool checaColisao(Colisor *o, float push);
     sf::Vector2f getPosition();
     sf::Vector2f getHalfSize();
 };

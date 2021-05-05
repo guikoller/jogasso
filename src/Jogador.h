@@ -12,5 +12,5 @@ public:
     virtual ~Jogador()= 0;
     bool getPulando();
     void setPulando(const bool pulo);
-    Colisor* getColisao() const;
+    Colisor getColisao();
 };
