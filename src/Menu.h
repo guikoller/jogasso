@@ -51,8 +51,7 @@ protected:
                 texto.setPosition({posX,posY});
             }
             bool mouseSobreBotao(sf::RenderWindow *Janela){
-                float posX = sf::Mouse::getPosition(*Janela).x;
-                float posY = sf::Mouse::getPosition(*Janela).y;
+                sf::Vector2i pos = sf::Mouse::getPosition(*Janela);
                 
                 float diaSupEsqX = retangulo.getPosition().x;
                 float diaSupEsqY = retangulo.getPosition().y;
@@ -60,7 +59,7 @@ protected:
                 float diaInfDirX = retangulo.getPosition().x + retangulo.getSize().x;
                 float diaInfDirY  = retangulo.getPosition().y + retangulo.getSize().y;
 
-                if( (posX > diaSupEsqX) && (posY > diaSupEsqY ) && (posX < diaInfDirX ) && (posY < diaInfDirY) ){
+                if( (pos.x > diaSupEsqX) && (pos.y > diaSupEsqY ) && (pos.x < diaInfDirX ) && (pos.y < diaInfDirY) ){
                     retangulo.setFillColor(efeito);
                     return true;
                 }
@@ -69,14 +68,14 @@ protected:
             }
             bool pressionado(sf::RenderWindow *Janela){
                 sf::Event event;
-                Janela->pollEvent(evento)
-                if( mouseSobreBotao(p) && event.type == sf::Event::MouseButtonPressed )
+                Janela->pollEvent(evento);
+                if( mouseSobreBotao(Janela) && event.type == sf::Event::MouseButtonPressed )
                     return true;
                 return false;
             }
             void desenhar(sf::RenderWindow *Janela){
-                Janela->draw(&retangulo);
-                Janela->draw(&texto);
+                Janela->draw(retangulo);
+                Janela->draw(texto);
             }
     };
     

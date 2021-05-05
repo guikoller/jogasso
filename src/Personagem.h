@@ -23,7 +23,7 @@ public:
     //status do Jogador
     int vida;
 
-    //Texuras
+    //Texturas
     virtual void iniciaVariaveis()= 0;//
     virtual void iniciaTextura()= 0;//
     virtual void iniciaSprite()=0;
