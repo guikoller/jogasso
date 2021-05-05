@@ -1,5 +1,6 @@
 #pragma once
 #include "Entidade.h"
+#include "Colisor.h"
 
 
 class Personagem : protected Entidade{

@@ -1,6 +1,6 @@
 #pragma once
 #include "Personagem.h"
-
+#include "Colisor.h"
 
 
 
@@ -12,4 +12,5 @@ public:
     virtual ~Jogador()= 0;
     bool getPulando();
     void setPulando(const bool pulo);
+    Colisor* getColisao() const;
 };
