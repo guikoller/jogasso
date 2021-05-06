@@ -6,7 +6,6 @@ class Elemento{
         Elemento<Tipo>*  next;
         Elemento<Tipo>* prev;
         Tipo* p;
-        int key;
     public:
         Elemento():next(NULL),prev(NULL),p(NULL){}
         /*  Tudo será alocado e desalocado em outras funcoes.   */
@@ -19,12 +18,10 @@ class Elemento{
             if(anterior != NULL )
                 prev = anterior;
         }
-        void setChave(int chave){
-            key = chave;}
         void setTipo(Tipo* novo){
             p = novo;
         }
+
         Elemento<Tipo>* getPrev(void){    return prev;}
         Elemento<Tipo>* getNext(void){    return next;}
-        int getKey(void){                 return key;}
 };

@@ -27,16 +27,15 @@ MenuPrincipal::~MenuPrincipal(){
 
 void MenuPrincipal::desenhar(sf::RenderWindow *Janela){
     bool select = false;
-    while(!select && Janela->isOpen() && !sair.pressionado(Janela) ){
+    while(!select && Janela->isOpen()){
         Janela->clear();
-
+        //Menu tem uma imagem de background que pode ser usada...
         iniciar.desenhar(Janela);
         continuar.desenhar(Janela);
         carregar.desenhar(Janela);
         rankin.desenhar(Janela);
         sair.desenhar(Janela);
-        
-        //p->display();
+        Janela->display();
         if(iniciar.pressionado(Janela)){
             iniciarJogo(Janela);
             select = true;
@@ -53,23 +52,30 @@ void MenuPrincipal::desenhar(sf::RenderWindow *Janela){
             ranking(Janela);
             select = true;
         }
+        if(sair.pressionado(Janela)){
+            Janela->close();
+            exit(0);
+        }
     }
 }
 
 void MenuPrincipal::iniciarJogo(sf::RenderWindow *Janela){
-    
+    Janela->clear(sf::Color::Black);
 }
 void MenuPrincipal::continuarJogo(sf::RenderWindow *Janela){
     printf("continuou");
-    //desenhar(p);
 }
 void MenuPrincipal::carregarJogo(sf::RenderWindow *Janela){
     printf("carregou");
-    //desenhar(p);
 }
 void MenuPrincipal::ranking(sf::RenderWindow *Janela){
     printf("vendo ranking");
-    //desenhar(p);
+}
+void MenuPrincipal::carregarJogo(sf::RenderWindow *Janela){
+    printf("carregou");
+}
+void MenuPrincipal::ranking(sf::RenderWindow *Janela){
+    printf("vendo ranking");
 }
 void MenuPrincipal::selecFase(sf::RenderWindow *Janela){
     bool select = false;
@@ -79,7 +85,7 @@ void MenuPrincipal::selecFase(sf::RenderWindow *Janela){
         primeiraFase.desenhar(Janela);
         segundaFase.desenhar(Janela);
         
-        //p->display();
+        Janela->display();
         if(primeiraFase.pressionado(Janela)){
             //Funcao que carrega primeira fase
             select = true;
