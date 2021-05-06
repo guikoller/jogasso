@@ -41,12 +41,12 @@ void Personagem::updateFisica(){
 }
 
 void Personagem::update(){
-    this->updateFisica();
+    //this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }
 
 void Personagem::render(sf::RenderTarget&target){
     target.draw(this->sprite);
-    target.draw(this->hitBox);
+    // target.draw(this->hitBox);
 }
