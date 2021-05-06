@@ -1,7 +1,5 @@
 #include <stack>
-#include "GameState.h"
-
-
+#include "LevelPrincipal.h"
 
 
 class Jogo{
@@ -9,13 +7,13 @@ private:
     sf::RenderWindow window;
     sf::Event event;//checa eventos da jenela como teclas pressionadas comando de fechamendo, minimizazão
 
-    MenuPrincipal menu;
+    // MenuPrincipal menu;
 
     sf::Clock dtClock;
     float dt;
+    
     std::stack <State*> states;
 
-    LevelPrincipal *level;
 
     void initEntidade();
     void initWindow();

@@ -41,7 +41,7 @@ void Personagem::updateFisica(){
 }
 
 void Personagem::update(){
-    //this->updateFisica();
+    this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }

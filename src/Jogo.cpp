@@ -8,20 +8,15 @@ void Jogo::initWindow(){
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
 }
-void Jogo::initEntidade(){
-    this->level = new LevelPrincipal();
-}
 void Jogo::initStates(){
-    this->states.push(new GameState(this->window));
+    this->states.push(new LevelPrincipal(&window));
 }
 
-Jogo::Jogo():menu(){
+Jogo::Jogo(){
     this->initWindow();
     this->initStates();
-    this->initEntidade();
 }
 Jogo::~Jogo(){
-    delete level;
     while (!this->states.empty())
     {
         delete this->states.top();
@@ -51,7 +46,7 @@ void Jogo::updateState(){
 void Jogo::update(){
     this->updateSFMLevents();
     this->updateDT();
-    this->level->update();
+    updateState();
 }
 
 //RENDER/////////////////////////////////////////////
@@ -66,8 +61,6 @@ void Jogo::render(){
     
     if(!this->states.empty())
         this->states.top()->render(this->window);
-    
-    this->level->render(this->window);
 
     //
     this->window.display();

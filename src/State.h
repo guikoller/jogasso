@@ -7,21 +7,22 @@
 #include "Entidade.h"
 #include "Personagem.h"
 #include "Espadachim.h"
+#include "MapaPrincipal.h"
+#include "Collision.h"
 
-#include "LevelBase.h"
-#include "LevelPrincipal.h"
-
-#include "MenuPrincipal.h"
 
 class State{
-private:
+protected:
     sf::RenderWindow *window;
 public:
     State(sf::RenderWindow *window);
-    ~State();
+    virtual ~State();
     
-    virtual void endState() = 0;
-    virtual void update() = 0;
+    //virtual void endState() = 0;
+
+    virtual void updateColisao()=0;
+    virtual void updateEntidade() = 0;
+    virtual void update();
     virtual void render(sf::RenderTarget &target) = 0;
 };
 
