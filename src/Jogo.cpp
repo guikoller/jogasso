@@ -11,14 +11,23 @@ void Jogo::initWindow(){
 void Jogo::initEntidade(){
     this->level = new LevelPrincipal();
 }
-
+void Jogo::initStates(){
+    this->states.push(new GameState(this->window));
+}
 
 Jogo::Jogo():menu(){
     this->initWindow();
+    this->initStates();
     this->initEntidade();
 }
 Jogo::~Jogo(){
     delete level;
+    while (!this->states.empty())
+    {
+        delete this->states.top();
+        this->states.pop();
+    }
+    
 }
 
 
@@ -35,6 +44,10 @@ void Jogo::updateSFMLevents(){
             this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
     }
 }
+void Jogo::updateState(){
+    if(!this->states.empty())
+        this->states.top()->update();
+}
 void Jogo::update(){
     this->updateSFMLevents();
     this->updateDT();
@@ -49,8 +62,11 @@ const sf::RenderWindow& Jogo::getWindow() const{//retorna estado da janela abert
 
 void Jogo::render(){
     this->window.clear();
-    //renderizão do jogo vai aqui
-
+    //renderização do jogo vai aqui
+    
+    if(!this->states.empty())
+        this->states.top()->render(this->window);
+    
     this->level->render(this->window);
 
     //

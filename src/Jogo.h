@@ -1,15 +1,7 @@
-#include <iostream>
-#include <stdio.h>
-#include <SFML/Graphics.hpp>
+#include <stack>
+#include "GameState.h"
 
-#include "Entidade.h"
-#include "Personagem.h"
-#include "Espadachim.h"
 
-#include "LevelBase.h"
-#include "LevelPrincipal.h"
-
-#include "MenuPrincipal.h"
 
 
 class Jogo{
@@ -21,11 +13,13 @@ private:
 
     sf::Clock dtClock;
     float dt;
+    std::stack <State*> states;
 
     LevelPrincipal *level;
 
     void initEntidade();
     void initWindow();
+    void initStates();
 public:
     Jogo(/* args */);
     ~Jogo();
@@ -36,6 +30,7 @@ public:
     void updateDT();
     void updateSFMLevents();
     void updateColisao();
+    void updateState();
     void render();
     void executar();
 };
