@@ -4,12 +4,15 @@ void LevelPrincipal::initEntidade(){
     this->espadachim = new Espadachim();
     
     this->monstro = new Monstro();
+    this->esqueleto = new Esqueleto();
     
     this->mapa = new MapaPrincipal();
 
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
     
     this->monstro->setPosicao(1000,925);
+    this->esqueleto->setPosicao(1000,210);
+
 }
 
 LevelPrincipal::LevelPrincipal(sf::RenderWindow *window):State(window){
@@ -19,6 +22,7 @@ LevelPrincipal::LevelPrincipal(sf::RenderWindow *window):State(window){
 LevelPrincipal::~LevelPrincipal(){
     delete this->espadachim;
     delete this->monstro;
+    delete this->esqueleto;
     delete this->mapa;
 }
 
@@ -37,6 +41,7 @@ void LevelPrincipal::updateColisao(){
 }
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();   
+    this->esqueleto->update(); 
     this->monstro->update(); 
 }
 
@@ -45,4 +50,5 @@ void LevelPrincipal::render(sf::RenderTarget&target){
     this->mapa->render(target);
     this->espadachim->render(target);
     this->monstro->render(target);
+    this->esqueleto->render(target);
 }

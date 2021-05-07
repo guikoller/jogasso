@@ -1,12 +1,8 @@
 #include "Inimigo.h"
 
-class Monstro : public Inimigo{
+class Esqueleto : public Inimigo{
 private:
-
-
-
-
-    //status do Monstro
+    //status do Esqueleto
 
 
     //Texuras
@@ -16,13 +12,8 @@ private:
 
 
 public:
-    Monstro();
-    ~Monstro();
-
-
-
-
-
+    Esqueleto();
+    ~Esqueleto();
 
     void upadateMovimento();
     void uptadeAnimacao();

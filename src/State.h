@@ -7,8 +7,12 @@
 #include "Entidade.h"
 #include "Personagem.h"
 
+#include "Jogador.h"
+#include "Personagem.h"
+
 #include "Espadachim.h"
 #include "Monstro.h"
+#include "Esqueleto.h"
 
 #include "MapaPrincipal.h"
 #include "Collision.h"

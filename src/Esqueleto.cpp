@@ -1,25 +1,23 @@
-#include "Espadachim.h"
+#include "Esqueleto.h"
 
-void Espadachim::iniciaVariaveis(){
-    this->estaPulando = false;
-    this->espelhado = false;
-    STATE = parado;
+
+void Esqueleto::iniciaVariaveis(){
 }
 
 
-void Espadachim::iniciaTextura(){
-    if (!this->textura.loadFromFile("Textures/Jogador/1/spritesheet.png")){
+void Esqueleto::iniciaTextura(){
+    if (!this->textura.loadFromFile("Textures/Inimigos/Esqueleto.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
 
-void Espadachim::iniciaSprite(){
+void Esqueleto::iniciaSprite(){
     this->sprite.setTexture(this->textura);
      
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
     this->sprite.setTextureRect(this->frameAtual);
-    this->sprite.setScale(2.f,2.f);
-    
+    this->sprite.setScale(3.f,3.f);
+
     sf::Texture hitBox;
     if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
@@ -28,65 +26,32 @@ void Espadachim::iniciaSprite(){
     this->hitBox.setTexture(hitBox);
 }
 
-Espadachim::Espadachim(){
+
+
+
+Esqueleto::Esqueleto(){
     this->iniciaVariaveis();
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
     this->iniciaFisica();
+    STATE = parado;
 }
-Espadachim::~Espadachim(){}
 
+Esqueleto::~Esqueleto(){}
 
-// void Espadachim::move(const float x, const float y){   
-//     this->hitBox.move(x,y);
-// }
-
-void Espadachim::upadateMovimento(){
-    this->velocidade.x = 0.f;
-    this->velocidade.y = 0.f;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-    {
-        this->velocidade.x += -7.f;
-        //Esquuerda
-        STATE = andando_esquerda;
-    }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-    {
-        this->velocidade.x += 7.f;
-        //Direita
-        this->STATE= andando_direita;
-
-    }else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) /*&& !estaPulando*/)
-    {
-        this->estaPulando = true;
-        this->velocidade.y += -7.f;
-        //Cima
-        this->STATE = pulando;
-    }
-    else 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-    {
-        // this->estaPulando = true;
-        this->velocidade.y += 7.f;
-        //Cima
-        this->STATE = pulando;
-    }else   
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
-    {
-        this->STATE = atacando;
-    }
-    this->move(velocidade.x,velocidade.y);
+void Esqueleto::upadateMovimento(){
+    
+    
     this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
 }
 
-void Espadachim::uptadeAnimacao(){
+void Esqueleto::uptadeAnimacao(){
     if (this->STATE == parado)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
         {  
-            this->frameAtual.top = 384.f;
+            this->frameAtual.top = 0.f;
             this->frameAtual.left += 96.f;            
             if(this->frameAtual.left >= 288.f)
                 this->frameAtual.left = 0;    
@@ -97,7 +62,7 @@ void Espadachim::uptadeAnimacao(){
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
-            this->frameAtual.top = 0;
+            this->frameAtual.top = 192.f;
             this->frameAtual.left += 96.f;
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
@@ -112,7 +77,7 @@ void Espadachim::uptadeAnimacao(){
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
-            this->frameAtual.top = 0;
+            this->frameAtual.top = 192.f;
             this->frameAtual.left += 96.f;
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
@@ -128,7 +93,7 @@ void Espadachim::uptadeAnimacao(){
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
         {
-            this->frameAtual.top = 192.f;
+            this->frameAtual.top = 96.f;
             this->frameAtual.left += 96.f;
             if(this->frameAtual.left >= 96.f)
                 this->frameAtual.left = 0;    
@@ -148,29 +113,6 @@ void Espadachim::uptadeAnimacao(){
         
         
     }
-
-    else if (this->STATE == pulando)
-    {
-        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
-        {
-            this->frameAtual.top = 576.f;
-            this->frameAtual.left = 0.f;    
-            
-            this->timerAnimacao.restart();
-            this->sprite.setTextureRect(this->frameAtual);
-        }
-        
-        if (this->espelhado)
-        {
-            this->sprite.setScale(-2.f,2.f);
-            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
-        }else{
-           this->sprite.setScale(2.f,2.f);
-            this->sprite.setOrigin(0.f,0.f); 
-        } 
-        
-    }
     
-    this->STATE = parado;
-    
+    this->STATE = parado;   
 }
