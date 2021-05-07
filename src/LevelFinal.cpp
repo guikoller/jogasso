@@ -7,7 +7,7 @@ void LevelFinal::initEntidade(){
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
 }
 
-LevelFinal::LevelFinal(){
+LevelFinal::LevelFinal(sf::RenderWindow *window):State(window){
     initEntidade();
 }
 
@@ -102,7 +102,6 @@ void LevelFinal::updateColisao(){
 
 
 }
-
 void LevelFinal::updateEntidade(){
     this->espadachim->update();    
 }
@@ -112,5 +111,4 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->mapa->render(target);
     this->espadachim->render(target);
 
-    
 }

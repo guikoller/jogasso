@@ -13,7 +13,6 @@ public:
     ~LevelPrincipal();
 
     //Functions
-    //void endState();
     
     void updateColisao();
     void updateEntidade();

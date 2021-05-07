@@ -1,19 +1,19 @@
 #pragma once
-#include "LevelBase.h"
-#include "Espadachim.h"
-#include "MapaPrincipal.h"
 
-class LevelFinal: public LevelBase{
+#include "State.h"
+
+class LevelFinal : public State { 
 private:
     MapaPrincipal *mapa;
     Espadachim *espadachim;
 
     void initEntidade();
 public:
-    LevelFinal(/* args */);
+    LevelFinal(sf::RenderWindow *window);
     ~LevelFinal();
 
     //Functions
+    
     void updateColisao();
     void updateEntidade();
     void render(sf::RenderTarget&target);

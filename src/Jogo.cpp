@@ -35,18 +35,28 @@ void Jogo::updateSFMLevents(){
     while (this->window.pollEvent(this->event)){
         if (this->event.type == sf::Event::Closed)//se a janela for fechada
             this->window.close();
-        else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Escape)
+        else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Q)
             this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
     }
 }
 void Jogo::updateState(){
-    if(!this->states.empty())
+    if(!this->states.empty()){
         this->states.top()->update();
+
+        if (this->states.top()->getQuit()){
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        } 
+    }else{
+        this->window.close();
+    }
+        
 }
 void Jogo::update(){
     this->updateSFMLevents();
     this->updateDT();
-    updateState();
+    this->updateState();
 }
 
 //RENDER/////////////////////////////////////////////

@@ -14,12 +14,18 @@
 class State{
 protected:
     sf::RenderWindow *window;
+    bool quit;
 public:
     State(sf::RenderWindow *window);
     virtual ~State();
     
-    //virtual void endState() = 0;
+    const bool& getQuit() const;
 
+    virtual void checkQuit();
+
+    virtual void endState();
+
+    virtual void updateKeybinds();
     virtual void updateColisao()=0;
     virtual void updateEntidade() = 0;
     virtual void update();
