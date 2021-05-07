@@ -1,25 +1,21 @@
-// #include "Menu.h"
+#pragma once
+#include "State.h"
 
-// class GerenciadorGrafico;
-// class MenuPrincipal: public Menu{
-// private:
-//     Botao iniciar;
-//     Botao continuar;
-//     Botao rankin;
-//     Botao carregar;
-//     Botao selecionarFase;
-
-//     Botao primeiraFase;
-//     Botao segundaFase;
+class MenuPrincipal : public State{
+private:
+    /* data */
+public:
+    MenuPrincipal(sf::RenderWindow *window);
+    virtual ~MenuPrincipal();
     
-//     Botao sair;
-// public:
-//     MenuPrincipal();
-//     ~MenuPrincipal();
-//     void desenhar(sf::RenderWindow *Janela); 
-//     void iniciarJogo(sf::RenderWindow *Janela);
-//     void continuarJogo(sf::RenderWindow *Janela);
-//     void carregarJogo(sf::RenderWindow *Janela);
-//     void ranking(sf::RenderWindow *Janela);
-//     void selecFase(sf::RenderWindow *Janela);
-// };
+    const bool& getQuit() const;
+
+    virtual void checkQuit();
+
+    virtual void endState();
+
+    virtual void updateKeybinds();
+    virtual void update();
+    virtual void render(sf::RenderTarget &target) = 0;
+};
+
