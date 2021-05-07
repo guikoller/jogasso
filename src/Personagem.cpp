@@ -40,8 +40,13 @@ void Personagem::updateFisica(){
 	this->move(this->velocidade.x, velocidade.y);
 }
 
+
+void Personagem::move(const float x, const float y){   
+    this->hitBox.move(x,y);
+}
+
 void Personagem::update(){
-    this->updateFisica();
+    //this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }

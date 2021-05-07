@@ -6,6 +6,7 @@ class LevelPrincipal : public State {
 private:
     MapaPrincipal *mapa;
     Espadachim *espadachim;
+    Monstro *monstro;
 
     void initEntidade();
 public:

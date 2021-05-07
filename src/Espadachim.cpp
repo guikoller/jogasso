@@ -38,9 +38,9 @@ Espadachim::Espadachim(){
 Espadachim::~Espadachim(){}
 
 
-void Espadachim::move(const float x, const float y){   
-    this->hitBox.move(x,y);
-}
+// void Espadachim::move(const float x, const float y){   
+//     this->hitBox.move(x,y);
+// }
 
 void Espadachim::upadateMovimento(){
     this->velocidade.x = 0.f;

@@ -6,7 +6,10 @@
 
 #include "Entidade.h"
 #include "Personagem.h"
+
 #include "Espadachim.h"
+#include "Monstro.h"
+
 #include "MapaPrincipal.h"
 #include "Collision.h"
 

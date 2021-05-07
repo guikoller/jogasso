@@ -44,7 +44,7 @@ public:
     void resetVelX();//
 
     void updateFisica();//
-    virtual void move(const float x, const float y)= 0;
+    virtual void move(const float x, const float y);
     virtual void upadateMovimento()= 0;
     virtual void uptadeAnimacao()= 0;
     void update();//

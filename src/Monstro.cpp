@@ -6,27 +6,27 @@ void Monstro::iniciaVariaveis(){
 
 
 void Monstro::iniciaTextura(){
-    if (!this->texture.loadFromFile("Textures/Inimigos/Monstro.png")){
+    if (!this->textura.loadFromFile("Textures/Inimigos/Monstro.png")){
 		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
 	}
 }
 
 void Monstro::iniciaSprite(){
-    this->sprite.setTexture(this->texture);
+    this->sprite.setTexture(this->textura);
      
     this->frameAtual = sf::IntRect(0, 0, 64, 64);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
+
+    sf::Texture hitBox;
+    if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
+		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
+	}
+    
+    this->hitBox.setTexture(hitBox);
 }
 
-void Monstro::iniciaAnimacao(){
-    this->timerAnimacao.restart();
-}
 
-void Monstro::initFisica(){
-    this->gravidade = 4.f;
-    this->VelMaxY = 10.f;
-}
 
 
 Monstro::Monstro(){
@@ -34,44 +34,16 @@ Monstro::Monstro(){
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
-    this->initFisica();
+    this->iniciaFisica();
     STATE = parado;
 }
 
-Monstro::~Monstro(){
-
-}
-
-const sf::FloatRect Monstro::getGlobalBounds()const{
-    return this->sprite.getGlobalBounds();
-}
-
-void Monstro::setPosicao(const float x, const float y){
-    this->sprite.setPosition(x, y);
-}
-
-void Monstro::resetVelY(){
-    this->velocidade.y = 0.f;
-}
-
-void Monstro::move(const float x, const float y){
-    this->sprite.move(x,y);
-}
-
-
-void Monstro::updateFisica(){
-    //GRAVIDADE
-    this->velocidade.y += 1.0 * this->gravidade;
-    if (std::abs(this->velocidade.y) >  this->VelMaxY){
-        this->velocidade.y = this->VelMaxY * ((this->velocidade.y < 0.f) ? -1.f : 1.f);
-    }
-	this->sprite.move(this->velocidade.x, velocidade.y);
-}
+Monstro::~Monstro(){}
 
 void Monstro::upadateMovimento(){
-
     
     
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
 }
 
 void Monstro::uptadeAnimacao(){
@@ -98,7 +70,7 @@ void Monstro::uptadeAnimacao(){
             this->sprite.setTextureRect(this->frameAtual);
         }
     }
-    else if (this->estadoAnimacao == andando_esquerda)
+    else if (this->STATE == andando_esquerda)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
@@ -111,17 +83,4 @@ void Monstro::uptadeAnimacao(){
         }
     }
     STATE = parado;    
-}
-
-sf::Sprite Monstro::getSprite(){
-    return this->sprite;
-}
-void Monstro::update(){
-    this->updateFisica();
-    this->upadateMovimento();
-    this->uptadeAnimacao();
-}
-
-void Monstro::render(sf::RenderTarget&target){
-    target.draw(this->sprite);
 }

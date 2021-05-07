@@ -10,7 +10,7 @@ private:
  public:
     Espadachim();
     ~Espadachim();
-    void move(const float x, const float y);
+    // void move(const float x, const float y);
     void upadateMovimento();
     void uptadeAnimacao();
 };
