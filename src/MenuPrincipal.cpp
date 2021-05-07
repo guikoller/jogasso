@@ -1,15 +1,15 @@
-#include "MenuPrincipal.h"
+// #include "MenuPrincipal.h"
 
-MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){
+// MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){
 
-}
+// }
 
-MenuPrincipal::~MenuPrincipal()
-{
-}
+// MenuPrincipal::~MenuPrincipal()
+// {
+// }
 
 
 
-void MenuPrincipal::render(sf::RenderTarget &target){
+// void MenuPrincipal::render(sf::RenderTarget &target){
     
-}
+// }
