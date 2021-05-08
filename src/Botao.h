@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-enum button_state{BTN_IDLE = 0, BTN_HOVER, BTN_PRESSED};
+
 
 class Botao{
 private:
-
+    enum button_state{BTN_IDLE = 0, BTN_HOVER, BTN_PRESSED};
+    
     short unsigned int btn_state;
 
     bool precionado;

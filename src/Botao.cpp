@@ -10,10 +10,10 @@ Botao::Botao(float x, float y, float largura, float altura, std::string texto, s
     this->texto.setFont(*this->fonte);
     this->texto.setString(texto);
     this->texto.setFillColor(sf::Color::White);
-    this->texto.setCharacterSize(12);
+    this->texto.setCharacterSize(20);
     this->texto.setPosition(
-        this->shape.getPosition().x /2.f - this->texto.getGlobalBounds().width / 2.f,
-        this->shape.getPosition().y /2.f - this->texto.getGlobalBounds().height / 2.f
+        this->shape.getPosition().x + (this->shape.getGlobalBounds().width /2.f) - this->texto.getGlobalBounds().width / 2.f,
+        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->texto.getGlobalBounds().height / 2.f
     );
 
     this->idleColor = idleColor;
@@ -27,9 +27,9 @@ Botao::~Botao(){}
 
 
 const bool Botao::isPressed() const{
-    if (this->btn_state = BTN_PRESSED)
-        return true;
-
+    if(this->btn_state == BTN_PRESSED){
+       return true; 
+    }   
     return false;
 }
 
@@ -52,10 +52,10 @@ void Botao::update(const sf::Vector2f mousePos){
         this->shape.setFillColor(this->idleColor);
         break;
     case BTN_HOVER:
-        this->shape.setFillColor(this->idleColor);
+        this->shape.setFillColor(this->hoverColor);
         break;
     case BTN_PRESSED:
-        this->shape.setFillColor(this->idleColor);
+        this->shape.setFillColor(this->activeColor);
         break;
     default:
         this->shape.setFillColor(sf::Color::Red);//não pra entrar aqui não
@@ -67,4 +67,5 @@ void Botao::update(const sf::Vector2f mousePos){
 
 void Botao::render(sf::RenderTarget &target){
     target.draw(this->shape);
+    target.draw(this->texto);
 }
