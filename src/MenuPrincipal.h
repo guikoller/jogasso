@@ -1,21 +1,16 @@
-// #pragma once
-// #include "State.h"
+#pragma once
 
-// class MenuPrincipal : public State{
-// private:
-//     /* data */
-// public:
-//     MenuPrincipal(sf::RenderWindow *window);
-//     virtual ~MenuPrincipal();
+#include "LevelPrincipal.h"
+
+class MenuPrincipal : public State{
+private:    
+    sf::RectangleShape background;
     
-//     const bool& getQuit() const;
+public:
+    MenuPrincipal(sf::RenderWindow *window);
+    virtual ~MenuPrincipal();
+    
 
-//     virtual void checkQuit();
-
-//     virtual void endState();
-
-//     virtual void updateKeybinds();
-//     virtual void update();
-//     virtual void render(sf::RenderTarget &target) = 0;
-// };
+    virtual void render(sf::RenderTarget &target);
+};
 

@@ -1,15 +1,15 @@
-// #include "MenuPrincipal.h"
+#include "MenuPrincipal.h"
 
-// MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){
+MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){
 
-// }
+    this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
+    this->background.setFillColor(sf::Color::Blue);
+}
 
-// MenuPrincipal::~MenuPrincipal()
-// {
-// }
+MenuPrincipal::~MenuPrincipal()
+{
+}
 
-
-
-// void MenuPrincipal::render(sf::RenderTarget &target){
-    
-// }
+void MenuPrincipal::render(sf::RenderTarget &target){
+    target.draw(this->background);
+}

@@ -1,6 +1,8 @@
 #include <stack>
 #include "LevelPrincipal.h"
 #include "LevelFinal.h"
+#include "MenuPrincipal.h"
+
 
 
 class Jogo{

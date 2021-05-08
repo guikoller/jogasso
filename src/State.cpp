@@ -10,8 +10,8 @@ State::~State()
 }
 
 void State::update(){
-    this->updateEntidade();
-    this->updateColisao();
+    // this->updateEntidade();
+    // this->updateColisao();
     this->updateKeybinds();
 }
 
@@ -19,8 +19,7 @@ void State::checkQuit(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
         this->quit = true;
-    }
-    
+    }    
 }
 
 const bool &State::getQuit() const{

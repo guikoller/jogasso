@@ -33,8 +33,8 @@ public:
     virtual void endState();
 
     virtual void updateKeybinds();
-    virtual void updateColisao()=0;
-    virtual void updateEntidade() = 0;
+    // virtual void updateColisao()=0;
+    //virtual void updateEntidade() = 0;
     virtual void update();
     virtual void render(sf::RenderTarget &target) = 0;
 };
