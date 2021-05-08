@@ -16,7 +16,6 @@ private:
     std::stack <State*> states;
 
 
-    void initEntidade();
     void initWindow();
     void initStates();
 public:
@@ -28,7 +27,6 @@ public:
     void update();
     void updateDT();
     void updateSFMLevents();
-    void updateColisao();
     void updateState();
     void render();
     void executar();

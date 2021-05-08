@@ -8,8 +8,9 @@ void Jogo::initWindow(){
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
 }
+
 void Jogo::initStates(){
-    this->states.push(new LevelPrincipal(&window));
+    this->states.push(new LevelFinal(&window));
 }
 
 Jogo::Jogo(){

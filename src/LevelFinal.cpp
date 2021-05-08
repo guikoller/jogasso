@@ -65,7 +65,7 @@ void LevelFinal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.y = 0.f;
-                        // this->espadachim->setPosicao(espadachim->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 20);
+                        this->espadachim->setPosicao(espadachim->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 20);
                         printf("colisão topo\n"); 
                     } 
                     //direita
@@ -76,7 +76,7 @@ void LevelFinal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        // this->espadachim->setPosicao(this->espadachim->getPosicao().x+ playerBounds.width, playerBounds.top); 
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x+ playerBounds.width, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
@@ -88,7 +88,7 @@ void LevelFinal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        // this->espadachim->setPosicao(this->espadachim->getPosicao().x,this->espadachim->getPosicao().y);
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x,this->espadachim->getPosicao().y);
                         printf("colisão esquerda\n"); 
                     }    
                 }
