@@ -46,7 +46,7 @@ void Personagem::move(const float x, const float y){
 }
 
 void Personagem::update(){
-    //this->updateFisica();
+    this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }
