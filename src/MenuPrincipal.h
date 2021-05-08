@@ -6,6 +6,7 @@ class MenuPrincipal : public State{
 private:    
     sf::RectangleShape background;
     
+    
 public:
     MenuPrincipal(sf::RenderWindow *window);
     virtual ~MenuPrincipal();

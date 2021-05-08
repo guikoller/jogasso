@@ -13,3 +13,5 @@ MenuPrincipal::~MenuPrincipal()
 void MenuPrincipal::render(sf::RenderTarget &target){
     target.draw(this->background);
 }
+
+
