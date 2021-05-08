@@ -19,13 +19,11 @@ void Espadachim::iniciaSprite(){
     this->frameAtual = sf::IntRect(0, 0, 96, 96);
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(2.f,2.f);
-    
-    sf::Texture hitBox;
-    if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
-		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
-	}
-    
-    this->hitBox.setTexture(hitBox);
+
+    this->hitBox.setSize(sf::Vector2f(35,45));
+    this->hitBox.setOutlineThickness(2.f);
+    this->hitBox.setOutlineColor(sf::Color::Red);
+    this->hitBox.setFillColor(sf::Color::Transparent);
 }
 
 Espadachim::Espadachim(){
@@ -36,11 +34,6 @@ Espadachim::Espadachim(){
     this->iniciaFisica();
 }
 Espadachim::~Espadachim(){}
-
-
-// void Espadachim::move(const float x, const float y){   
-//     this->hitBox.move(x,y);
-// }
 
 void Espadachim::upadateMovimento(){
     this->velocidade.x = 0.f;
@@ -78,7 +71,7 @@ void Espadachim::upadateMovimento(){
         this->STATE = atacando;
     }
     this->move(velocidade.x,velocidade.y);
-    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-80,this->hitBox.getPosition().y-92));
 }
 
 void Espadachim::uptadeAnimacao(){

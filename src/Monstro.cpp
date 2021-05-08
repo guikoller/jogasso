@@ -18,12 +18,10 @@ void Monstro::iniciaSprite(){
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
 
-    sf::Texture hitBox;
-    if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
-		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
-	}
-    
-    this->hitBox.setTexture(hitBox);
+    this->hitBox.setSize(sf::Vector2f(40,40));
+    this->hitBox.setOutlineThickness(2.f);
+    this->hitBox.setOutlineColor(sf::Color::Red);
+    this->hitBox.setFillColor(sf::Color::Transparent);
 }
 
 
