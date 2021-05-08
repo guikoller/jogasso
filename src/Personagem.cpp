@@ -53,5 +53,5 @@ void Personagem::update(){
 
 void Personagem::render(sf::RenderTarget&target){
     target.draw(this->sprite);
-    // target.draw(this->hitBox);
+    //target.draw(this->hitBox);
 }
