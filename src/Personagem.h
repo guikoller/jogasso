@@ -28,7 +28,6 @@ public:
     virtual void iniciaTextura()= 0;//
     virtual void iniciaSprite()=0;
     void iniciaAnimacao();//
-    void iniciaFisica();//
 
 
     Personagem();//
@@ -43,10 +42,9 @@ public:
     void resetVelY();//
     void resetVelX();//
 
-    void updateFisica();//
     virtual void move(const float x, const float y);
     virtual void upadateMovimento()= 0;
     virtual void uptadeAnimacao()= 0;
-    void update();//
+    virtual void update();//
     void render(sf::RenderTarget&targets);//
 };

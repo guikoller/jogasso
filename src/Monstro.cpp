@@ -34,7 +34,6 @@ Monstro::Monstro(){
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
-    this->iniciaFisica();
     STATE = parado;
 }
 
