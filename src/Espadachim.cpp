@@ -50,14 +50,14 @@ void Espadachim::upadateMovimento(){
         this->velocidade.x += -7.f;
         //Esquuerda
         STATE = andando_esquerda;
-    }else 
+    } 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
     {
         this->velocidade.x += 7.f;
         //Direita
         this->STATE= andando_direita;
 
-    }else 
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) /*&& !estaPulando*/)
     {
         this->estaPulando = true;
@@ -65,14 +65,13 @@ void Espadachim::upadateMovimento(){
         //Cima
         this->STATE = pulando;
     }
-    else 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
     {
         // this->estaPulando = true;
         this->velocidade.y += 7.f;
         //Cima
         this->STATE = pulando;
-    }else   
+    }  
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {
         this->STATE = atacando;

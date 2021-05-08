@@ -33,7 +33,7 @@ void Personagem::resetVelX(){
 }
 
 void Personagem::updateFisica(){
-    this->velocidade.y += 1.0 * this->gravidade;
+    this->velocidade.y += 1.0*this->gravidade;
     if(std::abs(this->velocidade.y) >  this->VelMaxY){
         this->velocidade.y = this->VelMaxY *((this->velocidade.y < 0.f) ? -1.f : 1.f);
     }
@@ -53,5 +53,5 @@ void Personagem::update(){
 
 void Personagem::render(sf::RenderTarget&target){
     target.draw(this->sprite);
-    //target.draw(this->hitBox);
+    target.draw(this->hitBox);
 }
