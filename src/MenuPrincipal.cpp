@@ -2,13 +2,19 @@
 
 MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){
 
-    this->background.setSize(sf::Vector2f((float)window->getSize().x, (float)window->getSize().y));
-    this->background.setFillColor(sf::Color::Blue);
+    
+    if (!this->texture.loadFromFile("Textures/Background/bg.png"))    {
+        printf("BACKGROUND NÃO CARREGADO\n");
+    }
 
+    this->background.setTexture(this->texture);
+    this->background.setScale(6.f,7.f);
+    
+    
     this->btn = new Botao(600,450, 200,80, "Iniciar", &this->fonte,
-    sf::Color(200,200,200,200), 
-    sf::Color(200,200,200,100), 
-    sf::Color(200,200,200,50));
+    sf::Color(0,0,0,230), 
+    sf::Color(10,10,10,200), 
+    sf::Color(20,20,20,150));
 
 }
 

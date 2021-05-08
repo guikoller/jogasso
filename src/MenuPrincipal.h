@@ -5,7 +5,8 @@
 
 class MenuPrincipal : public State{
 private:    
-    sf::RectangleShape background;
+    sf::Texture texture;
+    sf::Sprite background;
     
     Botao *btn;
 
