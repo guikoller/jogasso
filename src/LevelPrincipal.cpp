@@ -63,7 +63,7 @@ void LevelPrincipal::updateColisao(){
                     {
                         this->espadachim->velocidade.y = 0.f;
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->hitBox.setPosition(espadachim->hitBox.getPosition().x, tileBounds.top - playerBounds.height - 10);
+                        this->espadachim->hitBox.setPosition(espadachim->hitBox.getPosition().x, tileBounds.top - playerBounds.height);
                         printf("colisão chão\n"); 
                     }
                     // cima
@@ -74,7 +74,7 @@ void LevelPrincipal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.y = 0.f;
-                        this->espadachim->setPosicao(espadachim->hitBox.getPosition().x, tileBounds.top + tileBounds.height + 10);
+                        this->espadachim->setPosicao(espadachim->hitBox.getPosition().x, tileBounds.top + tileBounds.height);
                         printf("colisão topo\n"); 
                     } 
                     //direita
@@ -85,7 +85,7 @@ void LevelPrincipal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width + 25, playerBounds.top); 
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
@@ -97,7 +97,7 @@ void LevelPrincipal::updateColisao(){
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width - 25,this->espadachim->getPosicao().y);
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width,this->espadachim->getPosicao().y);
                         printf("colisão esquerda\n"); 
                     }    
                 }
