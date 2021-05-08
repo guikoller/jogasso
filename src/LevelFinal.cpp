@@ -7,7 +7,7 @@ void LevelFinal::initEntidade(){
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
 }
 
-LevelFinal::LevelFinal(sf::RenderWindow *window):State(window){
+LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
     initEntidade();
 }
 

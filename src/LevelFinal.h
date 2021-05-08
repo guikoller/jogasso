@@ -9,7 +9,7 @@ private:
 
     void initEntidade();
 public:
-    LevelFinal(sf::RenderWindow *window);
+    LevelFinal(sf::RenderWindow *window, std::stack<State*>* states);
     ~LevelFinal();
 
     //Functions

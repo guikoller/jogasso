@@ -19,7 +19,7 @@ private:
     void iniciaBackground();
     void iniciaTitulo();
 public:
-    MenuPrincipal(sf::RenderWindow *window);
+    MenuPrincipal(sf::RenderWindow *window, std::stack<State*>* states);
     virtual ~MenuPrincipal();
     void updateBotao();
     void update();
