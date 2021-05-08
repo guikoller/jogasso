@@ -25,7 +25,7 @@ public:
     ~Botao();
 
     //acessores
-    const bool isPressed()const;
+    bool isPressed();
 
     //funções
     void update(const sf::Vector2f mousePos);

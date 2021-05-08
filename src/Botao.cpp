@@ -10,10 +10,10 @@ Botao::Botao(float x, float y, float largura, float altura, std::string texto, s
     this->texto.setFont(*this->fonte);
     this->texto.setString(texto);
     this->texto.setFillColor(sf::Color::White);
-    this->texto.setCharacterSize(20);
+    this->texto.setCharacterSize(30);
     this->texto.setPosition(
         this->shape.getPosition().x + (this->shape.getGlobalBounds().width /2.f) - this->texto.getGlobalBounds().width / 2.f,
-        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->texto.getGlobalBounds().height / 2.f
+        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->texto.getGlobalBounds().height *1.5f
     );
 
     this->idleColor = idleColor;
@@ -26,7 +26,7 @@ Botao::Botao(float x, float y, float largura, float altura, std::string texto, s
 Botao::~Botao(){}
 
 
-const bool Botao::isPressed() const{
+bool Botao::isPressed(){
     if(this->btn_state == BTN_PRESSED){
        return true; 
     }   
