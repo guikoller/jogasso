@@ -15,7 +15,7 @@ void LevelPrincipal::initEntidade(){
 
 }
 
-LevelPrincipal::LevelPrincipal(sf::RenderWindow *window):State(window){
+LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
     initEntidade();
 }
 

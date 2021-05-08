@@ -20,7 +20,8 @@
 
 class State{
 protected:
-    std::stack<State*> estate;
+    std::stack<State*> *states;
+
     sf::RenderWindow *window;
     bool quit;
 
@@ -32,7 +33,7 @@ protected:
 
     void iniciaFontes();
 public:
-    State(sf::RenderWindow *window);
+    State(sf::RenderWindow *window, std::stack<State*>* states);
     virtual ~State();
     
     const bool& getQuit() const;

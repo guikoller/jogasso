@@ -10,7 +10,7 @@ void Jogo::initWindow(){
 }
 
 void Jogo::initStates(){
-    this->states.push(new LevelPrincipal(&window));
+    this->states.push(new MenuPrincipal(&window, &this->states));
 }
 
 Jogo::Jogo(){

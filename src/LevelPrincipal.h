@@ -12,7 +12,7 @@ private:
 
     void initEntidade();
 public:
-    LevelPrincipal(sf::RenderWindow *window);
+    LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states);
     ~LevelPrincipal();
 
     //Functions

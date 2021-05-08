@@ -35,7 +35,7 @@ void MenuPrincipal::iniciaTitulo(){
     this->titulo.setPosition(sf::Vector2f(150,100));
 }
 
-MenuPrincipal::MenuPrincipal(sf::RenderWindow *window):State(window){    
+MenuPrincipal::MenuPrincipal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){    
     iniciaTitulo();
     iniciaBackground();
     iniciaBotao();
@@ -66,7 +66,7 @@ void MenuPrincipal::updateBotao(){
     }else if (this->btns["INICIAR"]->isPressed())
     {
         // PUSH NOVO STATE
-        //this->states.push(new LevelPrincipal(&window));
+        this->states->push(new LevelPrincipal(this->window, this->states));
         printf("botao  inicar precionado\n");
     }else if (this->btns["PLACAR"]->isPressed())
     {
