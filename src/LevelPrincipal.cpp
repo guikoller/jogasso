@@ -39,6 +39,16 @@ void LevelPrincipal::updateColisao(){
         }
     }
 }
+
+void LevelPrincipal::update(){
+    this->updateEntidade();
+    this->updateColisao();
+    this->updateKeybinds();
+    this->updateMousePosition();
+    std::cout<<this->mousePosWindow.x <<", "<< this->mousePosWindow.y << std::endl;
+    system("clear");
+}
+
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();   
     this->esqueleto->update(); 

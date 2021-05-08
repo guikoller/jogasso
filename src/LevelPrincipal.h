@@ -19,5 +19,6 @@ public:
     
     void updateColisao();
     void updateEntidade();
+    void update();
     void render(sf::RenderTarget&target);
 };

@@ -16,10 +16,11 @@
 
 #include "MapaPrincipal.h"
 #include "Collision.h"
-
+#include <stack>
 
 class State{
 protected:
+    std::stack<State*> estate;
     sf::RenderWindow *window;
     bool quit;
 
@@ -40,8 +41,6 @@ public:
     virtual void updateMousePosition();
 
     virtual void updateKeybinds();
-    // virtual void updateColisao()=0;
-    //virtual void updateEntidade() = 0;
     virtual void update();
     virtual void render(sf::RenderTarget &target) = 0;
 };
