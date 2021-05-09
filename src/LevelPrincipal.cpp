@@ -2,6 +2,29 @@
 
 void LevelPrincipal::initEntidade(){
     this->espadachim = new Espadachim();
+    this->porta = new Porta();
+    this->porta->sprite.setPosition(sf::Vector2f(1400,210));
+
+    for (int i = 0; i < 5; i++)
+    {
+        this->caixa[i]  = new Caixa();
+        this->espinho[i] = new Espinho();
+    }
+    
+    this->caixa[1]->sprite.setPosition(sf::Vector2f(100,210));
+    this->caixa[2]->sprite.setPosition(sf::Vector2f(200,210));
+    this->caixa[3]->sprite.setPosition(sf::Vector2f(300,210));
+    this->caixa[4]->sprite.setPosition(sf::Vector2f(1400,900));
+    this->caixa[0]->sprite.setPosition(sf::Vector2f(1450,900));
+
+    this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,210));
+    this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,210));
+    this->espinho[3]->sprite.setPosition(sf::Vector2f(1400,400));
+    this->espinho[4]->sprite.setPosition(sf::Vector2f(1200,400));
+    this->espinho[0]->sprite.setPosition(sf::Vector2f(200,900));
+
+
+
     
     this->monstro = new Monstro();
     this->esqueleto = new Esqueleto();
@@ -46,9 +69,10 @@ void LevelPrincipal::initListaInimigo()
 
 
 }
-LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
+LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     initListaInimigo();
+    iniciaBotao();
 }
 
 LevelPrincipal::~LevelPrincipal(){
@@ -56,10 +80,18 @@ LevelPrincipal::~LevelPrincipal(){
     delete this->monstro;
     delete this->esqueleto;
     delete this->mapa;
+
+    for (int i = 0; i < 5; i++){
+        delete this->caixa[i];
+        delete this->espinho[i];
+    }
+
+    //destrutor bottões
+    destroiBotao();
 }
 
 void LevelPrincipal::updateColisao(){
-     sf::FloatRect nextPos;
+    sf::FloatRect nextPos;
 
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
@@ -140,14 +172,7 @@ void LevelPrincipal::updateColisao(){
     }
 }
 
-void LevelPrincipal::update(){
-    this->updateEntidade();
-    this->updateColisao();
-    this->updateKeybinds();
-    this->updateMousePosition();
-    std::cout<<this->mousePosWindow.x <<", "<< this->mousePosWindow.y << std::endl;
-    system("clear");
-}
+
 
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();  
@@ -160,9 +185,22 @@ void LevelPrincipal::updateEntidade(){
     }
 }
 
+
+
 void LevelPrincipal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
+
+    this->porta->render(target);
+
+    for (int i = 0; i < 5; i++)
+    {
+        this->caixa[i]->render(target);
+        this->espinho[i]->render(target);
+    }
+    
+
+
     this->espadachim->render(target);
     //this->monstro->render(target);
     //this->esqueleto->render(target);
@@ -171,5 +209,6 @@ void LevelPrincipal::render(sf::RenderTarget&target){
         Inimigo* temp = listaInimigos->getItem(i);
         temp->render(target);
     }
-
+    
+    this->renderBotao(target);
 }

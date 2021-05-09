@@ -1,6 +1,5 @@
 #include "LevelBase.h"
 
-
 void LevelBase::iniciaBotao(){
     this->isPaused = false;
 
@@ -32,7 +31,6 @@ LevelBase::LevelBase(sf::RenderWindow *window, std::stack<State*>* states):State
 
 LevelBase::~LevelBase(){}
 
-
 void LevelBase::destroiBotao(){
     auto it = this->btns.begin();
 
@@ -43,8 +41,7 @@ void LevelBase::destroiBotao(){
 }
 
 void LevelBase::updateBotao(){
-        for (auto &it : this->btns)
-    {
+    for (auto &it : this->btns){
         it.second->update(this->mousePosView);
     }
 
@@ -64,14 +61,7 @@ void LevelBase::updateBotao(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
         this->isPaused = true;
     }
-    
 }
-
-void LevelBase::updateColisao(){
-
-}
-
-
 
 void LevelBase::update(){
     if (!isPaused){

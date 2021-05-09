@@ -4,6 +4,10 @@ void LevelFinal::initEntidade(){
     this->espadachim = new Espadachim();
     this->inimigo = new Goblin();
     this->mapa = new MapaFinal();
+    this->caixa = new Caixa;
+    this->espinho  = new Espinho;
+    this->porta = new Porta;
+    this->porta->sprite.setPosition(sf::Vector2f(1400,210));
 
     this->inimigo->setPosicao(500, 300);
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
@@ -18,6 +22,9 @@ LevelFinal::~LevelFinal(){
     delete this->espadachim;
     delete this->mapa;
     delete this->inimigo;
+    delete this->espinho;
+    delete this->caixa;
+    delete this->porta;
     //destrutor bottões
     destroiBotao();
 }
@@ -25,7 +32,7 @@ LevelFinal::~LevelFinal(){
 void LevelFinal::updateColisao(){
     
     sf::FloatRect nextPos;
-    
+
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
@@ -78,11 +85,11 @@ void LevelFinal::updateColisao(){
                     else if (playerBounds.left < tileBounds.left
                         && playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width , playerBounds.top); 
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width + 30, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
@@ -90,11 +97,11 @@ void LevelFinal::updateColisao(){
                     else if (playerBounds.left > tileBounds.left
                         && playerBounds.left + playerBounds.width > tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width,this->espadachim->getPosicao().y);
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width - 30,this->espadachim->getPosicao().y);
                         printf("colisão esquerda\n"); 
                     }    
                 }
@@ -116,5 +123,8 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->mapa->render(target);
     this->espadachim->render(target);
     this->inimigo->render(target);
+    this->porta->render(target);
+    this->espinho->render(target);
+    this->caixa->render(target);
     this->renderBotao(target);
 }
