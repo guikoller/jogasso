@@ -5,8 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entidade.h"
-
-
 #include "Jogador.h"
 #include "Lista.h"
 
@@ -14,6 +12,10 @@
 #include "Monstro.h"
 #include "Esqueleto.h"
 #include "Goblin.h"
+
+#include "Caixa.h"
+#include "Espinho.h"
+#include "Porta.h"
 
 #include "MapaPrincipal.h"
 #include "MapaFinal.h"

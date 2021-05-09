@@ -9,7 +9,10 @@ private:
     Lista<Esqueleto> *listaEsqueletos;
     Inimigo *monstro;
     Inimigo *esqueleto;
-    
+    Obstaculo *porta;
+    Obstaculo *caixa[5];
+    Obstaculo *espinho[5];
+
 
     void initEntidade();
 public:

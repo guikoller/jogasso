@@ -6,7 +6,7 @@ void Caixa::iniciaSprite(){
 	}
 
     this->sprite.setTexture(this->textura);
-    this->sprite.setScale(2.f,2.f);
+    this->sprite.setScale(3.f,3.f);
 }
 
 

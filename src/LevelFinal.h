@@ -6,6 +6,9 @@
 class LevelFinal : public LevelBase { 
 private:
     Inimigo *inimigo;
+    Obstaculo *caixa;
+    Obstaculo *espinho;
+    Obstaculo *porta;
 
     std::map<std::string, Botao*> btns;
 
