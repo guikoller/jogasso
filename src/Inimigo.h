@@ -6,5 +6,4 @@ private:
 public:
     Inimigo(/* args */);
     virtual ~Inimigo() = 0;
-
 };

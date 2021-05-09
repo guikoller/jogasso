@@ -110,6 +110,7 @@ void LevelFinal::updateColisao(){
         }
         
     }
+    // this->inimigo->jogadorPerto(this->espadachim);
 }
 
 void LevelFinal::updateEntidade(){
