@@ -1,10 +1,11 @@
 #pragma once
 
-// #include "LevelPrincipal.h"
-#include "MenuLevel.h"
-// #include "Botao.h"
+// #include "MenuPrincipal.h"
+#include "LevelPrincipal.h"
+#include "LevelFinal.h"
+#include "Botao.h"
 
-class MenuPrincipal : public State{
+class MenuLevel : public State{
 private:
 
     sf::Text titulo;
@@ -20,8 +21,8 @@ private:
     void iniciaBackground();
     void iniciaTitulo();
 public:
-    MenuPrincipal(sf::RenderWindow *window, std::stack<State*>* states);
-    virtual ~MenuPrincipal();
+    MenuLevel(sf::RenderWindow *window, std::stack<State*>* states);
+    virtual ~MenuLevel();
     void updateBotao();
     void update();
     void renderBotao(sf::RenderTarget &target);

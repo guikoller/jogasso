@@ -28,7 +28,7 @@ void State::update(){
 }
 
 void State::checkQuit(){
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
     {
         this->quit = true;
     }    

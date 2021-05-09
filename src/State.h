@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entidade.h"
-#include "Personagem.h"
+
 
 #include "Jogador.h"
 #include "Personagem.h"
@@ -19,7 +19,7 @@
 #include <stack>
 
 class State{
-protected:
+public:
     std::stack<State*> *states;
 
     sf::RenderWindow *window;
