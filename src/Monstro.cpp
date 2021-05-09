@@ -133,9 +133,7 @@ void Monstro::uptadeAnimacao(){
            this->sprite.setScale(3.f,3.f);
             this->sprite.setOrigin(0.f,0.f); 
         }
-        
-        
     }
-    
+        
     this->STATE = parado;   
 }

@@ -54,7 +54,7 @@ void Espadachim::upadateMovimento(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) /*&& !estaPulando*/)
     {
         this->estaPulando = true;
-        this->velocidade.y += -7.f;
+        this->velocidade.y += -11.f;
         //Cima
         this->STATE = pulando;
     }
