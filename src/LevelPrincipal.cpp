@@ -113,7 +113,6 @@ void LevelPrincipal::updateColisao(){
             nextPos.top += this->espadachim->velocidade.y;
             
 
-
             // (x, y)-----------------------(x + width, y)
             // |                                         |
             // |                                         |
