@@ -39,10 +39,10 @@ Esqueleto::~Esqueleto(){}
 
 void Esqueleto::upadateMovimento(){
     
-    if(this->hitBox.getPosition().y == 280)
+    if(this->hitBox.getPosition().y <= 280)
     {
         if(this->hitBox.getPosition().x >= 1475)
-            setVelX(-3.5f);
+            setVelX(-3.5);
         if(this->hitBox.getPosition().x <= 400)
             setVelX(3.5f);
     }

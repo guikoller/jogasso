@@ -11,11 +11,11 @@ void LevelPrincipal::initEntidade(){
         this->espinho[i] = new Espinho();
     }
     
-    this->caixa[1]->sprite.setPosition(sf::Vector2f(100,210));
-    this->caixa[2]->sprite.setPosition(sf::Vector2f(200,210));
-    this->caixa[3]->sprite.setPosition(sf::Vector2f(300,210));
-    this->caixa[4]->sprite.setPosition(sf::Vector2f(1400,900));
-    this->caixa[0]->sprite.setPosition(sf::Vector2f(1450,900));
+    this->caixa[1]->sprite.setPosition(sf::Vector2f(rand()%1075+400,280));
+    this->caixa[2]->sprite.setPosition(sf::Vector2f(rand()%1075+400,280));
+    this->caixa[3]->sprite.setPosition(sf::Vector2f(rand()%1150+70,595));
+    this->caixa[4]->sprite.setPosition(sf::Vector2f(rand()%1150+70,595));
+    this->caixa[0]->sprite.setPosition(sf::Vector2f(1450,925));
 
     this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,210));
     this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,210));
@@ -34,11 +34,16 @@ void LevelPrincipal::initEntidade(){
 // 1220 = limite direito da plataforma do meio, 595 = altura da plataforma do meio
 // 925 = altura do chão de baixo
 
-void LevelPrincipal::initPosInimigo()
+
+void LevelPrincipal::initListaInimigo()
 {
     float vetorPosY[] = {280, 595, 925, 280, 595, 925};
     for(int i = 0; i < 6; i++)
     {
+        this->monstro = new Monstro;
+        this->esqueleto = new Esqueleto;
+        this->listaInimigos->incluir(monstro);
+        this->listaInimigos->incluir(esqueleto);
         if(vetorPosY[i] == 280)
         {
             monstro->setPosicao(rand()%1075+400, 280);
@@ -50,8 +55,10 @@ void LevelPrincipal::initPosInimigo()
             esqueleto->setPosicao(rand()%1150+70, 595);
         }
         else
+        {
             monstro->setPosicao(rand()%1405+70, 925);
             esqueleto->setPosicao(rand()%1405+70, 925);
+        }
         if(i%2)
         {
             esqueleto->setVelX(rand()%4+2);
@@ -63,19 +70,6 @@ void LevelPrincipal::initPosInimigo()
             monstro->setVelX(rand()%4+2);
         }
     }
-}
-void LevelPrincipal::initListaInimigo()
-{
-    float vetorPosX[] = {0};
-    for(int i = 0; i < 6; i++)
-    {
-        this->monstro = new Monstro;
-        this->esqueleto = new Esqueleto;
-        this->listaInimigos->incluir(monstro);
-        this->listaInimigos->incluir(esqueleto);
-    }
-    initPosInimigo();
-
 }
 LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
@@ -176,6 +170,38 @@ void LevelPrincipal::updateColisao(){
             }            
         }
         
+    }
+    // colisoes obstaculos
+    for(int i = 0; i < 5; i++)
+    {
+        if(Collision::PixelPerfectTest(this->espinho[i]->sprite, this->espadachim->getSprite()))
+        {
+            //perde vida
+            printf("colidiu com espinho\n");
+        }
+        if(Collision::PixelPerfectTest(this->caixa[i]->sprite, this->espadachim->getSprite()))
+        {
+            this->espadachim->velocidade.x = 0.f;
+            this->espadachim->setPosicao(this->espadachim->getPosicao().x, this->espadachim->getPosicao().y - this->espadachim->getGlobalBounds().height + 35);
+            printf("colidiu com caixa\n");
+        }
+    }
+    // colisoes inimigos
+    for(int i = 0; i < listaInimigos->getLen(); i++)
+    {
+        Inimigo* aux = listaInimigos->getItem(i);
+        if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
+            this->espadachim->hitBox.getPosition().x < aux->hitBox.getPosition().x)
+        {
+            this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
+            printf("colidiu com inimigo\n");
+        }
+        else if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
+            this->espadachim->hitBox.getPosition().x > aux->hitBox.getPosition().x)
+        {
+            this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
+            printf("colidiu com inimigo\n");
+        }
     }
 }
 
