@@ -5,7 +5,8 @@
 
 class LevelBase : public State { 
 protected:
-
+    TileMap *mapa;
+    
     std::map<std::string, Botao*> btns;
     bool isPaused;
 

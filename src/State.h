@@ -13,8 +13,10 @@
 #include "Espadachim.h"
 #include "Monstro.h"
 #include "Esqueleto.h"
+#include "Goblin.h"
 
 #include "MapaPrincipal.h"
+#include "MapaFinal.h"
 #include "Collision.h"
 #include <stack>
 

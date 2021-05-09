@@ -2,8 +2,10 @@
 
 void LevelFinal::initEntidade(){
     this->espadachim = new Espadachim();
-    this->mapa = new MapaPrincipal();
+    this->inimigo = new Goblin();
+    this->mapa = new MapaFinal();
 
+    this->inimigo->setPosicao(500, 300);
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
 }
 
@@ -15,6 +17,7 @@ LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):Lev
 LevelFinal::~LevelFinal(){
     delete this->espadachim;
     delete this->mapa;
+    delete this->inimigo;
     //destrutor bottões
     destroiBotao();
 }
@@ -104,6 +107,7 @@ void LevelFinal::updateColisao(){
 
 void LevelFinal::updateEntidade(){
     this->espadachim->update();    
+    this->inimigo->update();    
 }
 
 
@@ -111,5 +115,6 @@ void LevelFinal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
     this->espadachim->render(target);
+    this->inimigo->render(target);
     this->renderBotao(target);
 }
