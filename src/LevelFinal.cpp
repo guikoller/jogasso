@@ -7,10 +7,10 @@ void LevelFinal::initEntidade(){
     this->caixa = new Caixa;
     this->espinho  = new Espinho;
     this->porta = new Porta;
-    this->porta->sprite.setPosition(sf::Vector2f(1400,210));
+    this->porta->sprite.setPosition(sf::Vector2f(200,720));
 
-    this->inimigo->setPosicao(500, 300);
-    this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
+    this->inimigo->setPosicao(500, 370);
+    this->espadachim->setPosicao(250,700);
 }
 
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
@@ -110,6 +110,7 @@ void LevelFinal::updateColisao(){
         }
         
     }
+    // this->inimigo->jogadorPerto(this->espadachim);
 }
 
 void LevelFinal::updateEntidade(){
@@ -121,10 +122,11 @@ void LevelFinal::updateEntidade(){
 void LevelFinal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
-    this->espadachim->render(target);
     this->inimigo->render(target);
     this->porta->render(target);
     this->espinho->render(target);
     this->caixa->render(target);
+
+    this->espadachim->render(target);
     this->renderBotao(target);
 }
