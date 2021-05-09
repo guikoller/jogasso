@@ -20,6 +20,7 @@ public:
     ~LevelPrincipal();
 
     //Functions
+    void initPosInimigo();
     void initListaInimigo();
     void updateColisao();
     void updateEntidade();
