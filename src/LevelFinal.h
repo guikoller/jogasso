@@ -5,7 +5,7 @@
 
 class LevelFinal : public LevelBase { 
 private:
-    Goblin *inimigo;
+    Goblin *goblin;
     Obstaculo *caixa;
     Obstaculo *espinho;
     Obstaculo *porta;

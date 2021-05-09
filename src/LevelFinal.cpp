@@ -2,14 +2,14 @@
 
 void LevelFinal::initEntidade(){
     this->espadachim = new Espadachim();
-    this->inimigo = new Goblin();
+    this->goblin = new Goblin();
     this->mapa = new MapaFinal();
     this->caixa = new Caixa;
     this->espinho  = new Espinho;
     this->porta = new Porta;
     this->porta->sprite.setPosition(sf::Vector2f(200,720));
 
-    this->inimigo->setPosicao(500, 370);
+    this->goblin->setPosicao(500, 300);
     this->espadachim->setPosicao(250,700);
 }
 
@@ -21,7 +21,7 @@ LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):Lev
 LevelFinal::~LevelFinal(){
     delete this->espadachim;
     delete this->mapa;
-    delete this->inimigo;
+    delete this->goblin;
     delete this->espinho;
     delete this->caixa;
     delete this->porta;
@@ -68,7 +68,7 @@ void LevelFinal::updateColisao(){
                         this->espadachim->velocidade.y = 0.f;
                         this->espadachim->velocidade.x = 0.f;
                         this->espadachim->hitBox.setPosition(espadachim->hitBox.getPosition().x, tileBounds.top - playerBounds.height);
-                        printf("colisão chão\n"); 
+                        printf("colisão chão\n");
                     }
                     // cima
                     if (playerBounds.top > tileBounds.top
@@ -115,14 +115,14 @@ void LevelFinal::updateColisao(){
 
 void LevelFinal::updateEntidade(){
     this->espadachim->update();    
-    this->inimigo->update();    
+    this->goblin->update();    
 }
 
 
 void LevelFinal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
-    this->inimigo->render(target);
+    this->goblin->render(target);
     this->porta->render(target);
     this->espinho->render(target);
     this->caixa->render(target);
