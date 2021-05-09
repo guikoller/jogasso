@@ -69,6 +69,7 @@ void Monstro::upadateMovimento(){
 }
 
 void Monstro::uptadeAnimacao(){
+    
     if (this->STATE == parado)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
@@ -86,11 +87,14 @@ void Monstro::uptadeAnimacao(){
         {
             this->frameAtual.top = 0;
             this->frameAtual.left += 64.f;
-            if(this->frameAtual.left >= 320.f)
+            if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
-            this->sprite.setTextureRect(this->frameAtual);
+            this->sprite.setTextureRect(this->frameAtual);  
         }
+        this->sprite.setScale(2.f,2.f);
+        this->sprite.setOrigin(0.f,0.f);
+        this->espelhado = false;
     }
     else if (this->STATE == andando_esquerda)
     {
@@ -98,11 +102,62 @@ void Monstro::uptadeAnimacao(){
         {
             this->frameAtual.top = 0;
             this->frameAtual.left += 64.f;
-            if(this->frameAtual.left >= 320.f)
+            if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
+            
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
+        this->espelhado = true;
+        this->sprite.setScale(-2.f,2.f);
+        this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
     }
-    STATE = parado;    
+    else if (this->STATE == atacando)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
+        {
+            this->frameAtual.top = 192.f;
+            this->frameAtual.left += 64.f;
+            if(this->frameAtual.left >= 96.f)
+                this->frameAtual.left = 0;    
+            
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+        
+        if (this->espelhado)
+        {
+            this->sprite.setScale(-2.f,2.f);
+            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
+        }else{
+           this->sprite.setScale(2.f,2.f);
+            this->sprite.setOrigin(0.f,0.f); 
+        }
+        
+        
+    }
+
+    else if (this->STATE == pulando)
+    {
+        if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.01f)
+        {
+            this->frameAtual.top = 576.f;
+            this->frameAtual.left = 0.f;    
+            
+            this->timerAnimacao.restart();
+            this->sprite.setTextureRect(this->frameAtual);
+        }
+        
+        if (this->espelhado)
+        {
+            this->sprite.setScale(-2.f,2.f);
+            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
+        }else{
+           this->sprite.setScale(2.f,2.f);
+            this->sprite.setOrigin(0.f,0.f); 
+        } 
+        
+    }
+    
+    this->STATE = parado;   
 }
