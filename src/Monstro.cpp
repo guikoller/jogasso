@@ -39,7 +39,32 @@ Monstro::~Monstro(){}
 
 void Monstro::upadateMovimento(){
     
-    
+    if(this->hitBox.getPosition().y <= 280)
+    {
+        if(this->hitBox.getPosition().x >= 1475)
+            setVelX(-2.5);
+        if(this->hitBox.getPosition().x <= 400)
+            setVelX(2.5f);
+    }
+    else if(this->hitBox.getPosition().y == 595)
+    {
+        if(this->hitBox.getPosition().x >= 1220)
+            setVelX(-2.5f);
+        if(this->hitBox.getPosition().x <= 70)
+            setVelX(2.5f);
+    }
+    else
+    {
+        if(this->hitBox.getPosition().x >= 1475)
+            setVelX(-2.5f);
+        if(this->hitBox.getPosition().x <= 70)
+            setVelX(2.5f);
+    }
+    if(this->velocidade.x > 0)
+        STATE = andando_direita;
+    if(this->velocidade.x < 0)
+        STATE = andando_esquerda;
+    this->move(velocidade.x, velocidade.y);
     this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
 }
 
