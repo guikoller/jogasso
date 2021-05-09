@@ -41,6 +41,7 @@ public:
     void setPosicao(const float x, const float y);//
     void resetVelY();//
     void resetVelX();//
+    void setVelX(float vel);
 
     virtual void move(const float x, const float y);
     virtual void upadateMovimento()= 0;

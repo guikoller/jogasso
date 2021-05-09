@@ -26,6 +26,11 @@ void Personagem::resetVelX(){
     this->velocidade.x = 0.f;
 }
 
+void Personagem::setVelX(float vel)
+{
+    this->velocidade.x = vel;
+}
+
 
 void Personagem::move(const float x, const float y){   
     this->hitBox.move(x,y);

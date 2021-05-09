@@ -16,22 +16,32 @@ void LevelPrincipal::initEntidade(){
     this->esqueleto->setPosicao(rand()%1405+70, 595);
 
 }
-// 1475 = limite direito do mapa, 70 = limite direito do mapa 
+// 1475 = limite direito do mapa, 70 = limite esquerdo do mapa 
 // 400 = limite esquerdo da plataforma de cima, 280 = altura plataforma de cima
 // 1220 = limite direito da plataforma do meio, 595 = altura da plataforma do meio
 // 925 = altura do chão de baixo
 void LevelPrincipal::initListaInimigo()
 {
-    for(int i = 0; i < 1; i++)
+    float vetorPosX[] = {0};
+    float vetorPosY[] = {280, 595, 925};
+    for(int i = 0; i < 5; i++)
     {
         Inimigo *m1 = new Monstro;
         Inimigo *e1 = new Esqueleto;
         this->listaInimigos->incluir(m1);
         this->listaInimigos->incluir(e1);
-        m1->setPosicao(rand()%1405+70, 595); 
-        e1->setPosicao(rand()%1405+70, 595); 
-        m1->setPosInicial(m1->hitBox.getPosition().x);
-        e1->setPosInicial(e1->hitBox.getPosition().x);
+        m1->setPosicao(rand()%1150+70, 595); 
+        e1->setPosicao(rand()%1150+70, 595); 
+        if(i%2)
+        {
+            e1->setVelX(rand()%4+2);
+            m1->setVelX(-rand()%4+2);
+        }
+        else
+        {
+            e1->setVelX(-rand()%4+2);
+            m1->setVelX(rand()%4+2);
+        }
     }
 
 
