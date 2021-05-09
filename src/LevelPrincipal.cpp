@@ -41,26 +41,26 @@ void LevelPrincipal::initPosInimigo()
     {
         if(vetorPosY[i] == 280)
         {
-            monstro[i]->setPosicao(rand()%1075+400, 280);
-            esqueleto[i]->setPosicao(rand()%1075+400, 280);
+            monstro->setPosicao(rand()%1075+400, 280);
+            esqueleto->setPosicao(rand()%1075+400, 280);
         }
         else if(vetorPosY[i] == 595)
         {
-            monstro[i]->setPosicao(rand()%1150+70, 595);
-            esqueleto[i]->setPosicao(rand()%1150+70, 595);
+            monstro->setPosicao(rand()%1150+70, 595);
+            esqueleto->setPosicao(rand()%1150+70, 595);
         }
         else
-            monstro[i]->setPosicao(rand()%1405+70, 925);
-            esqueleto[i]->setPosicao(rand()%1405+70, 925);
+            monstro->setPosicao(rand()%1405+70, 925);
+            esqueleto->setPosicao(rand()%1405+70, 925);
         if(i%2)
         {
-            esqueleto[i]->setVelX(rand()%4+2);
-            monstro[i]->setVelX(-rand()%4+2);
+            esqueleto->setVelX(rand()%4+2);
+            monstro->setVelX(-rand()%4+2);
         }
         else
         {
-            esqueleto[i]->setVelX(-rand()%4+2);
-            monstro[i]->setVelX(rand()%4+2);
+            esqueleto->setVelX(-rand()%4+2);
+            monstro->setVelX(rand()%4+2);
         }
     }
 }
