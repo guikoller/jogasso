@@ -1,13 +1,20 @@
 #pragma once
 
-#include "State.h"
+#include "LevelBase.h"
+#include "Botao.h"
 
-class LevelFinal : public State { 
+class LevelFinal : public LevelBase { 
 private:
-    MapaPrincipal *mapa;
     Espadachim *espadachim;
+    Inimigo *inimigo;
 
     void initEntidade();
+
+
+    std::map<std::string, Botao*> btns;
+
+    bool isPaused;
+
 public:
     LevelFinal(sf::RenderWindow *window, std::stack<State*>* states);
     ~LevelFinal();

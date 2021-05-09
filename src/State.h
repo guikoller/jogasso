@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entidade.h"
-#include "Personagem.h"
+
 
 #include "Jogador.h"
 #include "Lista.h"
@@ -13,13 +13,15 @@
 #include "Espadachim.h"
 #include "Monstro.h"
 #include "Esqueleto.h"
+#include "Goblin.h"
 
 #include "MapaPrincipal.h"
+#include "MapaFinal.h"
 #include "Collision.h"
 #include <stack>
 
 class State{
-protected:
+public:
     std::stack<State*> *states;
 
     sf::RenderWindow *window;
