@@ -4,7 +4,9 @@
 
 void Jogo::initWindow(){
 
-    this->window.create(sf::VideoMode(1600,1010),"Jogasso", sf::Style::Close | sf::Style::Titlebar);
+    this->window.create(sf::VideoMode(1600,1010),"Jogasso");
+    sf::View view(sf::FloatRect(0, 0, 1600, 1010));
+    this->window.setView(view);
     this->window.setFramerateLimit(144);
     this->window.setVerticalSyncEnabled(true);
 }
