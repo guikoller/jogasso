@@ -39,20 +39,33 @@ Esqueleto::~Esqueleto(){}
 
 void Esqueleto::upadateMovimento(){
     
-    if(this->hitBox.getPosition().x >= 1220)
+    if(this->hitBox.getPosition().y == 280)
     {
-        this->velocidade.x = -3.5f;
+        if(this->hitBox.getPosition().x >= 1475)
+            setVelX(-3.5f);
+        if(this->hitBox.getPosition().x <= 400)
+            setVelX(3.5f);
     }
-    else if(this->hitBox.getPosition().x <= 70)
+    else if(this->hitBox.getPosition().y == 595)
     {
-        this->velocidade.x = 3.5f;
+        if(this->hitBox.getPosition().x >= 1220)
+            setVelX(-3.5f);
+        if(this->hitBox.getPosition().x <= 70)
+            setVelX(3.5f);
+    }
+    else
+    {
+        if(this->hitBox.getPosition().x >= 1475)
+            setVelX(-3.5f);
+        if(this->hitBox.getPosition().x <= 70)
+            setVelX(3.5f);
     }
     if(this->velocidade.x > 0)
         STATE = andando_direita;
     if(this->velocidade.x < 0)
         STATE = andando_esquerda;
     this->move(velocidade.x, velocidade.y);
-    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-125,this->hitBox.getPosition().y-150));
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x+155,this->hitBox.getPosition().y-150));
 }
 
 void Esqueleto::uptadeAnimacao(){

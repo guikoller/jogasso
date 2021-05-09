@@ -22,41 +22,59 @@ void LevelPrincipal::initEntidade(){
     this->espinho[3]->sprite.setPosition(sf::Vector2f(1400,400));
     this->espinho[4]->sprite.setPosition(sf::Vector2f(1200,400));
     this->espinho[0]->sprite.setPosition(sf::Vector2f(200,900));
-
-
-
-    
-    this->monstro = new Monstro();
-    this->esqueleto = new Esqueleto();
     
     this->mapa = new MapaPrincipal();
     this->listaInimigos = new Lista<Inimigo>;
-    this->listaEsqueletos = new Lista<Esqueleto>;
     
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
-    
-    this->monstro->setPosicao(1000,925);
-    this->esqueleto->setPosicao(rand()%1405+70, 595);
 
 }
-// 1475 = limite direito do mapa, 70 = limite direito do mapa 
+// 1475 = limite direito do mapa, 70 = limite esquerdo do mapa 
 // 400 = limite esquerdo da plataforma de cima, 280 = altura plataforma de cima
 // 1220 = limite direito da plataforma do meio, 595 = altura da plataforma do meio
 // 925 = altura do chão de baixo
+
+void LevelPrincipal::initPosInimigo()
+{
+    float vetorPosY[] = {280, 595, 925, 280, 595, 925};
+    for(int i = 0; i < 6; i++)
+    {
+        if(vetorPosY[i] == 280)
+        {
+            monstro->setPosicao(rand()%1075+400, 280);
+            esqueleto->setPosicao(rand()%1075+400, 280);
+        }
+        else if(vetorPosY[i] == 595)
+        {
+            monstro->setPosicao(rand()%1150+70, 595);
+            esqueleto->setPosicao(rand()%1150+70, 595);
+        }
+        else
+            monstro->setPosicao(rand()%1405+70, 925);
+            esqueleto->setPosicao(rand()%1405+70, 925);
+        if(i%2)
+        {
+            esqueleto->setVelX(rand()%4+2);
+            monstro->setVelX(-rand()%4+2);
+        }
+        else
+        {
+            esqueleto->setVelX(-rand()%4+2);
+            monstro->setVelX(rand()%4+2);
+        }
+    }
+}
 void LevelPrincipal::initListaInimigo()
 {
-    for(int i = 0; i < 1; i++)
+    float vetorPosX[] = {0};
+    for(int i = 0; i < 6; i++)
     {
-        Inimigo *m1 = new Monstro;
-        Inimigo *e1 = new Esqueleto;
-        this->listaInimigos->incluir(m1);
-        this->listaInimigos->incluir(e1);
-        m1->setPosicao(rand()%1405+70, 595); 
-        e1->setPosicao(rand()%1405+70, 595); 
-        m1->setPosInicial(m1->hitBox.getPosition().x);
-        e1->setPosInicial(e1->hitBox.getPosition().x);
+        this->monstro = new Monstro;
+        this->esqueleto = new Esqueleto;
+        this->listaInimigos->incluir(monstro);
+        this->listaInimigos->incluir(esqueleto);
     }
-
+    initPosInimigo();
 
 }
 LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
