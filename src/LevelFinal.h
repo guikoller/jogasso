@@ -5,16 +5,11 @@
 
 class LevelFinal : public LevelBase { 
 private:
-    Espadachim *espadachim;
     Inimigo *inimigo;
-
-    void initEntidade();
-
 
     std::map<std::string, Botao*> btns;
 
-    bool isPaused;
-
+    void initEntidade();
 public:
     LevelFinal(sf::RenderWindow *window, std::stack<State*>* states);
     ~LevelFinal();

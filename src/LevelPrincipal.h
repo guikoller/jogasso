@@ -1,11 +1,10 @@
 #pragma once
 
-#include "State.h"
+#include "LevelBase.h"
 
-class LevelPrincipal : public State { 
+class LevelPrincipal : public LevelBase { 
 private:
-    MapaPrincipal *mapa;
-    Espadachim *espadachim;
+
     Lista<Inimigo> *listaInimigos;
     Lista<Esqueleto> *listaEsqueletos;
     Inimigo *monstro;
@@ -21,6 +20,6 @@ public:
     void initListaInimigo();
     void updateColisao();
     void updateEntidade();
-    void update();
+    //void update();
     void render(sf::RenderTarget&target);
 };

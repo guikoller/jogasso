@@ -36,9 +36,10 @@ void LevelPrincipal::initListaInimigo()
 
 
 }
-LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
+LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     initListaInimigo();
+    iniciaBotao();
 }
 
 LevelPrincipal::~LevelPrincipal(){
@@ -46,10 +47,14 @@ LevelPrincipal::~LevelPrincipal(){
     delete this->monstro;
     delete this->esqueleto;
     delete this->mapa;
+
+
+    //destrutor bottões
+    destroiBotao();
 }
 
 void LevelPrincipal::updateColisao(){
-     sf::FloatRect nextPos;
+    sf::FloatRect nextPos;
 
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
@@ -130,14 +135,7 @@ void LevelPrincipal::updateColisao(){
     }
 }
 
-void LevelPrincipal::update(){
-    this->updateEntidade();
-    this->updateColisao();
-    this->updateKeybinds();
-    this->updateMousePosition();
-    std::cout<<this->mousePosWindow.x <<", "<< this->mousePosWindow.y << std::endl;
-    system("clear");
-}
+
 
 void LevelPrincipal::updateEntidade(){
     this->espadachim->update();  
@@ -150,6 +148,8 @@ void LevelPrincipal::updateEntidade(){
     }
 }
 
+
+
 void LevelPrincipal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
@@ -161,5 +161,6 @@ void LevelPrincipal::render(sf::RenderTarget&target){
         Inimigo* temp = listaInimigos->getItem(i);
         temp->render(target);
     }
-
+    
+    this->renderBotao(target);
 }

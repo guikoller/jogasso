@@ -25,7 +25,7 @@ LevelFinal::~LevelFinal(){
 void LevelFinal::updateColisao(){
     
     sf::FloatRect nextPos;
-    
+
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
@@ -78,11 +78,11 @@ void LevelFinal::updateColisao(){
                     else if (playerBounds.left < tileBounds.left
                         && playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width , playerBounds.top); 
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width + 30, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
@@ -90,11 +90,11 @@ void LevelFinal::updateColisao(){
                     else if (playerBounds.left > tileBounds.left
                         && playerBounds.left + playerBounds.width > tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width,this->espadachim->getPosicao().y);
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width - 30,this->espadachim->getPosicao().y);
                         printf("colisão esquerda\n"); 
                     }    
                 }
