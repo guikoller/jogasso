@@ -7,16 +7,38 @@ void LevelPrincipal::initEntidade(){
     this->esqueleto = new Esqueleto();
     
     this->mapa = new MapaPrincipal();
-
+    this->listaInimigos = new Lista<Inimigo>;
+    this->listaEsqueletos = new Lista<Esqueleto>;
+    
     this->espadachim->hitBox.setPosition(sf::Vector2f(200.f,200.f));
     
     this->monstro->setPosicao(1000,925);
-    this->esqueleto->setPosicao(1000,210);
+    this->esqueleto->setPosicao(rand()%1405+70, 595);
 
 }
+// 1475 = limite direito do mapa, 70 = limite direito do mapa 
+// 400 = limite esquerdo da plataforma de cima, 280 = altura plataforma de cima
+// 1220 = limite direito da plataforma do meio, 595 = altura da plataforma do meio
+// 925 = altura do chão de baixo
+void LevelPrincipal::initListaInimigo()
+{
+    for(int i = 0; i < 1; i++)
+    {
+        Inimigo *m1 = new Monstro;
+        Inimigo *e1 = new Esqueleto;
+        this->listaInimigos->incluir(m1);
+        this->listaInimigos->incluir(e1);
+        m1->setPosicao(rand()%1405+70, 595); 
+        e1->setPosicao(rand()%1405+70, 595); 
+        m1->setPosInicial(m1->hitBox.getPosition().x);
+        e1->setPosInicial(e1->hitBox.getPosition().x);
+    }
 
+
+}
 LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
     initEntidade();
+    initListaInimigo();
 }
 
 LevelPrincipal::~LevelPrincipal(){
@@ -81,11 +103,11 @@ void LevelPrincipal::updateColisao(){
                     else if (playerBounds.left < tileBounds.left
                         && playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width, playerBounds.top); 
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x - playerBounds.width + 30, playerBounds.top); 
                         printf("colisão direita\n"); 
 
                     }
@@ -93,11 +115,11 @@ void LevelPrincipal::updateColisao(){
                     else if (playerBounds.left > tileBounds.left
                         && playerBounds.left + playerBounds.width > tileBounds.left + tileBounds.width
                         && playerBounds.top < tileBounds.top + tileBounds.height
-                        && playerBounds.top + playerBounds.height > tileBounds.top
+                        && playerBounds.top + playerBounds.height > tileBounds.top + 40
                     )
                     {
                         this->espadachim->velocidade.x = 0.f;
-                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width,this->espadachim->getPosicao().y);
+                        this->espadachim->setPosicao(this->espadachim->getPosicao().x + playerBounds.width - 30,this->espadachim->getPosicao().y);
                         printf("colisão esquerda\n"); 
                     }    
                 }
@@ -118,15 +140,26 @@ void LevelPrincipal::update(){
 }
 
 void LevelPrincipal::updateEntidade(){
-    this->espadachim->update();   
-    this->esqueleto->update(); 
-    this->monstro->update(); 
+    this->espadachim->update();  
+    //this->esqueleto->update(); 
+    //this->monstro->update();
+    for(int i = 0; i < this->listaInimigos->getLen(); i++)
+    {
+        Inimigo* temp = this->listaInimigos->getItem(i);
+        temp->update();
+    }
 }
 
 void LevelPrincipal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
     this->espadachim->render(target);
-    this->monstro->render(target);
-    this->esqueleto->render(target);
+    //this->monstro->render(target);
+    //this->esqueleto->render(target);
+    for(int i = 0; i < listaInimigos->getLen(); i++)
+    {
+        Inimigo* temp = listaInimigos->getItem(i);
+        temp->render(target);
+    }
+
 }

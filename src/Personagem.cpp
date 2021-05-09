@@ -3,12 +3,6 @@ Personagem::~Personagem(){}
 Personagem::Personagem(){}
 
 
-
-
-void Personagem::iniciaFisica(){
-    this->gravidade = 9.f;
-    this->VelMaxY = 15.f;
-}
 void Personagem::iniciaAnimacao(){
     this->timerAnimacao.restart();
 }
@@ -32,21 +26,12 @@ void Personagem::resetVelX(){
     this->velocidade.x = 0.f;
 }
 
-void Personagem::updateFisica(){
-    this->velocidade.y += 1.0*this->gravidade;
-    if(std::abs(this->velocidade.y) >  this->VelMaxY){
-        this->velocidade.y = this->VelMaxY *((this->velocidade.y < 0.f) ? -1.f : 1.f);
-    }
-	this->move(this->velocidade.x, velocidade.y);
-}
-
 
 void Personagem::move(const float x, const float y){   
     this->hitBox.move(x,y);
 }
 
 void Personagem::update(){
-    this->updateFisica();
     this->upadateMovimento();
     this->uptadeAnimacao();
 }

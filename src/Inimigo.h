@@ -3,8 +3,11 @@
 
 class Inimigo: public Personagem{
 private:
-    /* data */
+    float posInicial;
 public:
     Inimigo(/* args */);
     virtual ~Inimigo() = 0;
+
+    void setPosInicial(float pos);
+    float getPosInicial();
 };

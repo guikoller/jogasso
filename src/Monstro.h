@@ -20,11 +20,7 @@ public:
     ~Monstro();
 
 
-
-
-
-
-    void upadateMovimento();
-    void uptadeAnimacao();
+    void upadateMovimento() override;
+    void uptadeAnimacao() override;
 
 };

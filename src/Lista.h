@@ -1,74 +1,85 @@
 #include "Elemento.h"
 
 
-/*
-Poderiamos utilizar uma solução diferente como duas listas distintas, sendo cada uma composta por duas classes na forma abaixo ...
-ListaObstaculos e LObstaculos (Ambas classes).
-Optei por essa solução pois achei interessante ter listas de uso genérico, e memoria não é um problema neste caso específico
-(Como exite apenas o .h, os bjetos não compartilhão seus metodos, cada um tem sua cópia)
-*/
+template <class TL> class Lista{
+private:
+        Elemento<TL>* pPrimeiro;
+        Elemento<TL>* pUltimo;
+        int len;
+public:
+        Lista();
+        ~Lista();
 
-template <class Tipo>
-class Lista{
-    private:
-        Elemento<Tipo>* primeiro;
-        Elemento<Tipo>* atual;
-    public:
-        Lista():primeiro(NULL),atual(NULL){}
-        ~Lista(){}
-        void adicionar(Tipo* p){
-            if(primeiro != NULL){
-                Elemento<Tipo>* novo = new Elemento<Tipo>();
-                novo->setTipo(p);
-                atual->setNext(novo);
-                novo->setPrev(atual);
-                novo->setNext(NULL);
-                atual = novo;
+        int getLen() { return len; }
+
+        TL* getItem(int pos)
+        {
+            Elemento<TL> *temp = pPrimeiro;
+            if(pos == 0)
+                return temp->getItem();
+            for(int i = 0; i < pos; i++)
+            {
+                temp = temp->getProx();
             }
-            else{
-                primeiro = new Elemento<Tipo>();
-                primeiro->setTipo(p);
-                primeiro->setNext(NULL)
-                primeiro->setPrev(NULL);
-                atual = primeiro;
-            }
+            return temp->getItem();
         }
-        void remover(int chave){
-            Elemento<Tipo> *aux = primeiro;
-            int i = 0 ;
-            while(i != chave && aux != NULL){
-                aux = aux->getNext();
-                i++;
+
+        void incluir(TL* item)
+        {
+            if(pPrimeiro == nullptr)
+            {
+                pPrimeiro = new Elemento<TL>;
+                pPrimeiro->setItem(item);
+                pUltimo = pPrimeiro;
             }
-            if(aux != NULL){
-                Elemento<Tipo>* anterior = aux->getPrev();
-                anterior->setNext(aux->getNext());
-                Elemento<Tipo>* proximo = aux->getNext();
-                proximo->setPrev(anterior);
-                delete(aux);
+            else
+            {
+                Elemento<TL>* temp = new Elemento<TL>;
+                temp->setItem(item);
+                pUltimo->setProx(temp);
+                pUltimo = temp;
             }
-            else{
-                //
-                //cout<<"Elemento nao consta na lista."<<endl;
-            }
+            len++;
         }
-        Tipo* getTipo(int chave){
-            Elemento<Tipo>* aux = primeiro;
-            int i = 0;
-            while(i != chave && aux != NULL){
-                aux = aux->getNext();
-                i++;
+
+        void excluir(TL* item)
+        {
+            Elemento<TL>* temp = pPrimeiro;
+            Elemento<TL>* tempAnt = nullptr;
+
+            while(temp->getItem() != item)
+            {
+                tempAnt = temp;
+                temp = temp->getProx();
             }
-            if(i == chave)
-                return aux->getTipo();
-            //exit(1);
-            //cout<<"Acesso invalido a lista."<<endl;
-            return NULL;
-        }
-        void apagar(){
-            while(primeiro != NULL){
-                delete(atual);
-                atual = atual->getPrev();
+            if(temp == pPrimeiro)
+            {
+                pPrimeiro = temp->getProx();
             }
+            else if(temp == pUltimo)
+            {
+                tempAnt->setProx(nullptr);
+                pUltimo = tempAnt;
+            }
+            else
+            {
+                tempAnt->setProx(temp->getProx());
+            }
+            delete temp;
+            len--;
         }
 };
+
+template<class TL>
+inline Lista<TL>::Lista()
+{
+    pPrimeiro = nullptr;
+    pUltimo = nullptr;
+    len = 0;
+}
+
+template<class TL>
+inline Lista<TL>::~Lista()
+{
+
+}

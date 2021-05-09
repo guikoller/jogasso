@@ -8,7 +8,7 @@
 #include "Personagem.h"
 
 #include "Jogador.h"
-#include "Personagem.h"
+#include "Lista.h"
 
 #include "Espadachim.h"
 #include "Monstro.h"

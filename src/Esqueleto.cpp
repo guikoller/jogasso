@@ -18,12 +18,10 @@ void Esqueleto::iniciaSprite(){
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(3.f,3.f);
 
-    sf::Texture hitBox;
-    if (!hitBox.loadFromFile("Textures/Jogador/hitbox32x32.png")){
-		std::cout << "ERROR::JOGADOR::TEXTURA NÃO CARREGADA!" << "\n";
-	}
-    
-    this->hitBox.setTexture(hitBox);
+    this->hitBox.setSize(sf::Vector2f(40,40));
+    this->hitBox.setOutlineThickness(2.f);
+    this->hitBox.setOutlineColor(sf::Color::Red);
+    this->hitBox.setFillColor(sf::Color::Transparent);
 }
 
 
@@ -34,7 +32,6 @@ Esqueleto::Esqueleto(){
     this->iniciaTextura();
     this->iniciaSprite();
     this->iniciaAnimacao();
-    this->iniciaFisica();
     STATE = parado;
 }
 
@@ -42,8 +39,20 @@ Esqueleto::~Esqueleto(){}
 
 void Esqueleto::upadateMovimento(){
     
-    
-    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-75,this->hitBox.getPosition().y-82));
+    if(this->hitBox.getPosition().x >= 1220)
+    {
+        this->velocidade.x = -3.5f;
+    }
+    else if(this->hitBox.getPosition().x <= 70)
+    {
+        this->velocidade.x = 3.5f;
+    }
+    if(this->velocidade.x > 0)
+        STATE = andando_direita;
+    if(this->velocidade.x < 0)
+        STATE = andando_esquerda;
+    this->move(velocidade.x, velocidade.y);
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-125,this->hitBox.getPosition().y-150));
 }
 
 void Esqueleto::uptadeAnimacao(){
@@ -69,7 +78,7 @@ void Esqueleto::uptadeAnimacao(){
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);  
         }
-        this->sprite.setScale(2.f,2.f);
+        this->sprite.setScale(-3.f,3.f);
         this->sprite.setOrigin(0.f,0.f);
         this->espelhado = false;
     }
@@ -86,8 +95,8 @@ void Esqueleto::uptadeAnimacao(){
             this->sprite.setTextureRect(this->frameAtual);
         }
         this->espelhado = true;
-        this->sprite.setScale(-2.f,2.f);
-        this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
+        this->sprite.setScale(3.f,3.f);
+        this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
     }
     else if (this->STATE == atacando)
     {
@@ -104,10 +113,10 @@ void Esqueleto::uptadeAnimacao(){
         
         if (this->espelhado)
         {
-            this->sprite.setScale(-2.f,2.f);
-            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 2.f, 0.f);
+            this->sprite.setScale(-3.f,3.f);
+            this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
         }else{
-           this->sprite.setScale(2.f,2.f);
+           this->sprite.setScale(3.f,3.f);
             this->sprite.setOrigin(0.f,0.f); 
         }
         

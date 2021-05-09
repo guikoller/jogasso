@@ -6,6 +6,8 @@ class LevelPrincipal : public State {
 private:
     MapaPrincipal *mapa;
     Espadachim *espadachim;
+    Lista<Inimigo> *listaInimigos;
+    Lista<Esqueleto> *listaEsqueletos;
     Inimigo *monstro;
     Inimigo *esqueleto;
     
@@ -16,7 +18,7 @@ public:
     ~LevelPrincipal();
 
     //Functions
-    
+    void initListaInimigo();
     void updateColisao();
     void updateEntidade();
     void update();
