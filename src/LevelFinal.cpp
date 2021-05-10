@@ -243,6 +243,9 @@ void LevelFinal::updateEntidade(){
         this->goblin->update(); 
     }
     
+    if(this->goblin->getVida() <= 0){
+        this->placar=10000;
+    }
        
 }
 

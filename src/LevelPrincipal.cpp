@@ -20,11 +20,11 @@ void LevelPrincipal::initEntidade(){
     this->caixa[4]->sprite.setPosition(sf::Vector2f(rand()%1150+70,595));
     this->caixa[0]->sprite.setPosition(sf::Vector2f(1450,925));
 
-    this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,210));
-    this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,210));
-    this->espinho[3]->sprite.setPosition(sf::Vector2f(1400,400));
-    this->espinho[4]->sprite.setPosition(sf::Vector2f(1200,400));
-    this->espinho[0]->sprite.setPosition(sf::Vector2f(200,900));
+    this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,270));
+    this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,270));
+    this->espinho[3]->sprite.setPosition(sf::Vector2f(700,590));
+    this->espinho[4]->sprite.setPosition(sf::Vector2f(1000,590));
+    this->espinho[0]->sprite.setPosition(sf::Vector2f(400,900));
     
     this->mapa = new MapaPrincipal();
     this->listaInimigos = new Lista<Inimigo>;
