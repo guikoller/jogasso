@@ -9,6 +9,7 @@ private:
     Obstaculo *caixa;
     Obstaculo *espinho;
     Obstaculo *porta;
+    Obstaculo *portal;
 
     std::map<std::string, Botao*> btns;
 

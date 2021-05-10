@@ -39,7 +39,7 @@ void Jogo::updateSFMLevents(){
         if (this->event.type == sf::Event::Closed)//se a janela for fechada
             this->window.close();
         else if(this->event.type == sf::Event::KeyPressed && this->event.key.code == sf::Keyboard::Q)
-            this->window.close();// checa se uma tecla foi precionada e se foi, se é esc                   
+            this->window.close();// checa se uma tecla foi precionada e se foi, se é q para sair do jogo                   
     }
 }
 void Jogo::updateState(){
