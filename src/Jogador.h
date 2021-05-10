@@ -1,6 +1,5 @@
 #pragma once
 #include "Personagem.h"
-#include "Colisor.h"
 
 
 
@@ -15,5 +14,4 @@ public:
     void setPulando(const bool pulo);
     void updateFisica();
     void update();
-    Colisor getColisao();
 };
