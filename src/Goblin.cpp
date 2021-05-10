@@ -55,7 +55,7 @@ if (this->STATE == parado)
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
-    }else if (this->STATE == andando_direita)
+    }else if (this->STATE == andando_esquerda)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
@@ -70,7 +70,7 @@ if (this->STATE == parado)
         this->sprite.setOrigin(0.f,0.f);
         this->espelhado = false;
     }
-    else if (this->STATE == andando_esquerda)
+    else if (this->STATE == andando_direita)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
