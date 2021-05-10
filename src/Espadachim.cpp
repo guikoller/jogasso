@@ -4,6 +4,7 @@ void Espadachim::iniciaVariaveis(){
     this->estaPulando = false;
     this->espelhado = false;
     STATE = parado;
+    this->setVida(100);
 }
 
 

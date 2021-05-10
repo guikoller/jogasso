@@ -79,7 +79,8 @@ LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* sta
     initEntidade();
     initListaInimigo();
     iniciaBotao();
-    iniciaPlacar();
+    iniciaPlacar(100);
+    iniciaVida();
 }
 
 LevelPrincipal::~LevelPrincipal(){
@@ -341,5 +342,6 @@ void LevelPrincipal::render(sf::RenderTarget&target){
     this->espadachim->render(target);
     
     this->renderPlacar(target);
+    this->renderVida(target);
     this->renderBotao(target);
 }

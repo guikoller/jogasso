@@ -22,6 +22,8 @@ void LevelFinal::initEntidade(){
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     iniciaBotao();
+    iniciaPlacar(200);
+    iniciaVida();
 }
 
 LevelFinal::~LevelFinal(){
@@ -221,5 +223,7 @@ void LevelFinal::render(sf::RenderTarget&target){
         this->martelador->render(target);
 
     this->espadachim->render(target);
+    this->renderPlacar(target);
+    this->renderVida(target);
     this->renderBotao(target);
 }
