@@ -5,8 +5,7 @@ void LevelFinal::initEntidade(){
     this->martelador = new Martelador();
     this->goblin = new Goblin();
     this->mapa = new MapaFinal();
-    this->caixa = new Caixa;
-    this->espinho  = new Espinho;
+    this->espinho = new Espinho;
     this->porta = new Porta;
     this->portal = new Portal;
     this->porta->sprite.setPosition(sf::Vector2f(200,720));
@@ -14,6 +13,7 @@ void LevelFinal::initEntidade(){
 
     this->goblin->setPosicao(500, 490);
     this->goblin->setVelX(-1.f);
+    this->espinho->sprite.setPosition(sf::Vector2f(1200, 780));
     this->espadachim->setPosicao(250,700);
     this->martelador->setPosicao(250,700);
     this->dt = 0;
@@ -30,7 +30,6 @@ LevelFinal::~LevelFinal(){
     delete this->mapa;
     delete this->goblin;
     delete this->espinho;
-    delete this->caixa;
     delete this->portal;
     delete this->porta;
     //destrutor bottões
@@ -166,8 +165,36 @@ void LevelFinal::updateColisao(){
                 
             } 
             }
-        }
-        
+            //colisao obstaculos
+            if(Collision::PixelPerfectTest(this->portal->sprite, this->espadachim->getSprite()))
+            {
+                //teleporta
+                this->espadachim->velocidade.x = 0.f;
+                this->espadachim->setPosicao(250, 700);
+                printf("colidiu com portal\n");
+            }
+            if(Collision::PixelPerfectTest(this->espinho->sprite, this->espadachim->getSprite()))
+            {
+                //perde vida
+                printf("colidiu com espinho\n");
+            }
+            if(segundoJogador)
+            {
+                if(Collision::PixelPerfectTest(this->portal->sprite, this->martelador->getSprite()))
+                {
+                    //teleporta pro inicio da fase
+                    this->martelador->velocidade.x = 0.f;
+                    this->martelador->setPosicao(250, 700);
+                    printf("colidiu com portal\n");
+                }
+                if(Collision::PixelPerfectTest(this->espinho->sprite, this->martelador->getSprite()))
+                {
+                    // perde vida
+                    printf("colidiu com espinho\n");
+                }
+            }
+            
+        } 
     }
     this->dt += 0.1;
     this->goblin->jogadorPerto(this->espadachim, &dt);
@@ -189,7 +216,6 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->porta->render(target);
     this->portal->render(target);
     this->espinho->render(target);
-    this->caixa->render(target);
 
     if(segundoJogador)
         this->martelador->render(target);

@@ -6,12 +6,10 @@
 class LevelFinal : public LevelBase { 
 private:
     Goblin *goblin;
-    Obstaculo *caixa;
     Obstaculo *espinho;
     Obstaculo *porta;
     Obstaculo *portal;
 
-    sf::Clock tempo;
     float dt;
     std::map<std::string, Botao*> btns;
 
