@@ -5,8 +5,6 @@ Para executar o jogo é preciso ter o SFML instalado:
 ```
     sudo apt-get install libsfml-dev
 ```
-
-```
 Para executar o jogo é preciso ter o g++ instalado:
 ```
     sudo apt install g++:
