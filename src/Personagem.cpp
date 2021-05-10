@@ -25,12 +25,24 @@ void Personagem::resetVelY(){
 void Personagem::resetVelX(){
     this->velocidade.x = 0.f;
 }
-
+bool Personagem::estaAtacando(){
+    if (this->STATE = atacando){
+        return true;
+    }
+    return false;
+    
+}
 void Personagem::setVelX(float vel)
 {
     this->velocidade.x = vel;
 }
+void Personagem::setVida(int vida){
+    this->vida  = vida;
+}
 
+const int Personagem::getVida() const{
+    return this->vida;
+}
 
 void Personagem::move(const float x, const float y){   
     this->hitBox.move(x,y);
