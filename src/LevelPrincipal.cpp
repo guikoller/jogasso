@@ -274,6 +274,11 @@ void LevelPrincipal::updateColisao(){
         else if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
             this->espadachim->hitBox.getPosition().x > aux->hitBox.getPosition().x)
         {
+            if(this->espadachim->estaAtacando())
+            {
+                listaInimigos->excluir(aux);
+                printf("inimigo morto");
+            }
             //perde vida
             this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
         }
