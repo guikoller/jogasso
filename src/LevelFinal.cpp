@@ -212,22 +212,49 @@ void LevelFinal::updateColisao(){
         }
     } 
     this->dt += 0.1;
-    this->goblin->jogadorPerto(this->espadachim, &dt); 
+    this->goblin->jogadorPerto(this->espadachim, &dt);
+
+    if (Collision::PixelPerfectTest(this->goblin->getSprite(), this->martelador->getSprite()))
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
+        {
+            this->goblin->vida -= 1;
+        }
+        
+    }
+    if (Collision::PixelPerfectTest(this->goblin->getSprite(), this->espadachim->getSprite()))
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        {
+            this->goblin->vida -= 1;
+        }
+        
+    }
+
+
 }
 
 void LevelFinal::updateEntidade(){
     this->espadachim->update();  
     if(segundoJogador)
         this->martelador->update();
-
-    this->goblin->update();    
+    if (this->goblin->getVida()>0)
+    {
+        this->goblin->update(); 
+    }
+    
+       
 }
 
 
 void LevelFinal::render(sf::RenderTarget&target){
     // printf("renderizado\n");
     this->mapa->render(target);
-    this->goblin->render(target);
+
+    if (this->goblin->getVida()>0){
+       this->goblin->render(target);  
+    } 
+
     this->porta->render(target);
     this->portal->render(target);
     this->espinho->render(target);
