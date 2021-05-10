@@ -10,6 +10,8 @@ private:
     Obstaculo *espinho;
     Obstaculo *porta;
 
+    sf::Clock tempo;
+    float dt;
     std::map<std::string, Botao*> btns;
 
     void initEntidade();

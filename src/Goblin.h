@@ -18,7 +18,7 @@ public:
     Goblin();
     ~Goblin();
 
-    void jogadorPerto(Jogador *jogador);
+    void jogadorPerto(Jogador *jogador, float *dt);
     void upadateMovimento();
     void uptadeAnimacao();
 };

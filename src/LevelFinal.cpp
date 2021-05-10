@@ -14,6 +14,7 @@ void LevelFinal::initEntidade(){
     this->goblin->setVelX(-1.f);
     this->espadachim->setPosicao(250,700);
     this->martelador->setPosicao(250,700);
+    this->dt = 0;
 }
 
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
@@ -164,7 +165,8 @@ void LevelFinal::updateColisao(){
         }
         
     }
-    this->goblin->jogadorPerto(this->espadachim);
+    this->dt += 0.1;
+    this->goblin->jogadorPerto(this->espadachim, &dt);
 }
 
 void LevelFinal::updateEntidade(){

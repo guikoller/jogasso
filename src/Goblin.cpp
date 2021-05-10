@@ -39,7 +39,7 @@ Goblin::~Goblin(){}
 
 void Goblin::upadateMovimento(){
     
-    if(this->hitBox.getPosition().x < 200)
+    /*if(this->hitBox.getPosition().x < 200)
     {
         setVelX(6.f);
         STATE = andando_direita;
@@ -53,7 +53,7 @@ void Goblin::upadateMovimento(){
         STATE = andando_direita;
     else if(this->velocidade.x < 0)
         STATE = andando_esquerda;
-    this->move(velocidade.x, velocidade.y);
+    this->move(velocidade.x, velocidade.y);*/
     this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x - 200,this->hitBox.getPosition().y - 200));
 }
 
@@ -128,17 +128,17 @@ if (this->STATE == parado)
 }
 
 
-void Goblin::jogadorPerto(Jogador *jogador){
-    sf::Clock tempo;
-    sf::Time cd = sf::seconds(1.f);
+void Goblin::jogadorPerto(Jogador *jogador, float *dt){
+
     
     if (this->hitBox.getGlobalBounds().intersects(jogador->getGlobalBounds()))
     {
-        tempo.restart();
-        if(tempo.getElapsedTime().asSeconds() > cd.asSeconds())
+        
+        if(*dt > 2.0)
         {
             this->STATE = atacando;
             // jogador perde vida
+            *dt = 0;
         }
     }    
 }
