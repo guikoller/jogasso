@@ -73,7 +73,7 @@ if (this->STATE == parado)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
-            this->frameAtual.top = 0;
+            this->frameAtual.top = 320.f;
             this->frameAtual.left += 64.f;
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    
@@ -88,7 +88,7 @@ if (this->STATE == parado)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
-            this->frameAtual.top = 0;
+            this->frameAtual.top = 320.f;
             this->frameAtual.left += 64.f;
             if(this->frameAtual.left >= 480.f)
                 this->frameAtual.left = 0;    

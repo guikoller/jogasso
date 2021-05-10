@@ -1,6 +1,7 @@
 #include "LevelPrincipal.h"
 
 void LevelPrincipal::initEntidade(){
+
     this->espadachim = new Espadachim();
     this->martelador = new Martelador();
 
@@ -78,6 +79,7 @@ LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* sta
     initEntidade();
     initListaInimigo();
     iniciaBotao();
+    iniciaPlacar();
 }
 
 LevelPrincipal::~LevelPrincipal(){
@@ -329,6 +331,7 @@ void LevelPrincipal::render(sf::RenderTarget&target){
         this->martelador->render(target);
 
     this->espadachim->render(target);
-
+    
+    this->renderPlacar(target);
     this->renderBotao(target);
 }

@@ -31,6 +31,14 @@ void LevelBase::iniciaBotao(){
         sf::Color(10,10,10,200), 
         sf::Color(20,20,20,150));
 }
+void LevelBase::iniciaPlacar(){
+    bool write = true;
+    this->placar = 6666;
+    this->textoPlacar.setFont(this->fonte);
+    this->textoPlacar.setFillColor(sf::Color::White);
+    this->textoPlacar.setCharacterSize(70);
+    this->textoPlacar.setPosition(sf::Vector2f(1300.f, 30.f));
+}
 
 LevelBase::LevelBase(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
 }
@@ -60,6 +68,7 @@ void LevelBase::updateBotao(){
         this->segundoJogador = true;
     }else if (this->btns["salvarScore"]->isPressed()){
        //salvar pontuação 
+       salvarPlacar();
     }else if (this->btns["SalvarJogo"]->isPressed()){
         // salvar jogo
     }else if (this->btns["CarregarJogo"]->isPressed()){
@@ -68,7 +77,12 @@ void LevelBase::updateBotao(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
         this->isPaused = true;
+        this->write = true;
     }
+}
+
+void LevelBase::updatePlacar(){
+    this->textoPlacar.setString(std::to_string(this->placar));
 }
 
 void LevelBase::update(){
@@ -79,6 +93,7 @@ void LevelBase::update(){
     this->updateKeybinds();
     this->updateMousePosition();
     this->updateBotao();
+    this->updatePlacar();
 }
 
 void LevelBase::renderBotao(sf::RenderTarget &target){
@@ -87,4 +102,17 @@ void LevelBase::renderBotao(sf::RenderTarget &target){
         it.second->render(target);
         } 
     }
+}
+
+void LevelBase::renderPlacar(sf::RenderTarget &target){
+    target.draw(this->textoPlacar);
+}
+
+void LevelBase::salvarPlacar(){
+    if(write){
+        arquivoPlacar.open("Placar/placar.txt", std::ios::app);
+        arquivoPlacar<<placar<<"\n";
+        arquivoPlacar.close();
+        this->write = false;
+    }    
 }
