@@ -13,12 +13,21 @@ void LevelFinal::initEntidade(){
 
     this->goblin->setPosicao(500, 490);
     this->goblin->setVelX(-1.f);
-    this->espinho->sprite.setPosition(sf::Vector2f(1200, 780));
+    this->espinho->sprite.setPosition(sf::Vector2f(1200, 760));
     this->espadachim->setPosicao(250,700);
     this->martelador->setPosicao(250,700);
     this->dt = 0;
 }
 
+void LevelFinal::initListaInimigo()
+{
+    this->monstro = new Monstro;
+    this->esqueleto = new Esqueleto;
+    this->listaInimigos->incluir(monstro);
+    this->listaInimigos->incluir(esqueleto);
+    this->monstro->setPosicao(600, 760);
+    this->esqueleto->setPosicao(1000, 760);
+}
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     iniciaBotao();

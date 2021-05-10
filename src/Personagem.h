@@ -13,7 +13,7 @@ public:
     sf::IntRect frameAtual;
     bool espelhado;
 
-    enum {andando_direita,andando_esquerda,parado,pulando,caindo,atacando} STATE;
+    enum {andando_direita = 0,andando_esquerda,parado,pulando,caindo,atacando} STATE;
 
     //Fisica
     sf::Vector2f velocidade;
@@ -39,6 +39,7 @@ public:
     sf::Sprite getSprite();//
     void setVida(int vida);
     const int getVida()const;
+    int getState();
     bool estaAtacando();
 
     void setPosicao(const float x, const float y);//

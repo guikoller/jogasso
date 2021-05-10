@@ -25,8 +25,12 @@ void Personagem::resetVelY(){
 void Personagem::resetVelX(){
     this->velocidade.x = 0.f;
 }
+int Personagem::getState()
+{
+    return this->STATE;
+}
 bool Personagem::estaAtacando(){
-    if (this->STATE = atacando){
+    if (this->STATE == atacando){
         return true;
     }
     return false;

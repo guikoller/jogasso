@@ -6,7 +6,6 @@ class LevelPrincipal : public LevelBase {
 private:
 
     Lista<Inimigo> *listaInimigos;
-    Lista<Esqueleto> *listaEsqueletos;
     Inimigo *monstro;
     Inimigo *esqueleto;
     Obstaculo *porta;
