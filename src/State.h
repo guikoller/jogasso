@@ -23,6 +23,8 @@
 #include "MapaFinal.h"
 #include "Collision.h"
 #include <stack>
+#include <string>
+#include <fstream>
 
 class State{
 public:
