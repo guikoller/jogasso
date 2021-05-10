@@ -4,6 +4,8 @@ void LevelFinal::initEntidade(){
     this->espadachim = new Espadachim();
     this->martelador = new Martelador();
     this->goblin = new Goblin();
+    this->monstro = new Monstro();
+    this->esqueleto = new Esqueleto();
     this->mapa = new MapaFinal();
     this->espinho = new Espinho;
     this->porta = new Porta;
@@ -11,23 +13,19 @@ void LevelFinal::initEntidade(){
     this->porta->sprite.setPosition(sf::Vector2f(200,720));
     this->portal->sprite.setPosition(sf::Vector2f(200,500));
 
-    this->goblin->setPosicao(500, 490);
-    this->goblin->setVelX(-1.f);
+    
     this->espinho->sprite.setPosition(sf::Vector2f(1200, 760));
     this->espadachim->setPosicao(250,700);
     this->martelador->setPosicao(250,700);
+    this->goblin->setPosicao(500, 490);
+    this->goblin->setVelX(-1.f);
+    this->esqueleto->setPosicao(900, 790);
+    this->esqueleto->setVelX(0);
+    this->monstro->setPosicao(600, 790);
+    this->monstro->setVelX(0);
     this->dt = 0;
 }
 
-void LevelFinal::initListaInimigo()
-{
-    this->monstro = new Monstro;
-    this->esqueleto = new Esqueleto;
-    this->listaInimigos->incluir(monstro);
-    this->listaInimigos->incluir(esqueleto);
-    this->monstro->setPosicao(600, 760);
-    this->esqueleto->setPosicao(1000, 760);
-}
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     iniciaBotao();
@@ -43,6 +41,8 @@ LevelFinal::~LevelFinal(){
     delete this->espinho;
     delete this->portal;
     delete this->porta;
+    delete this->monstro;
+    delete this->esqueleto;
     //destrutor bottões
     destroiBotao();
 }
@@ -206,9 +206,114 @@ void LevelFinal::updateColisao(){
             // perde vida
             printf("colidiu com espinho\n");
         }
-    } 
+    }
+    // colisoes inimigos
+    if(Collision::PixelPerfectTest(monstro->getSprite(), this->espadachim->getSprite()) && 
+        this->espadachim->hitBox.getPosition().x < monstro->hitBox.getPosition().x)
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        {
+            this->monstro->setPosicao(5000, 5000);
+            printf("inimigo morto");
+            this->placar += 100;
+        }
+        //perde vida
+        this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
+        printf("colidiu com inimigo\n");
+    }
+    else if(Collision::PixelPerfectTest(monstro->getSprite(), this->espadachim->getSprite()) && 
+            this->espadachim->hitBox.getPosition().x > monstro->hitBox.getPosition().x)
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        {
+            this->monstro->setPosicao(5000, 5000);
+            printf("inimigo morto");
+            this->placar += 100;
+        }
+        //perde vida
+        this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
+    }
+    if(Collision::PixelPerfectTest(esqueleto->getSprite(), this->espadachim->getSprite()) && 
+        this->espadachim->hitBox.getPosition().x < esqueleto->hitBox.getPosition().x)
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        {
+            this->esqueleto->setPosicao(5000, 5000);
+            printf("inimigo morto");
+            this->placar += 100;
+        }
+        //perde vida
+        this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
+        printf("colidiu com inimigo\n");
+    }
+    else if(Collision::PixelPerfectTest(esqueleto->getSprite(), this->espadachim->getSprite()) && 
+            this->espadachim->hitBox.getPosition().x > esqueleto->hitBox.getPosition().x)
+    {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        {
+            this->esqueleto->setPosicao(5000, 5000);
+            printf("inimigo morto");
+            this->placar += 100;
+        }
+        //perde vida
+        this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
+    }
+    if(segundoJogador)
+    {
+        if(Collision::PixelPerfectTest(monstro->getSprite(), this->martelador->getSprite()) && 
+        this->martelador->hitBox.getPosition().x < monstro->hitBox.getPosition().x)
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            {
+                this->monstro->setPosicao(5000, 5000);
+                printf("inimigo morto");
+                this->placar += 100;
+            }
+            //perde vida
+            this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
+            printf("colidiu com inimigo\n");
+        }
+        else if(Collision::PixelPerfectTest(monstro->getSprite(), this->martelador->getSprite()) && 
+            this->martelador->hitBox.getPosition().x > monstro->hitBox.getPosition().x)
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            {
+                this->monstro->setPosicao(5000, 5000);
+                printf("inimigo morto");
+                this->placar += 100;
+            }
+            //perde vida
+            this->martelador->setPosicao(this->martelador->getPosicao().x + this->martelador->getGlobalBounds().width - 20, this->martelador->getPosicao().y);
+        }
+        if(Collision::PixelPerfectTest(esqueleto->getSprite(), this->martelador->getSprite()) && 
+        this->martelador->hitBox.getPosition().x < esqueleto->hitBox.getPosition().x)
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            {
+                this->esqueleto->setPosicao(5000, 5000);
+                printf("inimigo morto");
+                this->placar += 100;
+            }
+            //perde vida
+            this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
+            printf("colidiu com inimigo\n");
+        }
+        else if(Collision::PixelPerfectTest(esqueleto->getSprite(), this->martelador->getSprite()) && 
+            this->martelador->hitBox.getPosition().x > esqueleto->hitBox.getPosition().x)
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            {
+                this->esqueleto->setPosicao(5000, 5000);
+                printf("inimigo morto");
+                this->placar += 100;
+            }
+            //perde vida
+            this->martelador->setPosicao(this->martelador->getPosicao().x + this->martelador->getGlobalBounds().width - 20, this->martelador->getPosicao().y);
+        }   
+    }
     this->dt += 0.1;
     this->goblin->jogadorPerto(this->espadachim, &dt); 
+    this->goblin->jogadorPerto(this->martelador, &dt); 
 }
 
 void LevelFinal::updateEntidade(){
@@ -216,7 +321,9 @@ void LevelFinal::updateEntidade(){
     if(segundoJogador)
         this->martelador->update();
 
-    this->goblin->update();    
+    this->goblin->update();   
+    this->monstro->update();
+    this->esqueleto->update();
 }
 
 
@@ -227,6 +334,8 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->porta->render(target);
     this->portal->render(target);
     this->espinho->render(target);
+    this->monstro->render(target);
+    this->esqueleto->render(target);
 
     if(segundoJogador)
         this->martelador->render(target);
