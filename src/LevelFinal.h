@@ -9,6 +9,7 @@ private:
     Obstaculo *caixa;
     Obstaculo *espinho;
     Obstaculo *porta;
+    Obstaculo *portal;
 
     sf::Clock tempo;
     float dt;

@@ -17,6 +17,7 @@
 #include "Caixa.h"
 #include "Espinho.h"
 #include "Porta.h"
+#include "Portal.h"
 
 #include "MapaPrincipal.h"
 #include "MapaFinal.h"

@@ -8,7 +8,9 @@ void LevelFinal::initEntidade(){
     this->caixa = new Caixa;
     this->espinho  = new Espinho;
     this->porta = new Porta;
+    this->portal = new Portal;
     this->porta->sprite.setPosition(sf::Vector2f(200,720));
+    this->portal->sprite.setPosition(sf::Vector2f(200,500));
 
     this->goblin->setPosicao(500, 490);
     this->goblin->setVelX(-1.f);
@@ -24,10 +26,12 @@ LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):Lev
 
 LevelFinal::~LevelFinal(){
     delete this->espadachim;
+    delete this->martelador;
     delete this->mapa;
     delete this->goblin;
     delete this->espinho;
     delete this->caixa;
+    delete this->portal;
     delete this->porta;
     //destrutor bottões
     destroiBotao();
@@ -183,6 +187,7 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->mapa->render(target);
     this->goblin->render(target);
     this->porta->render(target);
+    this->portal->render(target);
     this->espinho->render(target);
     this->caixa->render(target);
 
