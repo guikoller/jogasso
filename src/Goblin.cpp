@@ -75,7 +75,7 @@ if (this->STATE == parado)
         {
             this->frameAtual.top = 320.f;
             this->frameAtual.left += 64.f;
-            if(this->frameAtual.left >= 480.f)
+            if(this->frameAtual.left >= 320.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);  
@@ -90,7 +90,7 @@ if (this->STATE == parado)
         {
             this->frameAtual.top = 320.f;
             this->frameAtual.left += 64.f;
-            if(this->frameAtual.left >= 480.f)
+            if(this->frameAtual.left >= 320.f)
                 this->frameAtual.left = 0;    
             
             this->timerAnimacao.restart();

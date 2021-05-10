@@ -2,6 +2,7 @@
 
 // #include "LevelPrincipal.h"
 #include "MenuLevel.h"
+#include "Pontuacao.h"
 // #include "Botao.h"
 
 class MenuPrincipal : public State{

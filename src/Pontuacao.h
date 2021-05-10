@@ -4,11 +4,15 @@
 #include "LevelPrincipal.h"
 #include "LevelFinal.h"
 #include "Botao.h"
+#include <string>
+#include <sstream>
 
 class Pontuacao : public State{
 private:
 
     sf::Text titulo;
+
+    sf::Text placar;
 
     sf::Texture texture;
     sf::Sprite background;
@@ -16,7 +20,7 @@ private:
     Botao *btn;
 
     std::map<std::string, Botao*> btns;
-
+    void iniciaPlacar();
     void iniciaBotao();
     void iniciaBackground();
     void iniciaTitulo();
@@ -27,5 +31,6 @@ public:
     void update();
     void renderBotao(sf::RenderTarget &target);
     virtual void render(sf::RenderTarget &target);
+    std::string readFile();
 };
 
