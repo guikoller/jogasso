@@ -192,7 +192,7 @@ void LevelPrincipal::updateColisao(){
                         && player2Bounds.left + player2Bounds.width > tileBounds.left
                     )
                     {
-                        this->martelador->velocidade.y = 0.f;
+                         this->martelador->velocidade.y = 0.f;
                         this->martelador->setPosicao(martelador->hitBox.getPosition().x, tileBounds.top + tileBounds.height);
                         printf("colisão topo\n"); 
                     } 
@@ -239,6 +239,20 @@ void LevelPrincipal::updateColisao(){
             this->espadachim->setPosicao(this->espadachim->getPosicao().x, this->espadachim->getPosicao().y - this->espadachim->getGlobalBounds().height + 35);
             printf("colidiu com caixa\n");
         }
+        if(segundoJogador)
+        {
+            if(Collision::PixelPerfectTest(this->espinho[i]->sprite, this->martelador->getSprite()))
+            {
+                //perde vida
+                printf("colidiu com espinho\n");
+            }
+            if(Collision::PixelPerfectTest(this->caixa[i]->sprite, this->martelador->getSprite()))
+            {
+                this->martelador->velocidade.x = 0.f;
+                this->martelador->setPosicao(this->martelador->getPosicao().x, this->martelador->getPosicao().y - this->martelador->getGlobalBounds().height + 35);
+                printf("colidiu com caixa\n");
+            }
+        }
     }
     // colisoes inimigos
     for(int i = 0; i < listaInimigos->getLen(); i++)
@@ -254,9 +268,24 @@ void LevelPrincipal::updateColisao(){
             this->espadachim->hitBox.getPosition().x > aux->hitBox.getPosition().x)
         {
             this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
-            printf("colidiu com inimigo\n");
+        }
+        if(segundoJogador)
+        {
+            if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
+                this->martelador->hitBox.getPosition().x < aux->hitBox.getPosition().x)
+            {
+                this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
+                printf("colidiu com inimigo\n");
+            }
+            else if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
+                    this->martelador->hitBox.getPosition().x > aux->hitBox.getPosition().x)
+            {
+                this->martelador->setPosicao(this->martelador->getPosicao().x + this->martelador->getGlobalBounds().width - 20, this->martelador->getPosicao().y);
+            }
         }
     }
+    if(Collision::PixelPerfectTest(this->porta->sprite, this->espadachim->getSprite()))
+        this->quit = true;
 }
 
 
