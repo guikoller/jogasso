@@ -22,6 +22,7 @@ LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):Lev
 
 LevelFinal::~LevelFinal(){
     delete this->espadachim;
+    delete this->martelador;
     delete this->mapa;
     delete this->inimigo;
     delete this->espinho;
