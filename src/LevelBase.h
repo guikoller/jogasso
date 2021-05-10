@@ -6,10 +6,12 @@
 class LevelBase : public State { 
 protected:
     TileMap *mapa;
-    Espadachim *espadachim;
+    Jogador *espadachim;
+    Jogador *martelador;
     
     std::map<std::string, Botao*> btns;
     bool isPaused;
+    bool segundoJogador;
 
     virtual void initEntidade() = 0;
     void iniciaBotao();   

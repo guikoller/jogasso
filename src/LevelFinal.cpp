@@ -2,6 +2,7 @@
 
 void LevelFinal::initEntidade(){
     this->espadachim = new Espadachim();
+    this->martelador = new Martelador();
     this->inimigo = new Goblin();
     this->mapa = new MapaFinal();
     this->caixa = new Caixa;
@@ -11,6 +12,7 @@ void LevelFinal::initEntidade(){
 
     this->inimigo->setPosicao(500, 370);
     this->espadachim->setPosicao(250,700);
+    this->martelador->setPosicao(250,700);
 }
 
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
@@ -32,28 +34,23 @@ LevelFinal::~LevelFinal(){
 void LevelFinal::updateColisao(){
     
     sf::FloatRect nextPos;
-
+    sf::FloatRect nextPos2;
     for (int i = 0; i < this->mapa->getLargura(); i++)
     {
         for (int j = 0; j < this->mapa->getAltura(); j++)
         {
+            //espadachim
             sf::FloatRect playerBounds = espadachim->getGlobalBounds();
             sf::FloatRect tileBounds = this->mapa->getSprite(i,j).getGlobalBounds();
-            
             nextPos = playerBounds;
             nextPos.left += this->espadachim->velocidade.x;
             nextPos.top += this->espadachim->velocidade.y;
-            
-
-
-            // (x, y)-----------------------(x + width, y)
-            // |                                         |
-            // |                                         |
-            // |                                         |
-            // |                                         |
-            // |                                         |
-            // (x, y + height)-----(x + width, y + height)
-           
+            //martelador
+            sf::FloatRect player2Bounds = martelador->getGlobalBounds();
+            nextPos2 = player2Bounds;
+            nextPos2.left += this->martelador->velocidade.x;
+            nextPos2.top += this->martelador->velocidade.y;
+            //jogador padrão
             if (this->mapa->getSolido(i,j))
             {
                 if (tileBounds.intersects(nextPos))
@@ -107,6 +104,62 @@ void LevelFinal::updateColisao(){
                 }
                 
             }            
+            //segundo jogador
+            if(segundoJogador){
+                if (this->mapa->getSolido(i,j))
+            {
+                if (tileBounds.intersects(nextPos2))
+                {
+                    //baixo
+                    if (player2Bounds.top < tileBounds.top
+                        && player2Bounds.top + player2Bounds.height < tileBounds.top + tileBounds.height
+                        && player2Bounds.left < tileBounds.left + tileBounds.width
+                        && player2Bounds.left + player2Bounds.width > tileBounds.left
+                    )
+                    {
+                        this->martelador->velocidade.y = 0.f;
+                        this->martelador->velocidade.x = 0.f;
+                        this->martelador->hitBox.setPosition(martelador->hitBox.getPosition().x, tileBounds.top - player2Bounds.height);
+                        printf("colisão chão\n"); 
+                    }
+                    // cima
+                    if (player2Bounds.top > tileBounds.top
+                        && player2Bounds.top + player2Bounds.height > tileBounds.top + tileBounds.height
+                        && player2Bounds.left < tileBounds.left + tileBounds.width
+                        && player2Bounds.left + player2Bounds.width > tileBounds.left
+                    )
+                    {
+                        this->martelador->velocidade.y = 0.f;
+                        this->martelador->setPosicao(martelador->hitBox.getPosition().x, tileBounds.top + tileBounds.height);
+                        printf("colisão topo\n"); 
+                    } 
+                    //direita
+                    else if (player2Bounds.left < tileBounds.left
+                        && player2Bounds.left + player2Bounds.width < tileBounds.left + tileBounds.width
+                        && player2Bounds.top < tileBounds.top + tileBounds.height
+                        && player2Bounds.top + player2Bounds.height > tileBounds.top + 40
+                    )
+                    {
+                        this->martelador->velocidade.x = 0.f;
+                        this->martelador->setPosicao(this->martelador->getPosicao().x - player2Bounds.width + 30, player2Bounds.top); 
+                        printf("colisão direita\n"); 
+
+                    }
+                    //esquerda
+                    else if (player2Bounds.left > tileBounds.left
+                        && player2Bounds.left + player2Bounds.width > tileBounds.left + tileBounds.width
+                        && player2Bounds.top < tileBounds.top + tileBounds.height
+                        && player2Bounds.top + player2Bounds.height > tileBounds.top + 40
+                    )
+                    {
+                        this->martelador->velocidade.x = 0.f;
+                        this->martelador->setPosicao(this->martelador->getPosicao().x + player2Bounds.width - 30,this->martelador->getPosicao().y);
+                        printf("colisão esquerda\n"); 
+                    }    
+                }
+                
+            } 
+            }
         }
         
     }
@@ -114,7 +167,10 @@ void LevelFinal::updateColisao(){
 }
 
 void LevelFinal::updateEntidade(){
-    this->espadachim->update();    
+    this->espadachim->update();  
+    if(segundoJogador)
+        this->martelador->update();
+
     this->inimigo->update();    
 }
 
@@ -126,6 +182,9 @@ void LevelFinal::render(sf::RenderTarget&target){
     this->porta->render(target);
     this->espinho->render(target);
     this->caixa->render(target);
+
+    if(segundoJogador)
+        this->martelador->render(target);
 
     this->espadachim->render(target);
     this->renderBotao(target);
