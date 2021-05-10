@@ -2,6 +2,7 @@
 
 
 void Goblin::iniciaVariaveis(){
+    this->vida = 300;
 }
 
 

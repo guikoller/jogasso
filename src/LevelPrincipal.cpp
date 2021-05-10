@@ -20,17 +20,17 @@ void LevelPrincipal::initEntidade(){
     this->caixa[4]->sprite.setPosition(sf::Vector2f(rand()%1150+70,595));
     this->caixa[0]->sprite.setPosition(sf::Vector2f(1450,925));
 
-    this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,210));
-    this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,210));
-    this->espinho[3]->sprite.setPosition(sf::Vector2f(1400,400));
-    this->espinho[4]->sprite.setPosition(sf::Vector2f(1200,400));
-    this->espinho[0]->sprite.setPosition(sf::Vector2f(200,900));
+    this->espinho[1]->sprite.setPosition(sf::Vector2f(1200,270));
+    this->espinho[2]->sprite.setPosition(sf::Vector2f(1000,270));
+    this->espinho[3]->sprite.setPosition(sf::Vector2f(700,590));
+    this->espinho[4]->sprite.setPosition(sf::Vector2f(1000,590));
+    this->espinho[0]->sprite.setPosition(sf::Vector2f(400,900));
     
     this->mapa = new MapaPrincipal();
     this->listaInimigos = new Lista<Inimigo>;
     
-    this->espadachim->setPosicao(200,900);
-    this->martelador->setPosicao(200,900);
+    this->espadachim->setPosicao(100,900);
+    this->martelador->setPosicao(100,900);
 
 }
 // 1475 = limite direito do mapa, 70 = limite esquerdo do mapa 
@@ -79,7 +79,7 @@ LevelPrincipal::LevelPrincipal(sf::RenderWindow *window, std::stack<State*>* sta
     initEntidade();
     initListaInimigo();
     iniciaBotao();
-    iniciaPlacar(100);
+    iniciaPlacar(0);
     iniciaVida();
 }
 
@@ -237,7 +237,8 @@ void LevelPrincipal::updateColisao(){
     {
         if(Collision::PixelPerfectTest(this->espinho[i]->sprite, this->espadachim->getSprite()))
         {
-            //perde vida
+            this->espadachim->vida -= 1;
+            this->espadachim->setPosicao(this->espadachim->getPosicao().x-20,this->espadachim->getPosicao().y-20);
             printf("colidiu com espinho\n");
         }
         if(Collision::PixelPerfectTest(this->caixa[i]->sprite, this->espadachim->getSprite()))
@@ -250,7 +251,8 @@ void LevelPrincipal::updateColisao(){
         {
             if(Collision::PixelPerfectTest(this->espinho[i]->sprite, this->martelador->getSprite()))
             {
-                //perde vida
+                this->martelador->vida -= 1;
+                this->martelador->setPosicao(this->martelador->getPosicao().x-20,this->martelador->getPosicao().y-20);
                 printf("colidiu com espinho\n");
             }
             if(Collision::PixelPerfectTest(this->caixa[i]->sprite, this->martelador->getSprite()))
@@ -273,9 +275,12 @@ void LevelPrincipal::updateColisao(){
                 listaInimigos->excluir(aux);
                 printf("inimigo morto");
                 this->placar += 100;
+            }else{
+                this->espadachim->vida -= 1;
+                this->espadachim->setPosicao(this->espadachim->getPosicao().x-20,this->espadachim->getPosicao().y-20);
+                // this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
             }
-            //perde vida
-            this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
+            
             printf("colidiu com inimigo\n");
         }
         else if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
@@ -286,9 +291,11 @@ void LevelPrincipal::updateColisao(){
                 listaInimigos->excluir(aux);
                 printf("inimigo morto");
                 this->placar += 100;
+            }else{
+                this->espadachim->vida -= 1;
+                this->espadachim->setPosicao(this->espadachim->getPosicao().x-20,this->espadachim->getPosicao().y-20);
+                // this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
             }
-            //perde vida
-            this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
         }
         if(segundoJogador)
         {
@@ -300,9 +307,12 @@ void LevelPrincipal::updateColisao(){
                     listaInimigos->excluir(aux);
                     printf("inimigo morto");
                     this->placar += 100;
+                }else{
+                    this->martelador->vida -= 1;
+                    this->martelador->setPosicao(this->martelador->getPosicao().x-20,this->martelador->getPosicao().y-20);
+                    // this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
                 }
-                // perde vida
-                this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
+                
                 printf("colidiu com inimigo\n");
             }
             else if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
@@ -313,9 +323,11 @@ void LevelPrincipal::updateColisao(){
                     listaInimigos->excluir(aux);
                     printf("inimigo morto");
                     this->placar += 100;
+                }else{
+                    this->martelador->vida -= 1;
+                    this->martelador->setPosicao(this->martelador->getPosicao().x-20,this->martelador->getPosicao().y-20);
+                    // this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
                 }
-                // perde vida
-                this->martelador->setPosicao(this->martelador->getPosicao().x + this->martelador->getGlobalBounds().width - 20, this->martelador->getPosicao().y);
             }
         }
     }

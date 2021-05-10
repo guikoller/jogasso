@@ -44,7 +44,7 @@ void Personagem::setVida(int vida){
     this->vida  = vida;
 }
 
-const int Personagem::getVida() const{
+int Personagem::getVida() const{
     return this->vida;
 }
 
