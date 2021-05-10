@@ -21,13 +21,24 @@ void Pontuacao::iniciaTitulo(){
     this->titulo.setString("Placares:");
     this->titulo.setCharacterSize(100);
     this->titulo.setColor(sf::Color(250,250,250,250));
-    this->titulo.setPosition(sf::Vector2f(100,100));
+    this->titulo.setPosition(sf::Vector2f(100,50));
 }
 
 Pontuacao::Pontuacao(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){    
     iniciaTitulo();
     iniciaBackground();
     iniciaBotao();
+    iniciaPlacar();
+}
+
+void Pontuacao::iniciaPlacar(){
+    std::string texto = readFile();
+
+    this->placar.setFont(this->fonte);
+    this->placar.setString(texto);
+    this->placar.setFillColor(sf::Color::White);
+    this->placar.setCharacterSize(45);
+    this->placar.setPosition(sf::Vector2f(800,50));
 }
 
 Pontuacao::~Pontuacao()
@@ -56,7 +67,7 @@ void Pontuacao::updateBotao(){
 void Pontuacao::update(){
     this->updateKeybinds();
     this->updateMousePosition();
-    std::cout<<this->mousePosWindow.x <<", "<< this->mousePosWindow.y << std::endl;
+    // std::cout<<this->mousePosWindow.x <<", "<< this->mousePosWindow.y << std::endl;
     updateBotao();
 }
 
@@ -71,6 +82,18 @@ void Pontuacao::render(sf::RenderTarget &target){
     target.draw(this->background);
     renderBotao(target);
     target.draw(this->titulo);
+    target.draw(this->placar);
 }
 
+std::string Pontuacao::readFile(){
+    std::ifstream inFile;
+    inFile.open("Placar/placar.txt"); //open the input file
+
+    std::stringstream strStream;
+    strStream << inFile.rdbuf(); //read the file
+    std::string str = strStream.str(); //str holds the content of the file
+
+    std::cout << str << "\n"; //you can do anything with the string!!!
+    return str;
+}
 

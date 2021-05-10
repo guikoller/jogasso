@@ -70,6 +70,7 @@ void MenuPrincipal::updateBotao(){
         printf("botao  inicar precionado\n");
     }else if (this->btns["PLACAR"]->isPressed())
     {
+        this->states->push(new Pontuacao(this->window, this->states));
         printf("botao  placar precionado\n");
     }
     
