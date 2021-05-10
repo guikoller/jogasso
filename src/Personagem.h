@@ -37,6 +37,9 @@ public:
     const sf::FloatRect getGlobalBounds() const;//
     const sf::Vector2f getPosicao() const;//
     sf::Sprite getSprite();//
+    void setVida(int vida);
+    const int getVida()const;
+    bool estaAtacando();
 
     void setPosicao(const float x, const float y);//
     void resetVelY();//
