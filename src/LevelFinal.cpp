@@ -9,7 +9,8 @@ void LevelFinal::initEntidade(){
     this->porta = new Porta;
     this->porta->sprite.setPosition(sf::Vector2f(200,720));
 
-    this->goblin->setPosicao(500, 300);
+    this->goblin->setPosicao(500, 490);
+    this->goblin->setVelX(-1.f);
     this->espadachim->setPosicao(250,700);
 }
 
@@ -110,7 +111,7 @@ void LevelFinal::updateColisao(){
         }
         
     }
-    // this->inimigo->jogadorPerto(this->espadachim);
+    this->goblin->jogadorPerto(this->espadachim);
 }
 
 void LevelFinal::updateEntidade(){

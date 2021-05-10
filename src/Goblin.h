@@ -18,7 +18,7 @@ public:
     Goblin();
     ~Goblin();
 
-    void jogadorPerto(Jogador *jogador, sf::Clock tempo);
+    void jogadorPerto(Jogador *jogador);
     void upadateMovimento();
     void uptadeAnimacao();
 };

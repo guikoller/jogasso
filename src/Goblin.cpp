@@ -18,7 +18,7 @@ void Goblin::iniciaSprite(){
     this->sprite.setTextureRect(this->frameAtual);
     this->sprite.setScale(8.f,8.f);
 
-    this->hitBox.setSize(sf::Vector2f(400,170));
+    this->hitBox.setSize(sf::Vector2f(120,150));
     this->hitBox.setOutlineThickness(2.f);
     this->hitBox.setOutlineColor(sf::Color::Red);
     this->hitBox.setFillColor(sf::Color::Transparent);
@@ -39,8 +39,22 @@ Goblin::~Goblin(){}
 
 void Goblin::upadateMovimento(){
     
-    
-    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x,this->hitBox.getPosition().y));
+    if(this->hitBox.getPosition().x < 200)
+    {
+        setVelX(6.f);
+        STATE = andando_direita;
+    }
+    if(this->hitBox.getPosition().x > 1000)
+    {
+        setVelX(-6.f);
+        STATE = andando_esquerda;
+    }
+    if(this->velocidade.x > 0)
+        STATE = andando_direita;
+    else if(this->velocidade.x < 0)
+        STATE = andando_esquerda;
+    this->move(velocidade.x, velocidade.y);
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x - 200,this->hitBox.getPosition().y - 200));
 }
 
 void Goblin::uptadeAnimacao(){
@@ -114,9 +128,17 @@ if (this->STATE == parado)
 }
 
 
-void Goblin::jogadorPerto(Jogador *jogador, sf::Clock tempo){
+void Goblin::jogadorPerto(Jogador *jogador){
+    sf::Clock tempo;
+    sf::Time cd = sf::seconds(1.f);
+    
     if (this->hitBox.getGlobalBounds().intersects(jogador->getGlobalBounds()))
     {
-        this->STATE = atacando;
+        tempo.restart();
+        if(tempo.getElapsedTime().asSeconds() > cd.asSeconds())
+        {
+            this->STATE = atacando;
+            // jogador perde vida
+        }
     }    
 }
