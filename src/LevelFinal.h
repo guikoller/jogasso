@@ -6,7 +6,6 @@
 class LevelFinal : public LevelBase { 
 private:
     Goblin *goblin;
-    Lista<Inimigo> *listaInimigos;
     Inimigo *esqueleto;
     Inimigo *monstro;
     Obstaculo *espinho;
@@ -22,7 +21,6 @@ public:
     ~LevelFinal();
 
     //Functions
-    void initListaInimigo();
     void updateColisao();
     void updateEntidade();
     void render(sf::RenderTarget&target);
