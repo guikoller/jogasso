@@ -31,7 +31,7 @@ void LevelFinal::initListaInimigo()
 LevelFinal::LevelFinal(sf::RenderWindow *window, std::stack<State*>* states):LevelBase(window, states){
     initEntidade();
     iniciaBotao();
-    iniciaPlacar(200);
+    iniciaPlacar(0);
     iniciaVida();
 }
 
@@ -189,7 +189,9 @@ void LevelFinal::updateColisao(){
     }
     if(Collision::PixelPerfectTest(this->espinho->sprite, this->espadachim->getSprite()))
     {
-        //perde vida
+        this->espadachim->vida -= 1;
+        this->espadachim->setPosicao(this->espadachim->getPosicao().x-20,this->espadachim->getPosicao().y-20);
+                
         printf("colidiu com espinho\n");
     }
     if(segundoJogador)
@@ -203,7 +205,9 @@ void LevelFinal::updateColisao(){
         }
         if(Collision::PixelPerfectTest(this->espinho->sprite, this->martelador->getSprite()))
         {
-            // perde vida
+            this->martelador->vida -= 1;
+            this->martelador->setPosicao(this->espadachim->getPosicao().x-20,this->espadachim->getPosicao().y-20);
+                
             printf("colidiu com espinho\n");
         }
     } 
