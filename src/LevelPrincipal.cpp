@@ -93,7 +93,11 @@ LevelPrincipal::~LevelPrincipal(){
         delete this->caixa[i];
         delete this->espinho[i];
     }
-
+    for(int i = 0; i < listaInimigos->getLen(); i++)
+    {
+        Inimigo *aux = listaInimigos->getItem(i);
+        listaInimigos->excluir(aux);
+    }
     //destrutor bottões
     destroiBotao();
 }
@@ -263,12 +267,14 @@ void LevelPrincipal::updateColisao(){
         if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
             this->espadachim->hitBox.getPosition().x < aux->hitBox.getPosition().x)
         {
+            //perde vida
             this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
             printf("colidiu com inimigo\n");
         }
         else if(Collision::PixelPerfectTest(aux->getSprite(), this->espadachim->getSprite()) && 
             this->espadachim->hitBox.getPosition().x > aux->hitBox.getPosition().x)
         {
+            //perde vida
             this->espadachim->setPosicao(this->espadachim->getPosicao().x + this->espadachim->getGlobalBounds().width - 20, this->espadachim->getPosicao().y);
         }
         if(segundoJogador)
@@ -276,12 +282,14 @@ void LevelPrincipal::updateColisao(){
             if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
                 this->martelador->hitBox.getPosition().x < aux->hitBox.getPosition().x)
             {
+                // perde vida
                 this->martelador->setPosicao(this->martelador->getPosicao().x - this->martelador->getGlobalBounds().width + 20, this->martelador->getPosicao().y);
                 printf("colidiu com inimigo\n");
             }
             else if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
                     this->martelador->hitBox.getPosition().x > aux->hitBox.getPosition().x)
             {
+                // perde vida
                 this->martelador->setPosicao(this->martelador->getPosicao().x + this->martelador->getGlobalBounds().width - 20, this->martelador->getPosicao().y);
             }
         }

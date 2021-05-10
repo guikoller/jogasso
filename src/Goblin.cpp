@@ -39,7 +39,7 @@ Goblin::~Goblin(){}
 
 void Goblin::upadateMovimento(){
     
-    if(this->hitBox.getPosition().x < 400)
+    /*if(this->hitBox.getPosition().x < 400)
     {
         setVelX(6.f);
         STATE = andando_direita;
@@ -53,7 +53,7 @@ void Goblin::upadateMovimento(){
         STATE = andando_direita;
     else if(this->velocidade.x < 0)
         STATE = andando_esquerda;
-    this->move(velocidade.x, velocidade.y);
+    this->move(velocidade.x, velocidade.y);*/
     this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x - 200,this->hitBox.getPosition().y - 200));
 }
 
@@ -133,13 +133,14 @@ void Goblin::jogadorPerto(Jogador *jogador, float *dt){
     
     if (this->hitBox.getGlobalBounds().intersects(jogador->getGlobalBounds()))
     {
-        if(jogador->velocidade.x < 0)
+        if(jogador->hitBox.getPosition().x > this->hitBox.getPosition().x)
             espelhado = true;
-        else if (jogador->velocidade.x > 0)
+        else if (jogador->hitBox.getPosition().x <= this->hitBox.getPosition().x)
             espelhado = false;
-        if(*dt > 2.0)
+        if(*dt > 4.0)
         {
             this->STATE = atacando;
+            printf("goblin atacou\n");
             // jogador perde vida
             *dt = 0;
         }

@@ -165,39 +165,39 @@ void LevelFinal::updateColisao(){
                 
             } 
             }
-            //colisao obstaculos
-            if(Collision::PixelPerfectTest(this->portal->sprite, this->espadachim->getSprite()))
-            {
-                //teleporta
-                this->espadachim->velocidade.x = 0.f;
-                this->espadachim->setPosicao(250, 700);
-                printf("colidiu com portal\n");
-            }
-            if(Collision::PixelPerfectTest(this->espinho->sprite, this->espadachim->getSprite()))
-            {
-                //perde vida
-                printf("colidiu com espinho\n");
-            }
-            if(segundoJogador)
-            {
-                if(Collision::PixelPerfectTest(this->portal->sprite, this->martelador->getSprite()))
-                {
-                    //teleporta pro inicio da fase
-                    this->martelador->velocidade.x = 0.f;
-                    this->martelador->setPosicao(250, 700);
-                    printf("colidiu com portal\n");
-                }
-                if(Collision::PixelPerfectTest(this->espinho->sprite, this->martelador->getSprite()))
-                {
-                    // perde vida
-                    printf("colidiu com espinho\n");
-                }
-            }
-            
+           
         } 
     }
+     //colisao obstaculos
+    if(Collision::PixelPerfectTest(this->portal->sprite, this->espadachim->getSprite()))
+    {
+        //teleporta
+        this->espadachim->velocidade.x = 0.f;
+        this->espadachim->setPosicao(250, 700);
+        printf("colidiu com portal\n");
+    }
+    if(Collision::PixelPerfectTest(this->espinho->sprite, this->espadachim->getSprite()))
+    {
+        //perde vida
+        printf("colidiu com espinho\n");
+    }
+    if(segundoJogador)
+    {
+        if(Collision::PixelPerfectTest(this->portal->sprite, this->martelador->getSprite()))
+        {
+            //teleporta pro inicio da fase
+            this->martelador->velocidade.x = 0.f;
+            this->martelador->setPosicao(250, 700);
+            printf("colidiu com portal\n");
+        }
+        if(Collision::PixelPerfectTest(this->espinho->sprite, this->martelador->getSprite()))
+        {
+            // perde vida
+            printf("colidiu com espinho\n");
+        }
+    } 
     this->dt += 0.1;
-    this->goblin->jogadorPerto(this->espadachim, &dt);
+    this->goblin->jogadorPerto(this->espadachim, &dt); 
 }
 
 void LevelFinal::updateEntidade(){
