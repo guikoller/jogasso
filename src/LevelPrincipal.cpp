@@ -302,7 +302,7 @@ void LevelPrincipal::updateColisao(){
             if(Collision::PixelPerfectTest(aux->getSprite(), this->martelador->getSprite()) && 
                 this->martelador->hitBox.getPosition().x < aux->hitBox.getPosition().x)
             {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
                 {
                     listaInimigos->excluir(aux);
                     printf("inimigo morto");

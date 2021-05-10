@@ -225,7 +225,7 @@ void LevelFinal::updateColisao(){
         this->espadachim->setPosicao(this->espadachim->getPosicao().x - this->espadachim->getGlobalBounds().width + 20, this->espadachim->getPosicao().y);
         printf("colidiu com inimigo\n");
     }
-    else if(Collision::PixelPerfectTest(monstro->getSprite(), this->espadachim->getSprite()) && 
+    if(Collision::PixelPerfectTest(monstro->getSprite(), this->espadachim->getSprite()) && 
             this->espadachim->hitBox.getPosition().x > monstro->hitBox.getPosition().x)
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
@@ -267,7 +267,7 @@ void LevelFinal::updateColisao(){
         if(Collision::PixelPerfectTest(monstro->getSprite(), this->martelador->getSprite()) && 
         this->martelador->hitBox.getPosition().x < monstro->hitBox.getPosition().x)
         {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
             {
                 this->monstro->setPosicao(5000, 5000);
                 printf("inimigo morto");
@@ -280,7 +280,7 @@ void LevelFinal::updateColisao(){
         else if(Collision::PixelPerfectTest(monstro->getSprite(), this->martelador->getSprite()) && 
             this->martelador->hitBox.getPosition().x > monstro->hitBox.getPosition().x)
         {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
             {
                 this->monstro->setPosicao(5000, 5000);
                 printf("inimigo morto");

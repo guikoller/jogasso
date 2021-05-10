@@ -1,7 +1,7 @@
 # Projeto para a Disciplina Técnicas de Programação 
 ##UTFPR CURITIBA
 
-Para executar o jogo é preciso ter o SFML instalado:
+Para executar o jogo é preciso ter a última versão do SFML instalado:
 ```
     sudo apt-get install libsfml-dev
 ```
