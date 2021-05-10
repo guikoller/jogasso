@@ -12,6 +12,7 @@ protected:
     int placar;
     bool write;
     sf::Text textoPlacar;
+    sf::Text textoVida;
     std::ofstream arquivoPlacar;
     
     std::map<std::string, Botao*> btns;
@@ -20,7 +21,8 @@ protected:
 
     virtual void initEntidade() = 0;
     void iniciaBotao(); 
-    void iniciaPlacar();
+    void iniciaPlacar(int placar);
+    void iniciaVida();
 public:
     LevelBase(sf::RenderWindow *window, std::stack<State*>* states);
     virtual ~LevelBase();
@@ -32,8 +34,10 @@ public:
     virtual void updateEntidade() = 0;
     void updateBotao();
     void updatePlacar();
+    void updateVida();
     virtual void update();
     void renderBotao(sf::RenderTarget &target);
     void renderPlacar(sf::RenderTarget &target);
+    void renderVida(sf::RenderTarget &target);
     virtual void render(sf::RenderTarget&target) = 0;
 };

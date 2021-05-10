@@ -31,13 +31,19 @@ void LevelBase::iniciaBotao(){
         sf::Color(10,10,10,200), 
         sf::Color(20,20,20,150));
 }
-void LevelBase::iniciaPlacar(){
+void LevelBase::iniciaPlacar(int placar){
     bool write = true;
-    this->placar = 6666;
+    this->placar = placar;
     this->textoPlacar.setFont(this->fonte);
     this->textoPlacar.setFillColor(sf::Color::White);
     this->textoPlacar.setCharacterSize(70);
     this->textoPlacar.setPosition(sf::Vector2f(1300.f, 30.f));
+}
+void LevelBase::iniciaVida(){
+    this->textoVida.setFont(this->fonte);
+    this->textoVida.setFillColor(sf::Color::White);
+    this->textoVida.setCharacterSize(70);
+    this->textoVida.setPosition(sf::Vector2f(200.f, 30.f));
 }
 
 LevelBase::LevelBase(sf::RenderWindow *window, std::stack<State*>* states):State(window, states){
@@ -81,6 +87,14 @@ void LevelBase::updateBotao(){
     }
 }
 
+void LevelBase::updateVida(){
+    int vida  = this->espadachim->vida;
+    this->textoVida.setString(std::to_string(vida));
+    if (vida<=0){
+        this->quit = true;
+    }    
+}
+
 void LevelBase::updatePlacar(){
     this->textoPlacar.setString(std::to_string(this->placar));
 }
@@ -94,6 +108,7 @@ void LevelBase::update(){
     this->updateMousePosition();
     this->updateBotao();
     this->updatePlacar();
+    this->updateVida();
 }
 
 void LevelBase::renderBotao(sf::RenderTarget &target){
@@ -106,6 +121,9 @@ void LevelBase::renderBotao(sf::RenderTarget &target){
 
 void LevelBase::renderPlacar(sf::RenderTarget &target){
     target.draw(this->textoPlacar);
+}
+void LevelBase::renderVida(sf::RenderTarget &target){
+    target.draw(this->textoVida);
 }
 
 void LevelBase::salvarPlacar(){
