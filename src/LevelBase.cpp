@@ -2,8 +2,14 @@
 
 void LevelBase::iniciaBotao(){
     this->isPaused = false;
+    this->segundoJogador = false;
 
-    this->btns["voltar"] = new Botao(600,300, 350,80, "Continuar", &this->fonte,
+    this->btns["voltar"] = new Botao(600,200, 350,80, "Continuar", &this->fonte,
+        sf::Color(0,0,0,230), 
+        sf::Color(10,10,10,200), 
+        sf::Color(20,20,20,150));
+
+    this->btns["jogador"] = new Botao(600,300, 350,80, "Adicionar Jogador", &this->fonte,
         sf::Color(0,0,0,230), 
         sf::Color(10,10,10,200), 
         sf::Color(20,20,20,150));
@@ -50,6 +56,8 @@ void LevelBase::updateBotao(){
         this->quit = true;
     }else if (this->btns["voltar"]->isPressed()){
         this->isPaused = false;
+    }else if (this->btns["jogador"]->isPressed()){
+        this->segundoJogador = true;
     }else if (this->btns["salvarScore"]->isPressed()){
        //salvar pontuação 
     }else if (this->btns["SalvarJogo"]->isPressed()){

@@ -9,6 +9,7 @@
 #include "Lista.h"
 
 #include "Espadachim.h"
+#include "Martelador.h"
 #include "Monstro.h"
 #include "Esqueleto.h"
 #include "Goblin.h"

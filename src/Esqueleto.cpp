@@ -65,7 +65,7 @@ void Esqueleto::upadateMovimento(){
     if(this->velocidade.x < 0)
         STATE = andando_esquerda;
     this->move(velocidade.x, velocidade.y);
-    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x+155,this->hitBox.getPosition().y-150));
+    this->sprite.setPosition(sf::Vector2f(this->hitBox.getPosition().x-125,this->hitBox.getPosition().y-150));
 }
 
 void Esqueleto::uptadeAnimacao(){
@@ -74,13 +74,13 @@ void Esqueleto::uptadeAnimacao(){
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.3f)
         {  
             this->frameAtual.top = 0.f;
-            this->frameAtual.left += 96.f;            
+            this->frameAtual.left += 192.f;            
             if(this->frameAtual.left >= 288.f)
                 this->frameAtual.left = 0;    
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);
         }
-    }else if (this->STATE == andando_direita)
+    }else if (this->STATE == andando_esquerda)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
@@ -91,11 +91,11 @@ void Esqueleto::uptadeAnimacao(){
             this->timerAnimacao.restart();
             this->sprite.setTextureRect(this->frameAtual);  
         }
-        this->sprite.setScale(-3.f,3.f);
+        this->sprite.setScale(3.f,3.f);
         this->sprite.setOrigin(0.f,0.f);
         this->espelhado = false;
     }
-    else if (this->STATE == andando_esquerda)
+    else if (this->STATE == andando_direita)
     {
         if (this->timerAnimacao.getElapsedTime().asSeconds() >= 0.07f)
         {
@@ -108,7 +108,7 @@ void Esqueleto::uptadeAnimacao(){
             this->sprite.setTextureRect(this->frameAtual);
         }
         this->espelhado = true;
-        this->sprite.setScale(3.f,3.f);
+        this->sprite.setScale(-3.f,3.f);
         this->sprite.setOrigin(this->sprite.getGlobalBounds().width / 3.f, 0.f);
     }
     else if (this->STATE == atacando)
@@ -134,7 +134,6 @@ void Esqueleto::uptadeAnimacao(){
         }
         
         
-    }
-    
-    this->STATE = parado;   
+    }    
+    this->STATE = parado;  
 }
