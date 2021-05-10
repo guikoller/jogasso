@@ -218,7 +218,7 @@ void LevelFinal::updateColisao(){
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
         {
-            this->goblin->vida -= 1;
+            this->goblin->vida -= 2;
         }
         
     }
@@ -226,7 +226,7 @@ void LevelFinal::updateColisao(){
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
         {
-            this->goblin->vida -= 1;
+            this->goblin->vida -= 2;
         }
         
     }
